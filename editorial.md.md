@@ -349,7 +349,11 @@ int search(int* nums, int numsSize, int target) {
 | **Better (Sentinel)** | O(n) | O(1) |
 | **Optimal (Two-Way)** | O(n/2) average | O(1) |
 
-The **optimal approach** provides the best average-case performance while maintaining O(1) space complexity, making it the most efficient linear search implementation for unsorted arrays.
+The **optimal approach** provides the best average-case performance while maintaining O(1) space complexity, making it the most efficient linear search implementation for unsorted arrays.[^1][^2]
+
+<div style="text-align: center">⁂</div>
+
+[^1]: https://www.geeksforgeeks.org/dsa/improving-linear-search-technique/
 
 [^2]: https://books.aijr.org/index.php/press/catalog/book/123/chapter/1506
 
