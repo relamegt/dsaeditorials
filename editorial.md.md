@@ -311,3 +311,4 @@ O(log n) for searching in sorted array, but O(n log n) if we need to sort first.
 
 O(1) for iterative binary search, O(log n) for recursive approach due to call stack.
 
+Special thanks to [Neerav Sethi](https://takeUforward.org) for contributing to this article on takeUforward.
