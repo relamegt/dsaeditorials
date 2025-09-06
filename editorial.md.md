@@ -19,8 +19,6 @@ The most straightforward approach to implement linear search is to traverse the 
 
 ### Implementation
 
-**C++:**
-
 ```cpp
 class Solution {
 public:
@@ -35,8 +33,6 @@ public:
 };
 ```
 
-**Java:**
-
 ```java
 class Solution {
     public int search(int[] nums, int target) {
@@ -50,38 +46,10 @@ class Solution {
 }
 ```
 
-**Python:**
-
-```python
-class Solution:
-    def search(self, nums, target):
-        for i in range(len(nums)):
-            if nums[i] == target:
-                return i
-        return -1
-```
-
-**JavaScript:**
-
 ```javascript
-class Solution {
-    search(nums, target) {
-        for (let i = 0; i < nums.length; i++) {
-            if (nums[i] === target) {
-                return i;
-            }
-        }
-        return -1;
-    }
-}
-```
-
-**C:**
-
-```c
-int search(int* nums, int numsSize, int target) {
-    for (int i = 0; i < numsSize; i++) {
-        if (nums[i] == target) {
+function search(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === target) {
             return i;
         }
     }
@@ -89,32 +57,42 @@ int search(int* nums, int numsSize, int target) {
 }
 ```
 
+```python
+def search(nums, target):
+    for i in range(len(nums)):
+        if nums[i] == target:
+            return i
+    return -1
+```
 
-## Better Approach (Sentinel Linear Search)
 
-This approach eliminates the boundary check in each iteration by placing the target element at the end of the array as a sentinel, reducing the number of comparisons per iteration.[^1]
+### Time Complexity
 
-### Algorithm Explanation
+O(n) where n is the number of elements in the array. In worst case, we might have to check all elements.
 
-1. Store the last element of the array temporarily
-2. Place the target value at the end of the array (sentinel)
-3. Start searching from the beginning without boundary checks
-4. When target is found, check if it's at the original position or sentinel position
-5. Restore the original last element
-6. Return appropriate index or -1 if not found
+### Space Complexity
 
-### Implementation
+O(1) as we only use a constant amount of extra space for the loop variable.
 
-**C++:**
+## Optimized Approach
+
+For linear search, there isn't much room for optimization in terms of time complexity, but we can make small improvements.
+
+### Early Termination with Sentinel
+
+We can add the target element at the end of the array to avoid boundary checking in every iteration.
 
 ```cpp
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
+    int searchWithSentinel(vector<int>& nums, int target) {
         int n = nums.size();
         if (n == 0) return -1;
         
+        // Store the last element
         int last = nums[n-1];
+        
+        // Put target at the end
         nums[n-1] = target;
         
         int i = 0;
@@ -122,25 +100,30 @@ public:
             i++;
         }
         
+        // Restore the last element
         nums[n-1] = last;
         
+        // Check if target was found before the last element
+        // or if the last element was the target
         if (i < n-1 || nums[n-1] == target) {
             return i;
         }
+        
         return -1;
     }
 };
 ```
 
-**Java:**
-
 ```java
 class Solution {
-    public int search(int[] nums, int target) {
+    public int searchWithSentinel(int[] nums, int target) {
         int n = nums.length;
         if (n == 0) return -1;
         
+        // Store the last element
         int last = nums[n-1];
+        
+        // Put target at the end
         nums[n-1] = target;
         
         int i = 0;
@@ -148,212 +131,183 @@ class Solution {
             i++;
         }
         
+        // Restore the last element
         nums[n-1] = last;
         
+        // Check if target was found before the last element
+        // or if the last element was the target
         if (i < n-1 || nums[n-1] == target) {
             return i;
         }
+        
         return -1;
     }
 }
 ```
-
-**Python:**
-
-```python
-class Solution:
-    def search(self, nums, target):
-        n = len(nums)
-        if n == 0:
-            return -1
-        
-        last = nums[n-1]
-        nums[n-1] = target
-        
-        i = 0
-        while nums[i] != target:
-            i += 1
-        
-        nums[n-1] = last
-        
-        if i < n-1 or nums[n-1] == target:
-            return i
-        return -1
-```
-
-**JavaScript:**
 
 ```javascript
-class Solution {
-    search(nums, target) {
-        let n = nums.length;
-        if (n === 0) return -1;
-        
-        let last = nums[n-1];
-        nums[n-1] = target;
-        
-        let i = 0;
-        while (nums[i] !== target) {
-            i++;
-        }
-        
-        nums[n-1] = last;
-        
-        if (i < n-1 || nums[n-1] === target) {
-            return i;
-        }
-        return -1;
-    }
-}
-```
-
-**C:**
-
-```c
-int search(int* nums, int numsSize, int target) {
-    if (numsSize == 0) return -1;
+function searchWithSentinel(nums, target) {
+    const n = nums.length;
+    if (n === 0) return -1;
     
-    int last = nums[numsSize-1];
-    nums[numsSize-1] = target;
+    // Store the last element
+    const last = nums[n-1];
     
-    int i = 0;
-    while (nums[i] != target) {
+    // Put target at the end
+    nums[n-1] = target;
+    
+    let i = 0;
+    while (nums[i] !== target) {
         i++;
     }
     
-    nums[numsSize-1] = last;
+    // Restore the last element
+    nums[n-1] = last;
     
-    if (i < numsSize-1 || nums[numsSize-1] == target) {
+    // Check if target was found before the last element
+    // or if the last element was the target
+    if (i < n-1 || nums[n-1] === target) {
         return i;
     }
+    
     return -1;
 }
 ```
 
+```python
+def search_with_sentinel(nums, target):
+    n = len(nums)
+    if n == 0:
+        return -1
+    
+    # Store the last element
+    last = nums[n-1]
+    
+    # Put target at the end
+    nums[n-1] = target
+    
+    i = 0
+    while nums[i] != target:
+        i += 1
+    
+    # Restore the last element
+    nums[n-1] = last
+    
+    # Check if target was found before the last element
+    # or if the last element was the target
+    if i < n-1 or nums[n-1] == target:
+        return i
+    
+    return -1
+```
 
-## Optimal Approach (Two-Way Linear Search)
 
-The most optimized version that searches from both ends simultaneously, potentially reducing search time by half in the average case.[^2]
+### Time Complexity
 
-### Algorithm Explanation
+O(n) - Same as brute force but with slightly better constants due to reduced boundary checking.
 
-1. Initialize two pointers: left at the beginning, right at the end
-2. Compare elements at both left and right positions with the target
-3. If target is found at either position, return that index
-4. Move left pointer forward and right pointer backward
-5. Continue until pointers meet or cross each other
-6. Return -1 if target is not found
+### Space Complexity
 
-### Implementation
+O(1) - Still constant space complexity.
 
-**C++:**
+## Better Approach
+
+For unsorted arrays, linear search is optimal. However, if we can sort the array first, we can use binary search for better performance.
+
+### Pre-sorting + Binary Search
 
 ```cpp
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
+    int searchInSorted(vector<int>& nums, int target) {
+        // This assumes array is already sorted
         int left = 0, right = nums.size() - 1;
         
         while (left <= right) {
-            if (nums[left] == target) return left;
-            if (nums[right] == target) return right;
+            int mid = left + (right - left) / 2;
             
-            left++;
-            right--;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
+        
         return -1;
     }
 };
 ```
 
-**Java:**
-
 ```java
 class Solution {
-    public int search(int[] nums, int target) {
+    public int searchInSorted(int[] nums, int target) {
+        // This assumes array is already sorted
         int left = 0, right = nums.length - 1;
         
         while (left <= right) {
-            if (nums[left] == target) return left;
-            if (nums[right] == target) return right;
+            int mid = left + (right - left) / 2;
             
-            left++;
-            right--;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
+        
         return -1;
     }
 }
 ```
-
-**Python:**
-
-```python
-class Solution:
-    def search(self, nums, target):
-        left, right = 0, len(nums) - 1
-        
-        while left <= right:
-            if nums[left] == target:
-                return left
-            if nums[right] == target:
-                return right
-            
-            left += 1
-            right -= 1
-        
-        return -1
-```
-
-**JavaScript:**
 
 ```javascript
-class Solution {
-    search(nums, target) {
-        let left = 0, right = nums.length - 1;
-        
-        while (left <= right) {
-            if (nums[left] === target) return left;
-            if (nums[right] === target) return right;
-            
-            left++;
-            right--;
-        }
-        return -1;
-    }
-}
-```
-
-**C:**
-
-```c
-int search(int* nums, int numsSize, int target) {
-    int left = 0, right = numsSize - 1;
+function searchInSorted(nums, target) {
+    // This assumes array is already sorted
+    let left = 0, right = nums.length - 1;
     
     while (left <= right) {
-        if (nums[left] == target) return left;
-        if (nums[right] == target) return right;
+        const mid = Math.floor(left + (right - left) / 2);
         
-        left++;
-        right--;
+        if (nums[mid] === target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
     }
+    
     return -1;
 }
 ```
 
+```python
+def search_in_sorted(nums, target):
+    # This assumes array is already sorted
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        mid = left + (right - left) // 2
+        
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+```
 
-### Complexity Analysis
 
-| Approach | Time Complexity | Space Complexity |
-| :-- | :-- | :-- |
-| **Brute Force** | O(n) | O(1) |
-| **Better (Sentinel)** | O(n) | O(1) |
-| **Optimal (Two-Way)** | O(n/2) average | O(1) |
+### Time Complexity
 
-The **optimal approach** provides the best average-case performance while maintaining O(1) space complexity, making it the most efficient linear search implementation for unsorted arrays.[^1][^2]
+O(log n) for searching in sorted array, but O(n log n) if we need to sort first.
 
-<div style="text-align: center">⁂</div>
+### Space Complexity
 
-[^1]: https://www.geeksforgeeks.org/dsa/improving-linear-search-technique/
-
-[^2]: https://books.aijr.org/index.php/press/catalog/book/123/chapter/1506
+O(1) for iterative binary search, O(log n) for recursive approach due to call stack.
 
