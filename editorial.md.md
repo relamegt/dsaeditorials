@@ -1,32 +1,30 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# Linear Search Algorithm: Complete Guide
+# Linear Search Algorithm
 
-Linear search is one of the most fundamental searching algorithms that **sequentially examines** each element in a collection until the target is found or all elements have been checked. This comprehensive guide covers all approaches from brute force to optimized implementations across multiple programming languages.[^1]
+Linear search is one of the simplest searching algorithms that sequentially checks each element in a collection until the target element is found or the entire collection has been searched.
 
-## Algorithm Approaches
+## Brute Force Approach
 
-### 1. Brute Force Approach (Basic)
+The most straightforward approach to implement linear search is to traverse the entire array from beginning to end, comparing each element with the target value.
 
-The most **straightforward implementation** that checks every element from start to finish.[^2]
+### Algorithm Explanation
 
-**Algorithm Steps:**
-
-1. Start from the first element of the array[^2]
+1. Start from the first element of the array
 2. Compare the current element with the target value
 3. If they match, return the index
 4. If they don't match, move to the next element
 5. Repeat until found or end of array is reached
-6. Return -1 if element is not found[^3]
+6. Return -1 if element is not found
 
-#### Code Implementations:
+### Implementation
 
 **C++:**
 
 ```cpp
 class Solution {
 public:
-    int linearSearch(vector<int>& nums, int target) {
+    int search(vector<int>& nums, int target) {
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] == target) {
                 return i;
@@ -40,10 +38,10 @@ public:
 **Java:**
 
 ```java
-public class LinearSearch {
-    public static int linearSearch(int[] array, int target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) {
+class Solution {
+    public int search(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
                 return i;
             }
         }
@@ -55,19 +53,35 @@ public class LinearSearch {
 **Python:**
 
 ```python
-def linear_search(arr, target):
-    for i in range(len(arr)):
-        if arr[i] == target:
-            return i
-    return -1
+class Solution:
+    def search(self, nums, target):
+        for i in range(len(nums)):
+            if nums[i] == target:
+                return i
+        return -1
 ```
 
 **JavaScript:**
 
 ```javascript
-function linearSearch(arr, target) {
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === target) {
+class Solution {
+    search(nums, target) {
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] === target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+**C:**
+
+```c
+int search(int* nums, int numsSize, int target) {
+    for (int i = 0; i < numsSize; i++) {
+        if (nums[i] == target) {
             return i;
         }
     }
@@ -76,26 +90,27 @@ function linearSearch(arr, target) {
 ```
 
 
-### 2. Better Approach (Sentinel Linear Search)
+## Better Approach (Sentinel Linear Search)
 
-This approach **eliminates the boundary check** in each iteration by placing the target element at the end of the array, reducing the number of comparisons.[^4]
+This approach eliminates the boundary check in each iteration by placing the target element at the end of the array as a sentinel, reducing the number of comparisons per iteration.[^1]
 
-**Algorithm Steps:**
+### Algorithm Explanation
 
-1. Store the last element temporarily
-2. Place the target at the end of the array
-3. Start searching from the beginning
-4. When target is found, check if it's at the original position or the sentinel position
+1. Store the last element of the array temporarily
+2. Place the target value at the end of the array (sentinel)
+3. Start searching from the beginning without boundary checks
+4. When target is found, check if it's at the original position or sentinel position
 5. Restore the original last element
+6. Return appropriate index or -1 if not found
 
-#### Code Implementations:
+### Implementation
 
 **C++:**
 
 ```cpp
 class Solution {
 public:
-    int sentinelSearch(vector<int>& nums, int target) {
+    int search(vector<int>& nums, int target) {
         int n = nums.size();
         if (n == 0) return -1;
         
@@ -117,49 +132,126 @@ public:
 };
 ```
 
+**Java:**
+
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+        int n = nums.length;
+        if (n == 0) return -1;
+        
+        int last = nums[n-1];
+        nums[n-1] = target;
+        
+        int i = 0;
+        while (nums[i] != target) {
+            i++;
+        }
+        
+        nums[n-1] = last;
+        
+        if (i < n-1 || nums[n-1] == target) {
+            return i;
+        }
+        return -1;
+    }
+}
+```
+
 **Python:**
 
 ```python
-def sentinel_search(arr, target):
-    n = len(arr)
-    if n == 0:
+class Solution:
+    def search(self, nums, target):
+        n = len(nums)
+        if n == 0:
+            return -1
+        
+        last = nums[n-1]
+        nums[n-1] = target
+        
+        i = 0
+        while nums[i] != target:
+            i += 1
+        
+        nums[n-1] = last
+        
+        if i < n-1 or nums[n-1] == target:
+            return i
         return -1
+```
+
+**JavaScript:**
+
+```javascript
+class Solution {
+    search(nums, target) {
+        let n = nums.length;
+        if (n === 0) return -1;
+        
+        let last = nums[n-1];
+        nums[n-1] = target;
+        
+        let i = 0;
+        while (nums[i] !== target) {
+            i++;
+        }
+        
+        nums[n-1] = last;
+        
+        if (i < n-1 || nums[n-1] === target) {
+            return i;
+        }
+        return -1;
+    }
+}
+```
+
+**C:**
+
+```c
+int search(int* nums, int numsSize, int target) {
+    if (numsSize == 0) return -1;
     
-    last = arr[n-1]
-    arr[n-1] = target
+    int last = nums[numsSize-1];
+    nums[numsSize-1] = target;
     
-    i = 0
-    while arr[i] != target:
-        i += 1
+    int i = 0;
+    while (nums[i] != target) {
+        i++;
+    }
     
-    arr[n-1] = last
+    nums[numsSize-1] = last;
     
-    if i < n-1 or arr[n-1] == target:
-        return i
-    return -1
+    if (i < numsSize-1 || nums[numsSize-1] == target) {
+        return i;
+    }
+    return -1;
+}
 ```
 
 
-### 3. Optimal Approach (Two-Way Linear Search)
+## Optimal Approach (Two-Way Linear Search)
 
-The **most optimized version** searches from both ends simultaneously, potentially reducing search time by half.[^1]
+The most optimized version that searches from both ends simultaneously, potentially reducing search time by half in the average case.[^2]
 
-**Algorithm Steps:**
+### Algorithm Explanation
 
-1. Initialize two pointers: left at start, right at end
-2. Compare elements at both positions with target
-3. If found at either position, return the index
+1. Initialize two pointers: left at the beginning, right at the end
+2. Compare elements at both left and right positions with the target
+3. If target is found at either position, return that index
 4. Move left pointer forward and right pointer backward
-5. Continue until pointers meet or target is found
+5. Continue until pointers meet or cross each other
+6. Return -1 if target is not found
 
-#### Code Implementations:
+### Implementation
 
 **C++:**
 
 ```cpp
 class Solution {
 public:
-    int twoWaySearch(vector<int>& nums, int target) {
+    int search(vector<int>& nums, int target) {
         int left = 0, right = nums.size() - 1;
         
         while (left <= right) {
@@ -177,13 +269,13 @@ public:
 **Java:**
 
 ```java
-public class TwoWayLinearSearch {
-    public static int twoWaySearch(int[] array, int target) {
-        int left = 0, right = array.length - 1;
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
         
         while (left <= right) {
-            if (array[left] == target) return left;
-            if (array[right] == target) return right;
+            if (nums[left] == target) return left;
+            if (nums[right] == target) return right;
             
             left++;
             right--;
@@ -196,32 +288,50 @@ public class TwoWayLinearSearch {
 **Python:**
 
 ```python
-def two_way_search(arr, target):
-    left, right = 0, len(arr) - 1
-    
-    while left <= right:
-        if arr[left] == target:
-            return left
-        if arr[right] == target:
-            return right
+class Solution:
+    def search(self, nums, target):
+        left, right = 0, len(nums) - 1
         
-        left += 1
-        right -= 1
-    
-    return -1
+        while left <= right:
+            if nums[left] == target:
+                return left
+            if nums[right] == target:
+                return right
+            
+            left += 1
+            right -= 1
+        
+        return -1
+```
+
+**JavaScript:**
+
+```javascript
+class Solution {
+    search(nums, target) {
+        let left = 0, right = nums.length - 1;
+        
+        while (left <= right) {
+            if (nums[left] === target) return left;
+            if (nums[right] === target) return right;
+            
+            left++;
+            right--;
+        }
+        return -1;
+    }
+}
 ```
 
 **C:**
 
 ```c
-#include <stdio.h>
-
-int twoWaySearch(int arr[], int n, int target) {
-    int left = 0, right = n - 1;
+int search(int* nums, int numsSize, int target) {
+    int left = 0, right = numsSize - 1;
     
     while (left <= right) {
-        if (arr[left] == target) return left;
-        if (arr[right] == target) return right;
+        if (nums[left] == target) return left;
+        if (nums[right] == target) return right;
         
         left++;
         right--;
@@ -231,114 +341,15 @@ int twoWaySearch(int arr[], int n, int target) {
 ```
 
 
-## Additional Optimizations
+### Complexity Analysis
 
-### Move to Front Optimization
-
-For **frequently searched elements**, move the found element to the front of the array to improve future search performance.[^4]
-
-```cpp
-int moveToFrontSearch(vector<int>& nums, int target) {
-    for (int i = 0; i < nums.size(); i++) {
-        if (nums[i] == target) {
-            // Move element to front
-            if (i > 0) {
-                swap(nums[^0], nums[i]);
-                return 0;
-            }
-            return i;
-        }
-    }
-    return -1;
-}
-```
-
-
-### Transposition Optimization
-
-**Swap the found element** with its predecessor to gradually improve search performance for frequently accessed items.[^4]
-
-```cpp
-int transpositionSearch(vector<int>& nums, int target) {
-    for (int i = 0; i < nums.size(); i++) {
-        if (nums[i] == target) {
-            // Swap with previous element
-            if (i > 0) {
-                swap(nums[i-1], nums[i]);
-                return i-1;
-            }
-            return i;
-        }
-    }
-    return -1;
-}
-```
-
-
-## Complexity Analysis
-
-### Time Complexity
-
-| Case | Basic Linear Search | Two-Way Search |
+| Approach | Time Complexity | Space Complexity |
 | :-- | :-- | :-- |
-| **Best Case** | O(1)[^5] | O(1) |
-| **Average Case** | O(n)[^5] | O(n/2) |
-| **Worst Case** | O(n)[^5] | O(n/2) |
+| **Brute Force** | O(n) | O(1) |
+| **Better (Sentinel)** | O(n) | O(1) |
+| **Optimal (Two-Way)** | O(n/2) average | O(1) |
 
-### Space Complexity
+The **optimal approach** provides the best average-case performance while maintaining O(1) space complexity, making it the most efficient linear search implementation for unsorted arrays.
 
-All linear search approaches have **O(1) space complexity** as they use only a constant amount of extra space.[^5]
+[^2]: https://books.aijr.org/index.php/press/catalog/book/123/chapter/1506
 
-## When to Use Linear Search
-
-Linear search is **most effective** when:[^5]
-
-- Working with small datasets
-- Array is unsorted
-- Need to search only once or infrequently
-- Memory constraints require simple implementation
-- Elements are stored in a linked list
-
-
-## Complete Working Example
-
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-class LinearSearchImplementations {
-public:
-    // Basic Linear Search
-    static int basicSearch(vector<int>& nums, int target) {
-        for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] == target) return i;
-        }
-        return -1;
-    }
-    
-    // Two-Way Linear Search
-    static int twoWaySearch(vector<int>& nums, int target) {
-        int left = 0, right = nums.size() - 1;
-        while (left <= right) {
-            if (nums[left] == target) return left;
-            if (nums[right] == target) return right;
-            left++;
-            right--;
-        }
-        return -1;
-    }
-};
-
-int main() {
-    vector<int> nums = {2, 4, 0, 1, 9, 7, 3};
-    int target = 9;
-    
-    cout << "Basic Search: " << LinearSearchImplementations::basicSearch(nums, target) << endl;
-    cout << "Two-Way Search: " << LinearSearchImplementations::twoWaySearch(nums, target) << endl;
-    
-    return 0;
-}
-```
-
-The **two-way linear search** represents the optimal approach for unsorted arrays, offering improved average-case performance while maintaining the simplicity and reliability of the basic linear search algorithm.[^1][^4]
