@@ -1,9 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
-# no not like that dont keep subsection wise i want single page editorial
-
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
 # C++ Basics - Complete Programming Guide
 
 C++ is a powerful, high-performance programming language that extends C with object-oriented programming capabilities, making it essential for system programming, game development, and competitive programming. This comprehensive guide covers fundamental concepts including syntax, data types, operators, and conditional statements.
