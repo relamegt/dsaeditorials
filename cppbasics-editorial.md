@@ -1,9 +1,4 @@
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
-# no not like that dont keep subsection wise i want single page editorial
-
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
 # C++ Basics - Complete Programming Guide
 
 C++ is a powerful, high-performance programming language that extends C with object-oriented programming capabilities, making it essential for system programming, game development, and competitive programming. This comprehensive guide covers fundamental concepts including syntax, data types, operators, and conditional statements.
@@ -758,5 +753,5 @@ O(1) for all basic operations - variable declaration, arithmetic operations, inp
 
 O(1) - All examples use constant space regardless of input size, storing only a fixed number of variables.
 
-Special thanks to the C++ community for contributing to programming education and making these fundamental concepts accessible to learners worldwide.
-
+Special thanks to [Neerav Sethi](https://takeUforward.org) for contributing to this article on takeUforward.
+```
