@@ -1,67 +1,46 @@
-# Operators
+# untitled
 
-Operators in C++
+Operators in C++ are special symbols that tell the compiler to perform specific operations on values, such as arithmetic, comparison, or logical checks. They form the core of how expressions are written and evaluated in a C++ program.
 
-**By Alpha Knowledge**
-**Last Updated: 16 Sep, 2025**
+## Basic idea of operators
 
-In C++, **operators** are special symbols that help us perform operations on data.
-They are used to do **calculations**, **comparisons**, **logical checks**, and **data manipulation**.
-
-Every C++ program uses operators in some form, making them one of the most important concepts to learn.
-
-## Simple Example
+An operator works on one or more values (called operands) and produces a result.
+For example:
 
 ```
 #include <iostream>
 using namespace std;
 
 int main() {
-    int a = 10 + 20;
+    int a = 10 + 20;   // + is an operator, 10 and 20 are operands
     cout << a;
     return 0;
 }
 ```
 
-### Output
+Here `+` adds `10` and `20` and the result `30` is stored in `a`, so the program prints `30`.
 
-```
-30
-```
+Operators can be:
 
-### Explanation
+- Unary: work on one operand (e.g., ++a, !x)
+- Binary: work on two operands (e.g., a + b, x == y)
+- Ternary: work on three operands (only ?: in C++)
 
-The `+` symbol is an **addition operator**.
-It adds `10` and `20`, and the result `30` is stored in variable `a`.
+## Arithmetic operators
 
-## Types of Operators in C++
+Arithmetic operators perform basic mathematical operations.
 
-C++ operators are mainly divided into **6 categories** based on what they do:
+- + addition
+- - subtraction
+- * multiplication
+- / division
+- % remainder (modulo, only for integers)
+- ++ increment (adds 1)
+- -- decrement (subtracts 1)
 
-1. Arithmetic Operators
-2. Relational Operators
-3. Logical Operators
-4. Bitwise Operators
-5. Assignment Operators
-6. Conditional (Ternary) Operator
+Example:
 
-## 1. Arithmetic Operators
-
-Arithmetic operators are used to perform **mathematical calculations**.
-
-| Operator | Meaning |
-| --- | --- |
-| + | Addition |
-| - | Subtraction |
-| * | Multiplication |
-| / | Division |
-| % | Remainder (Modulo) |
-| ++ | Increment |
-| -- | Decrement |
-
-### Example
-
-```
+``` 
 #include <iostream>
 using namespace std;
 
@@ -73,52 +52,31 @@ int main() {
     cout << "a * b = " << (a * b) << endl;
     cout << "a / b = " << (a / b) << endl;
     cout << "a % b = " << (a % b) << endl;
-    cout << "++a = " << ++a << endl;
-    cout << "b-- = " << b-- << endl;
 
+    cout << "++a = " << ++a << endl;  // a becomes 9, then printed
+    cout << "b-- = " << b-- << endl;  // prints 3, then b becomes 2
     return 0;
 }
 ```
 
-### Output
+Key points:
 
-```
-a + b = 11
-a - b = 5
-a * b = 24
-a / b = 2
-a % b = 2
-++a = 9
-b-- = 3
-```
+- Use % only with integer types.
+- ++a (pre-increment) changes the value first, then uses it.
+- a++ (post-increment) uses the value first, then changes it.
 
-### Important Notes
+## Relational operators
 
-- % works only with integers
-- ++a → increase first, then use
-- a++ → use first, then increase
+Relational operators compare two values and return `true` (non‑zero) or `false` (0).
 
-## Operator Based on Operands
+- == equal to
+- > greater than
+- >= greater than or equal to
+- < less than
+- <= less than or equal to
+- != not equal to
 
-- Unary → works on one value (++a)
-- Binary → works on two values (a + b)
-- Ternary → works on three values (?:)
-
-## 2. Relational Operators
-
-These operators are used to **compare two values**.
-The result is either **true (1)** or **false (0)**.
-
-| Operator | Meaning |
-| --- | --- |
-| == | Equal to |
-| != | Not equal to |
-| > | Greater than |
-| < | Less than |
-| >= | Greater than or equal |
-| <= | Less than or equal |
-
-### Example
+Example:
 
 ```
 #include <iostream>
@@ -127,39 +85,93 @@ using namespace std;
 int main() {
     int a = 6, b = 4;
 
-    cout << (a == b) << endl;
-    cout << (a > b) << endl;
-    cout << (a >= b) << endl;
-    cout << (a < b) << endl;
-    cout << (a <= b) << endl;
-    cout << (a != b) << endl;
+    cout << "a == b is " << (a == b) << endl;
+    cout << "a > b is "  << (a > b)  << endl;
+    cout << "a >= b is " << (a >= b) << endl;
+    cout << "a < b is "  << (a < b)  << endl;
+    cout << "a <= b is " << (a <= b) << endl;
+    cout << "a != b is " << (a != b) << endl;
 
     return 0;
 }
 ```
 
-### Output
+On most systems this prints `0` for false and `1` for true.
+
+## Logical operators
+
+Logical operators work with boolean expressions and combine or invert conditions.
+
+- && logical AND – true only if both conditions are true
+- || logical OR – true if at least one condition is true
+- ! logical NOT – flips true to false and false to true
+
+Example:
 
 ```
-0
-1
-1
-0
-0
-1
+#include <iostream>
+using namespace std;
+
+int main() {
+    bool x = true;
+    bool y = false;
+
+    cout << "x && y = " << (x && y) << endl;  // false
+    cout << "x || y = " << (x || y) << endl;  // true
+    cout << "!y = "    << (!y)     << endl;   // true
+
+    return 0;
+}
 ```
 
-## 3. Logical Operators
+These are heavily used in `if`, `while`, and other control statements.
 
-Logical operators are used to **combine conditions**.
+## Bitwise operators
 
-| Operator | Meaning |
-| --- | --- |
-| && | Logical AND |
-| ` |  |
-| ! | Logical NOT |
+Bitwise operators work at the level of individual bits of integer values.
 
-### Example
+- & bitwise AND
+- | bitwise OR
+- ^ bitwise XOR (exclusive OR)
+- << left shift
+- >> right shift
+- ~ bitwise NOT (one’s complement)
+
+Example:
+
+```
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 6; // 6  = 0110 (binary)
+    int b = 4; // 4  = 0100 (binary)
+
+    cout << "a & b = "  << (a & b)  << endl;  // 0100 = 4
+    cout << "a | b = "  << (a | b)  << endl;  // 0110 = 6
+    cout << "a ^ b = "  << (a ^ b)  << endl;  // 0010 = 2
+    cout << "a << 1 = " << (a << 1) << endl;  // 1100 = 12
+    cout << "a >> 1 = " << (a >> 1) << endl;  // 0011 = 3
+    cout << "~a = "     << (~a)     << endl;  // platform‑dependent representation
+
+    return 0;
+}
+```
+
+Bitwise operators are mainly used in low‑level programming, flags, and performance‑sensitive code.
+
+## Assignment operators
+
+Assignment operators store values into variables, sometimes combining assignment with an operation.
+
+- = simple assignment
+- += add then assign
+- -= subtract then assign
+- *= multiply then assign
+- /= divide then assign
+- %= modulo then assign
+
+Example:
 
 ```
 #include <iostream>
@@ -168,97 +180,37 @@ using namespace std;
 int main() {
     int a = 6, b = 4;
 
-    cout << (a && b) << endl;
-    cout << (a || b) << endl;
-    cout << (!b) << endl;
+    cout << "a = " << a << endl;
+
+    a += b;  // a = a + b  →  10
+    cout << "a += b -> " << a << endl;
+
+    a -= b;  // a = a - b  →  6
+    cout << "a -= b -> " << a << endl;
+
+    a *= b;  // a = a * b  →  24
+    cout << "a *= b -> " << a << endl;
+
+    a /= b;  // a = a / b  →  6
+    cout << "a /= b -> " << a << endl;
 
     return 0;
 }
 ```
 
-### Output
+These operators make expressions shorter and often clearer.
+
+## Ternary (conditional) operator
+
+The ternary operator chooses one of two values based on a condition.
+
+Syntax:
 
 ```
-1
-1
-0
+condition ? expression_if_true : expression_if_false;
 ```
 
-## 4. Bitwise Operators
-
-Bitwise operators work on **binary bits**.
-
-| Operator | Meaning |
-| --- | --- |
-| & | AND |
-| ` | ` |
-| ^ | XOR |
-| << | Left shift |
-| >> | Right shift |
-| ~ | One’s complement |
-
-### Example
-
-```
-#include <iostream>
-using namespace std;
-
-int main() {
-    int a = 6, b = 4;
-
-    cout << (a & b) << endl;
-    cout << (a | b) << endl;
-    cout << (a ^ b) << endl;
-    cout << (a << 1) << endl;
-    cout << (a >> 1) << endl;
-    cout << (~a) << endl;
-
-    return 0;
-}
-```
-
-## 5. Assignment Operators
-
-These operators **assign values** to variables.
-
-| Operator | Meaning |
-| --- | --- |
-| = | Assign |
-| += | Add and assign |
-| -= | Subtract and assign |
-| *= | Multiply and assign |
-| /= | Divide and assign |
-
-### Example
-
-```
-#include <iostream>
-using namespace std;
-
-int main() {
-    int a = 6, b = 4;
-
-    a += b;
-    a -= b;
-    a *= b;
-    a /= b;
-
-    cout << a;
-    return 0;
-}
-```
-
-## 6. Conditional (Ternary) Operator
-
-The **ternary operator** chooses a value based on a condition.
-
-### Syntax
-
-```
-condition ? value_if_true : value_if_false
-```
-
-### Example
+Example:
 
 ```
 #include <iostream>
@@ -267,74 +219,35 @@ using namespace std;
 int main() {
     int a = 3, b = 4;
 
-    int result = (a > b) ? a : b;
-    cout << result;
+    int result = (a < b) ? b : a;
+    cout << "Larger value is " << result << endl;
 
     return 0;
 }
 ```
 
-## Other Important Operators
+If `a < b` is true, `result` becomes `b`; otherwise it becomes `a`.
 
-### sizeof
+## Other useful operators
 
-Finds memory size of a variable
+- sizeof – gives the size of a type or variable in bytes sizeof(int);     // size of int type
+sizeof(myVar);   // size of variable myVar
+- Comma operator , – evaluates multiple expressions, result is the last one int n = (1 + 2, 5); // 1+2 is evaluated then discarded, n becomes 5
+- Address-of & – gives the memory address of a variable, also used to declare references int x = 10;
+int *p = &x;   // p stores address of x
+- Dot . – access members of an object or struct obj.member;
+- Arrow -> – access members through a pointer to an object ptr->member;
+- Casting operators – convert one type to another int x = 5;
+float f1 = (float)x;              // C-style cast
+float f2 = static_cast<float>(x); // C++-style cast
 
-```
-sizeof(int);
-```
+These operators help with memory access, object handling, and type conversions.
 
-### Comma ,
+## Precedence and associativity
 
-Executes multiple expressions
+When an expression contains multiple operators, C++ follows rules to decide which parts run first.
 
-### Address-of &
+- Precedence: which operator is applied firstFor example, in 3 * 2 + 8, multiplication happens before addition, so it becomes (3 * 2) + 8.
+- Associativity: direction of evaluation when operators have the same precedenceMost binary operators (like +, -, *, /) associate left to right:50 / 25 * 2 is evaluated as (50 / 25) * 2.Some operators (like assignment =) associate right to left.
 
-Gets memory address of a variable
-
-### Dot .
-
-Access class or structure members
-
-### Arrow ->
-
-Access members using pointer
-
-### Type Casting
-
-```
-float(x);
-static_cast<float>(x);
-```
-
-## Operator Precedence
-
-Precedence decides **which operator runs first**.
-
-Example:
-
-```
-3 * 2 + 8
-```
-
-Result:
-
-```
-(3 * 2) + 8 = 14
-```
-
-## Operator Associativity
-
-Associativity decides **direction of evaluation** when precedence is same.
-
-Example:
-
-```
-50 / 25 * 2
-```
-
-Evaluation:
-
-```
-(50 / 25) * 2 = 4
-```
+Understanding precedence and associativity helps write expressions that behave as intended. When in doubt, use parentheses to make the order of evaluation explicit and your code easier to read.
