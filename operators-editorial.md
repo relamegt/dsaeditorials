@@ -1,4 +1,4 @@
-# Operators
+# untitled
 
 Operators in C++ are special symbols that tell the compiler to perform specific operations on values, such as arithmetic, comparison, or logical checks. They form the core of how expressions are written and evaluated in a C++ program.
 
@@ -16,6 +16,12 @@ int main() {
     cout << a;
     return 0;
 }
+```
+
+**Output:**
+
+```
+30
 ```
 
 Here `+` adds `10` and `20` and the result `30` is stored in `a`, so the program prints `30`.
@@ -59,6 +65,18 @@ int main() {
 }
 ```
 
+**Output:**
+
+```
+a + b = 11
+a - b = 5
+a * b = 24
+a / b = 2
+a % b = 2
+++a = 9
+b-- = 3
+```
+
 Key points:
 
 - Use `%` only with integer types.
@@ -96,6 +114,17 @@ int main() {
 }
 ```
 
+**Output:**
+
+```
+a == b is 0
+a > b is 1
+a >= b is 1
+a < b is 0
+a <= b is 0
+a != b is 1
+```
+
 On most systems this prints `0` for false and `1` for true.
 
 ## Logical operators
@@ -124,6 +153,14 @@ int main() {
 }
 ```
 
+**Output:**
+
+```
+x && y = 0
+x || y = 1
+!y = 1
+```
+
 These are heavily used in `if`, `while`, and other control statements.
 
 ## Bitwise operators
@@ -135,7 +172,7 @@ Bitwise operators work at the level of individual bits of integer values.
 - `^` bitwise XOR (exclusive OR)
 - `<<` left shift
 - `>>` right shift
-- `~` bitwise NOT (one’s complement)
+- `~` bitwise NOT (one's complement)
 
 Example:
 
@@ -156,6 +193,17 @@ int main() {
 
     return 0;
 }
+```
+
+**Output:**
+
+```
+a & b = 4
+a | b = 6
+a ^ b = 2
+a << 1 = 12
+a >> 1 = 3
+~a = -7
 ```
 
 Bitwise operators are mainly used in low‑level programming, flags, and performance‑sensitive code.
@@ -198,6 +246,16 @@ int main() {
 }
 ```
 
+**Output:**
+
+```
+a = 6
+a += b -> 10
+a -= b -> 6
+a *= b -> 24
+a /= b -> 6
+```
+
 These operators make expressions shorter and often clearer.
 
 ## Ternary (conditional) operator
@@ -224,6 +282,12 @@ int main() {
 
     return 0;
 }
+```
+
+**Output:**
+
+```
+Larger value is 4
 ```
 
 If `a < b` is true, `result` becomes `b`; otherwise it becomes `a`.
@@ -272,10 +336,10 @@ These operators help with memory access, object handling, and type conversions.
 When an expression contains multiple operators, C++ follows rules to decide which parts run first.
 
 - **Precedence**: which operator is applied first.
-For example, in `3 * 2 + 8`, multiplication happens before addition, so it becomes `(3 * 2) + 8`.
+For example, in `3 * 2 + 8`, multiplication happens before addition, so it becomes `(3 * 2) + 8 = 14`.
 - **Associativity**: direction of evaluation when operators have the same precedence.
 Most binary operators (like `+`, `-`, `*`, `/`) associate **left to right**:
-`50 / 25 * 2` is evaluated as `(50 / 25) * 2`.
+`50 / 25 * 2` is evaluated as `(50 / 25) * 2 = 4`.
 Some operators (like assignment `=`) associate **right to left**.
 
 Understanding precedence and associativity helps write expressions that behave as intended. When in doubt, use parentheses to make the order of evaluation explicit and your code easier to read.
