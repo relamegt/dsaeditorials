@@ -1,4 +1,4 @@
-# untitled
+# Operators
 
 Operators in C++ are special symbols that tell the compiler to perform specific operations on values, such as arithmetic, comparison, or logical checks. They form the core of how expressions are written and evaluated in a C++ program.
 
@@ -22,25 +22,25 @@ Here `+` adds `10` and `20` and the result `30` is stored in `a`, so the program
 
 Operators can be:
 
-- Unary: work on one operand (e.g., ++a, !x)
-- Binary: work on two operands (e.g., a + b, x == y)
-- Ternary: work on three operands (only ?: in C++)
+- **Unary**: work on one operand (e.g., `++a`, `!x`)
+- **Binary**: work on two operands (e.g., `a + b`, `x == y`)
+- **Ternary**: work on three operands (only `?:` in C++)
 
 ## Arithmetic operators
 
 Arithmetic operators perform basic mathematical operations.
 
-- + addition
-- - subtraction
-- * multiplication
-- / division
-- % remainder (modulo, only for integers)
-- ++ increment (adds 1)
-- -- decrement (subtracts 1)
+- `+` addition
+- `-` subtraction
+- `*` multiplication
+- `/` division
+- `%` remainder (modulo, only for integers)
+- `++` increment (adds 1)
+- `--` decrement (subtracts 1)
 
 Example:
 
-``` 
+```
 #include <iostream>
 using namespace std;
 
@@ -61,20 +61,20 @@ int main() {
 
 Key points:
 
-- Use % only with integer types.
-- ++a (pre-increment) changes the value first, then uses it.
-- a++ (post-increment) uses the value first, then changes it.
+- Use `%` only with integer types.
+- `++a` (pre‑increment) changes the value first, then uses it.
+- `a++` (post‑increment) uses the value first, then changes it.
 
 ## Relational operators
 
 Relational operators compare two values and return `true` (non‑zero) or `false` (0).
 
-- == equal to
-- > greater than
-- >= greater than or equal to
-- < less than
-- <= less than or equal to
-- != not equal to
+- `==` equal to
+- `>` greater than
+- `>=` greater than or equal to
+- `<` less than
+- `<=` less than or equal to
+- `!=` not equal to
 
 Example:
 
@@ -102,9 +102,9 @@ On most systems this prints `0` for false and `1` for true.
 
 Logical operators work with boolean expressions and combine or invert conditions.
 
-- && logical AND – true only if both conditions are true
-- || logical OR – true if at least one condition is true
-- ! logical NOT – flips true to false and false to true
+- `&&` logical AND – true only if both conditions are true
+- `||` logical OR – true if at least one condition is true
+- `!` logical NOT – flips true to false and false to true
 
 Example:
 
@@ -130,12 +130,12 @@ These are heavily used in `if`, `while`, and other control statements.
 
 Bitwise operators work at the level of individual bits of integer values.
 
-- & bitwise AND
-- | bitwise OR
-- ^ bitwise XOR (exclusive OR)
-- << left shift
-- >> right shift
-- ~ bitwise NOT (one’s complement)
+- `&` bitwise AND
+- `|` bitwise OR
+- `^` bitwise XOR (exclusive OR)
+- `<<` left shift
+- `>>` right shift
+- `~` bitwise NOT (one’s complement)
 
 Example:
 
@@ -152,7 +152,7 @@ int main() {
     cout << "a ^ b = "  << (a ^ b)  << endl;  // 0010 = 2
     cout << "a << 1 = " << (a << 1) << endl;  // 1100 = 12
     cout << "a >> 1 = " << (a >> 1) << endl;  // 0011 = 3
-    cout << "~a = "     << (~a)     << endl;  // platform‑dependent representation
+    cout << "~a = "     << (~a)     << endl;
 
     return 0;
 }
@@ -164,12 +164,12 @@ Bitwise operators are mainly used in low‑level programming, flags, and perform
 
 Assignment operators store values into variables, sometimes combining assignment with an operation.
 
-- = simple assignment
-- += add then assign
-- -= subtract then assign
-- *= multiply then assign
-- /= divide then assign
-- %= modulo then assign
+- `=` simple assignment
+- `+=` add then assign
+- `-=` subtract then assign
+- `*=` multiply then assign
+- `/=` divide then assign
+- `%=` modulo then assign
 
 Example:
 
@@ -230,16 +230,40 @@ If `a < b` is true, `result` becomes `b`; otherwise it becomes `a`.
 
 ## Other useful operators
 
-- sizeof – gives the size of a type or variable in bytes sizeof(int);     // size of int type
-sizeof(myVar);   // size of variable myVar
-- Comma operator , – evaluates multiple expressions, result is the last one int n = (1 + 2, 5); // 1+2 is evaluated then discarded, n becomes 5
-- Address-of & – gives the memory address of a variable, also used to declare references int x = 10;
-int *p = &x;   // p stores address of x
-- Dot . – access members of an object or struct obj.member;
-- Arrow -> – access members through a pointer to an object ptr->member;
-- Casting operators – convert one type to another int x = 5;
+- **`sizeof`** – gives the size of a type or variable in bytes
+
+```
+sizeof(int);      // size of int type
+sizeof(myVar);    // size of variable myVar
+```
+- **Comma operator `,`** – evaluates multiple expressions, result is the last one
+
+```
+int n = (1 + 2, 5); // 1+2 is evaluated then discarded, n becomes 5
+```
+- **Address‑of `&`** – gives the memory address of a variable, also used to declare references
+
+```
+int x = 10;
+int* p = &x;   // p stores address of x
+```
+- **Dot `.`** – accesses members of an object or struct
+
+```
+obj.member;
+```
+- **Arrow `->`** – accesses members through a pointer to an object
+
+```
+ptr->member;
+```
+- **Casting operators** – convert one type to another
+
+```
+int x = 5;
 float f1 = (float)x;              // C-style cast
 float f2 = static_cast<float>(x); // C++-style cast
+```
 
 These operators help with memory access, object handling, and type conversions.
 
@@ -247,7 +271,11 @@ These operators help with memory access, object handling, and type conversions.
 
 When an expression contains multiple operators, C++ follows rules to decide which parts run first.
 
-- Precedence: which operator is applied firstFor example, in 3 * 2 + 8, multiplication happens before addition, so it becomes (3 * 2) + 8.
-- Associativity: direction of evaluation when operators have the same precedenceMost binary operators (like +, -, *, /) associate left to right:50 / 25 * 2 is evaluated as (50 / 25) * 2.Some operators (like assignment =) associate right to left.
+- **Precedence**: which operator is applied first.
+For example, in `3 * 2 + 8`, multiplication happens before addition, so it becomes `(3 * 2) + 8`.
+- **Associativity**: direction of evaluation when operators have the same precedence.
+Most binary operators (like `+`, `-`, `*`, `/`) associate **left to right**:
+`50 / 25 * 2` is evaluated as `(50 / 25) * 2`.
+Some operators (like assignment `=`) associate **right to left**.
 
 Understanding precedence and associativity helps write expressions that behave as intended. When in doubt, use parentheses to make the order of evaluation explicit and your code easier to read.
