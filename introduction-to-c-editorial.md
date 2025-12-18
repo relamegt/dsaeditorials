@@ -36,7 +36,7 @@ C++ supports **classes, objects, inheritance, polymorphism, encapsulation, and a
 
 Below is a simple C++ program that prints **Hello, World!**
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -46,7 +46,7 @@ int main() {
 }
 ```
 
-**Output**
+**Output:**
 
 ```
 Hello, World!
