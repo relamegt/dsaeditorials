@@ -152,7 +152,7 @@ int main() {
 }
 ```
 
-**Output**
+**Output:**
 
 ```
 12
@@ -315,7 +315,7 @@ bool flag = 10.5;
 cout << flag;
 ```
 
-**Output**
+Output:
 
 ```
 1
@@ -329,7 +329,7 @@ int value = ch;
 cout << value;
 ```
 
-**Output**
+Output:
 
 ```
 65
