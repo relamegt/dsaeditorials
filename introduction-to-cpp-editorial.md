@@ -6,7 +6,7 @@ C++ is a powerful, general-purpose programming language created by **Bjarne Stro
 
 ## 
 
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/introduction-to-cpp/1766042108592_main_features_of_C_.png" style="max-width:100%;height:auto;"/>
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/main%20features%20of%20C%2B%2B%20(1).png" style="max-width:100%;height:auto;"/>
 
 ## 1. Simple and Structured
 
