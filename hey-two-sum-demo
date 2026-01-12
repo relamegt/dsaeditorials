@@ -13,7 +13,7 @@ Given an array `nums` and an integer `target`, return indices of the two numbers
 
 ## 🔴 Brute Force Approach
 
-We check every pair.
+We check every pair. hey updaetd curoreoasldf;
 <carousel>
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/iuhgf_1766083724643_naming_rules_final.png">
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/iuhgf_1766083724643_naming_rules_final.png">
@@ -36,7 +36,7 @@ We check every pair.
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/iuhgf_1766083724643_naming_rules_final.png">
 
 The above diagrams will appear as **one auto-sliding carousel**.
-
+asdfadfadfadf
 ```cpp
 int twoSum(vector<int>& nums, int target) {
     for(int i=0;i<nums.size();i++){
