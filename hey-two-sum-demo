@@ -1,0 +1,38 @@
+# Two Sum – Visual Solution with Sliding Diagrams
+
+The goal is to find **two numbers in an array** whose sum equals a target.
+
+We will understand this using **step-by-step sliding visuals**, exactly like GeeksForGeeks.
+
+---
+
+## 🧠 Problem
+Given an array `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+
+---
+
+## 🔴 Brute Force Approach
+
+We check every pair.
+
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+<img src="https://github.com/relamegt/dsaeditorials/blob/main/images/iuhgf_1766083724643_naming_rules_final.png">
+
+The above diagrams will appear as **one auto-sliding carousel**.
+
+```cpp
+int twoSum(vector<int>& nums, int target) {
+    for(int i=0;i<nums.size();i++){
+        for(int j=i+1;j<nums.size();j++){
+            if(nums[i] + nums[j] == target)
+                return {i,j};
+        }
+    }
+    return {};
+}
