@@ -1,3 +1,86 @@
+# hey linear
+
+providing linear seracch solution
+1. ey
+2. b
+3. c
+4. d
+
+- nothing
+- easdf
+
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311511042_1.png" alt="illustration" style="width:100%; max-width:100%;" />
+
+```cpp
+hey out
+```
+**Output:**
+```
+12 5 10
+```
+
+```cpp
+#include<iostream>
+```
+
+| Hey1 | Column 2 |
+| --- | --- |
+| Value 1 | Value 2 |
+
+`code they are working` 
+
+<carousel>
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311295415_1.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311297042_2.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311298537_3.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311300234_4.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311301840_5.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311304090_6.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311306131_7.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311313050_8.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311322507_9.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311328396_10.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311332619_11.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311334954_12.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311336469_13.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311338218_14.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311340704_15.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311342518_16.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311344080_17.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311346597_18.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311348385_19.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311350121_20.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311351876_21.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311353461_22.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311354945_23.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311356444_24.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311358709_25.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311360800_26.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311362546_27.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311364477_28.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311365758_29.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311367000_30.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311368153_31.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311369393_32.png" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/hey-linear/1768311370860_33.png" alt="illustration" />
+</carousel>
+
+```cpp
+#include<iostream>
+using namespace std;
+int main(){
+   int a=10;
+   cout<<a;
+}
+```
+**Output:**
+```
+10
+```
+
+
+
+
 # PPT INTRO CPP
 
 # asdfasduupoijkiohaskldnjoidk
