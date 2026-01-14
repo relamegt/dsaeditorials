@@ -1,0 +1,196 @@
+# Problem Analysis: Target Sum Indices
+
+Given an array of integers `nums` and an integer `target`, return *indices* of the two numbers such that they add up to `target`. You may assume that each input would have **exactly one solution**, and you may not use the same element twice.
+
+### Visualizing the Problem
+
+Before diving into the code, let's visualize how the array traversal works looking for the complement value.
+
+<img src="https://picsum.photos/seed/graph/800/400" style="width: 100%; border-radius: 8px;" />
+
+> **Note:** The order of the returned indices does not matter.
+
+---
+
+### Step-by-Step Walkthrough
+
+Here is a visual breakdown of how we iterate through the array:
+
+<carousel>
+src="https://picsum.photos/seed/step1/800/400"
+src="https://picsum.photos/seed/step2/800/400"
+src="https://picsum.photos/seed/step3/800/400"
+</carousel>
+
+Below are the different ways to solve this problem, ranging from Brute Force to an Optimal Hash Map solution.
+
+<approaches>
+
+## Approach 1: Brute Force
+
+The simplest method is to compare every pair of elements to check if they sum up to the target. We use two nested loops.
+
+### Algorithm
+1. Iterate through the array with pointer `i` from `0` to `n-1`.
+2. Iterate through with pointer `j` from `i+1` to `n`.
+3. If `nums[i] + nums[j] == target`, return `[i, j]`.
+
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return {i, j};
+                }
+            }
+        }
+        return {}; // Should not happen
+    }
+};
+```
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] == target - nums[i]) {
+                    return new int[] { i, j };
+                }
+            }
+        }
+        return null;
+    }
+}
+```
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[j] == target - nums[i]:
+                    return [i, j]
+```
+
+**Output:**
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+### Time Complexity
+O(n^2). For each element, we try to find its complement by looping through the rest of the array which takes O(n) time. Therefore, the time complexity is O(n^2).
+
+### Space Complexity
+O(1). The space required does not depend on the size of the input array, so only constant space is used.
+
+## Approach 2: Two-Pass Hash Table
+
+To improve our runtime complexity, we need a more efficient way to check if the complement exists in the array. If the complement exists, we need to look up its index. A hash map allows us to perform this lookup in near constant time.
+
+### Implementation Details
+We perform two passes:
+1.  **First Pass:** Add each element and its index to a Hash Map.
+2.  **Second Pass:** Check if `target - nums[i]` exists in the map and is not the same element.
+
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> hash;
+        // Build the hash table
+        for (int i = 0; i < nums.size(); i++) {
+            hash[nums[i]] = i;
+        }
+        // Check for complement
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (hash.count(complement) && hash[complement] != i) {
+                return {i, hash[complement]};
+            }
+        }
+        return {};
+    }
+};
+```
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    const map = new Map();
+    // Pass 1
+    for (let i = 0; i < nums.length; i++) {
+        map.set(nums[i], i);
+    }
+    // Pass 2
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement) && map.get(complement) !== i) {
+            return [i, map.get(complement)];
+        }
+    }
+};
+```
+
+### Time Complexity
+O(n). We traverse the list containing `n` elements exactly twice. Since the hash table reduces the lookup time to O(1), the time complexity is O(n).
+
+### Space Complexity
+O(n). The extra space required depends on the number of items stored in the hash table, which stores exactly `n` elements.
+
+## Approach 3: One-Pass Hash Table (Optimal)
+
+It turns out we can do it in one pass. While we iterate and inserting elements into the table, we also look back to check if current element's complement is already in the table. If it exists, we have found a solution and return immediately.
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in hashmap:
+                return [i, hashmap[complement]]
+            hashmap[nums[i]] = i
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> hash;
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (hash.count(complement)) {
+                return {hash[complement], i};
+            }
+            hash[nums[i]] = i;
+        }
+        return {};
+    }
+};
+```
+
+### Output
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+
+### Time Complexity
+O(n). We traverse the list containing `n` elements only once. Each lookup in the table costs only O(1) time.
+
+### Space Complexity
+O(n). The extra space required depends on the number of items stored in the hash table, which stores at most `n` elements.
+
+</approaches>
+
+### Summary
+
+The **One-Pass Hash Table** approach is the industry standard solution for this problem due to its linear time complexity and cleaner implementation.
+
+Special thanks to [LeetCode Team](https://leetcode.com) for the original problem statement.
