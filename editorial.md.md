@@ -65,6 +65,13 @@ def search(nums, target):
     return -1
 ```
 
+***OUTPUT**
+12
+123
+
+### Output
+12
+12
 
 ### Time Complexity
 
