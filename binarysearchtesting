@@ -1,36 +1,75 @@
-# Binary Search
+# dp testing
 
-**Binary Search**lets deep dive into that
+Hey there just editorial testing
+`given array test that` 
+
+*hey there*- hte
+
+1. numbered
+2. **testeing**
+
+******| Column 1 | Column 2 |
+| --- | --- |
+| Value 1 | Value 2 |**
 <carousel>
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/binary-search/1768404896569_Slide1.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/binary-search/1768404897985_Slide2.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/binary-search/1768404899402_Slide3.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/binary-search/1768404900617_Slide4.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/binary-search/1768404901979_Slide5.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408934213_Slide1.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408935766_Slide2.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408937256_Slide3.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408938714_Slide4.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408940244_Slide5.JPG" alt="illustration" />
 </carousel>
 
-*just testing*******
-
 <approaches>
-
 ## Brute Force
 
-No e**xplanationn needed**
+No Explanation
 
 ```cpp
-hey there cpp
-```
-
-```javascript
-hey tehr js
+hey there coding block cpp
 ```
 **Output:**
 ```
-output testin
+10
+```
+
+```java
+java code
+```
+**Output:**
+```
+10
+```
+
+```python
+python code
+```
+**Output:**
+```
+10
 ```
 
 ### Time Complexity
+0(N) tc
 
-o(n) with all owrt
+### Space Complexity
+no sc
+
+## two pointes
+
+no exp
+
+```cpp
+hey coo
+```
+**Output:**
+```
+10
+```
+
+### Time Complexity
+n
+
+### Space Complexity
+no sc
 
 </approaches>
