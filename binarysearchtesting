@@ -1,39 +1,14 @@
-# dp testing
+# untitled
 
-Hey there just editorial testing
-`given array test that` 
-
-*hey there*- hte
-
-1. numbered
-2. **testeing**
-
-******| Column 1 | Column 2 |
-| --- | --- |
-| Value 1 | Value 2 |**
-<carousel>
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408934213_Slide1.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408935766_Slide2.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408937256_Slide3.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408938714_Slide4.JPG" alt="illustration" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/dp-testing/1768408940244_Slide5.JPG" alt="illustration" />
-</carousel>
+hey there testing editorial
 
 <approaches>
-## Brute Force
+## Brute
 
-No Explanation
+no exp just brute
 
 ```cpp
-hey there coding block cpp
-```
-**Output:**
-```
-10
-```
-
-```java
-java code
+cpp
 ```
 **Output:**
 ```
@@ -41,33 +16,33 @@ java code
 ```
 
 ```python
-python code
+pythong
 ```
 **Output:**
 ```
-10
+pythong
 ```
 
 ### Time Complexity
-0(N) tc
+o(n) tcc
 
 ### Space Complexity
-no sc
+scc
 
-## two pointes
+## better
 
-no exp
+better
 
 ```cpp
-hey coo
+cpp
 ```
 **Output:**
 ```
-10
+better cpp
 ```
 
 ### Time Complexity
-n
+on
 
 ### Space Complexity
 no sc
