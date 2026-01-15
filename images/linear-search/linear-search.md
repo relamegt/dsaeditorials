@@ -39,7 +39,8 @@ return -1*
 Best Case | O(1)
 Average Case | O(n)
 Worst Case | O(n)
- **Space Complexity:**  O(1)
+
+### **Space Complexity:**  O(1)
 
 ---
 
@@ -224,3 +225,7 @@ O(N) Traverses the array only once
 O(1) No Extra space required
 
 </approaches>
+
+
+
+### *Special Thanks to  [Mohit](https://www.linkedin.com/in/mohit-ch/) *
