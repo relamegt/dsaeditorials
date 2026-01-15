@@ -1,50 +1,74 @@
-# untitled
+# 15-01
 
-hey there testing editorial
+hey there just testing the approaches**there bold*****italic bold***- bullete
+- num
+1. iasd;asd
+2. assdf
+# aasd
+### 
+## aasdfh2
+### asdfah3
 
-<approaches>
-## Brute
-
-no exp just brute
+**inline code testing**
+| Column 1,Column 2 | Value 1,Value 2 |
+| --- | --- |
+| Value 1 | Value 2 |
 
 ```cpp
 cpp
 ```
-**Output:**
+### Output
+cpp output
+
+<carousel>
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/doc-1768470333623-Slide1.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/doc-1768470335281-Slide2.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/doc-1768470336841-Slide3.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/doc-1768470338479-Slide4.JPG" alt="illustration" />
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/doc-1768470340081-Slide5.JPG" alt="illustration" />
+</carousel>
+
+<approaches>
+## brute
+
+brute **testing**
+
+```cpp
+hey cpp
 ```
-10
+
+```java
+java
 ```
 
 ```python
-pythong
-```
-**Output:**
-```
-pythong
+pythogn
 ```
 
-### Time Complexity
-o(n) tcc
+### Output
+pythongo
 
-### Space Complexity
-scc
+# Time Complexity
+o(n)
+
+# Space Complexity
+no cs
 
 ## better
 
-better
+btee
 
 ```cpp
+adsfacpp
+```
+
+### Output
 cpp
-```
-**Output:**
-```
-better cpp
-```
 
-### Time Complexity
-on
+# Time Complexity
+o(n)
 
-### Space Complexity
+# Space Complexity
 no sc
 
 </approaches>
