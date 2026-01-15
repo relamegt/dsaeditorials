@@ -9,6 +9,8 @@
 
 It works on  **both sorted and unsorted arrays** .
 
+---
+
 ## 2. How Linear Search Works
 
 1. Start from the first element.
@@ -16,6 +18,8 @@ It works on  **both sorted and unsorted arrays** .
 3. If it matches → return the index.
 4. If not → move to the next element.
 5. If the end is reached → element not found
+
+---
 
 ## 3. Algorithm (Steps)
 
@@ -26,7 +30,20 @@ It works on  **both sorted and unsorted arrays** .
         return i
 return -1* 
 
-## 4. Advantages & Disadvantages
+---
+
+## 4. Time & Space Complexity
+
+| Case | Time Complexity |
+| --- | --- |
+Best Case | O(1)
+Average Case | O(n)
+Worst Case | O(n)
+ **Space Complexity:**  O(1)
+
+---
+
+## 5. Advantages & Disadvantages
 
 ### Advantages
 
@@ -38,6 +55,8 @@ return -1*
 
 - Slow for large datasets
 - Inefficient compared to binary search
+
+---
 
 ## Below is Slide Play
 
