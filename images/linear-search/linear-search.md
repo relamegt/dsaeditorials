@@ -1,5 +1,9 @@
 # Linear Search
 
+## <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768490385351-Slide1.JPG" />
+
+## 
+
 ## 1. What is Linear Search?
 
  **Linear Search**  (also called  **Sequential Search** ) is a simple searching algorithm that checks  **each element one by one**  in a list until:
@@ -229,5 +233,3 @@ O(1) No Extra space required
 
 
 ### *Special Thanks to  [Mohit](https://www.linkedin.com/in/mohit-ch/)*
-
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768490206043-Slide1.JPG" />
