@@ -15,9 +15,7 @@ It works on  **both sorted and unsorted arrays** .
 2. Compare the current element with the key.
 3. If it matches → return the index.
 4. If not → move to the next element.
-5. If the end is reached → element not found.
-
-just testing
+5. If the end is reached → element not found
 
 ## 3. Algorithm (Steps)
 
