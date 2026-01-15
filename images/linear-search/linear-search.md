@@ -1,6 +1,6 @@
 # Linear Search
 
-## <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768490385351-Slide1.JPG" />
+## 
 
 ## 
 
@@ -233,3 +233,5 @@ O(1) No Extra space required
 
 
 ### *Special Thanks to  [Mohit](https://www.linkedin.com/in/mohit-ch/)*
+
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768490541695-Slide1.JPG" />
