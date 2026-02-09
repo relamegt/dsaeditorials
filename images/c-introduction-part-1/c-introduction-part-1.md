@@ -1,222 +1,117 @@
 # C++ Introduction Part-1
 
-# Introduction to C++
+## What is Programming?
 
- **C++**  is a  **general-purpose, high-level programming language**  developed by  **Bjarne Stroustrup**  as an extension of the C language. It supports  **procedural, object-oriented, and generic programming** , making it powerful and flexible. C++ is widely used for system software, game development, competitive programming, embedded systems, and performance-critical applications.
+ **Programming**  is the process of giving instructions to a computer to solve a problem or perform a task.
 
----
+A computer itself is dumb—it only understands  **machine-level instructions** . Programming languages act as a  **bridge between human logic and machine execution** .
 
-# Structure of a C++ Program
-
-A C++ program follows a well-defined structure:
-
-1. Documentation / Comments
-2. Preprocessor directives
-3. Global declarations
-4. main() function
-5. User-defined functions (optional)
-
-### Basic Structure Example
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hello World";
-    return 0;
-}
-```
-### Output
-Hello World
+📌  **Real-life analogy** 
+Think of programming like giving step-by-step cooking instructions.
+If steps are wrong or unclear → dish fails.
+Same with programs.
 
 ---
 
-# How Does a C++ Program Run?
+## What is C++?
 
-The execution of a C++ program happens in the following steps:
+ **C++**  is a  **general-purpose programming language**  developed by  **Bjarne Stroustrup**  as an extension of the C language.
 
-1. PreprocessingHandles #include, #define, macros
-2. CompilationConverts source code into object code
-3. LinkingLinks libraries and object files
-4. ExecutionFinal executable runs starting from main()
+It combines:
 
----
+- Speed of low-level languages
+- Abstraction of high-level languages
+- Object-Oriented Programming (OOP)
 
-# Preprocessor Directives
+📌  **Why C++ still matters** 
 
-Preprocessor directives begin with  `#`  and are processed  **before compilation** .
-
-### Common Preprocessor Directives:
-
-- #include – Includes header files
-- #define – Defines macros
-- #undef – Undefines a macro
-- #ifdef, #ifndef, #endif – Conditional compilation
-
-Example:
- `#include <iostream>
-#define PI 3.14` 
+- Gives full control over memory
+- Extremely fast execution
+- Used where performance is critical
 
 ---
 
-# Macros
+## Features of C++
 
-A  **macro**  is a symbolic constant or code fragment defined using  `#define` .
-
-### Example:
- `#define MAX 100` 
-Macros do not follow data type rules and are replaced directly by the preprocessor.
-
----
-
-# The  `main()`  Function
-
-- main() is the entry point of every C++ program
-- Program execution always starts from main()
-
-### Syntax:
- `int main() {
-    // statements
-    return 0;
-}` 
-- int → return type
-- return 0 → indicates successful execution
+- High Performance (close to hardware)
+- Object-Oriented (classes, objects, inheritance)
+- Supports Procedural + OOP
+- Manual Memory Control
+- STL (Standard Template Library)
 
 ---
 
-# Namespace
+## Where is C++ Used?
 
-A  **namespace**  is used to avoid name conflicts in large programs.
+### 🔹 Placements & Interviews
 
-### Example:
- `using namespace std;` 
-- std is the standard C++ namespace
-- Without it, we must write std::cout, std::cin
+- Strong base language for DSA
+- Common in product-based companies
 
----
+### 🔹 Competitive Programming
 
-# Identifiers
+- Fast I/O
+- STL makes problem solving efficient
 
-Identifiers are  **names given to variables, functions, arrays, etc.** 
+### 🔹 System Software
 
-### Rules:
-
-- Can contain letters, digits, underscore
-- Must begin with a letter or underscore
-- Cannot be a keyword
-- Case-sensitive
-
-Valid:  `sum` ,  `_count` ,  `total1` 
-Invalid:  `1num` ,  `float` ,  `total-value` 
+- Operating Systems
+- Game Engines
+- Compilers
+- Databases
 
 ---
 
-# Keywords
+How C++ Code Runs
 
-Keywords are  **reserved words**  with predefined meaning in C++.
-
-Examples:
- `int` ,  `float` ,  `if` ,  `else` ,  `for` ,  `while` ,  `return` ,  `class` ,  `const` 
-
-👉 Keywords  **cannot be used as identifiers** .
-
----
-
-# Input and Output in C++
-
-C++ uses  **stream-based I/O**  from  `<iostream>` .
-
-- cin → input
-- cout → output
-
-### Example:
- `int x;
-cin >> x;
-cout << x;` 
-- << → extraction operator
-- << → insertion operator
-
----
-
-# Variables
-
-A  **variable**  is a named memory location used to store data.
-
-### Declaration:
- `int age;
-float salary;` 
-### Initialization:
- `int age = 20;` 
-
----
-
-# Data Types in C++
-
-## Basic Data Types:
-
-- int – integers
-- float – decimal values
-- double – high-precision decimals
-- char – characters
-- bool – true/false
-
-## Derived Data Types:
-
-- Arrays
-- Pointers
-- Functions
-
-## User-Defined Data Types:
-
-- struct
-- union
-- enum
-- class
-
----
-
-# Comments in C++
-
-Comments are used to  **explain code**  and are ignored by the compiler.
-
-### Types of Comments:
-
-// Single Line Comment
-
-/* Line1
-
-Line2 */
-
----
-
-# Constants
-
-Constants are values that  **cannot be changed**  during program execution.
-
-### Using  `const` :
- `const int MAX = 100;` 
-### Using  `#define` :
- `#define PI 3.14` 
-
----
-
-# Type Casting
-
-Type casting is the  **conversion of one data type into another** .
-
-## Implicit Type Casting
-
-Done automatically by the compiler.
- `int x = 10;
-float y = x;` 
-## Explicit Type Casting
-
-Done manually by the programmer.
- `float avg = (float)sum / count;` 
-#
+<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/c-introduction-part-1/1770628599435-Screenshot_2026-02-09_144418.png" />
 
 <approaches>
+## Arithmetic Operators
+
+Used to perform mathematical calculations
+
+| Operator | Description | Example |
+| --- | --- | --- |
+| + | Addition | a + b |
+| - | Subtraction | a - b |
+| * | Multiplication | a * b |
+| / | Division | a / b |
+| % | Modulus (remainder) | a % b |
+
+```cpp
+int a = 10, b = 3;
+cout << a + b;
+
+```
+
+### Output
+13
+
+## Relational (Comparison) Operators
+
+Used to compare two values and return  **true (1)**  or  **false (0)** .
+
+| Operator | Meaning |
+| --- | --- |
+| == | Equal to |
+| != | Not equal to |
+| > | Greater than |
+| < | Less than |
+| >= | Greater than or equal to |
+| <= | Less than or equal to |
+
+that is
+
+## Logical Operators
+
+Used to combine multiple conditions.
+
+| Operator | Name |
+| --- | --- |
+| && | Logical AND |
+| ! | Logical NOT |
+
 ## Approach
 
 
