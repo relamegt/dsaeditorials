@@ -62,61 +62,137 @@ It combines:
 
 ---
 
-How C++ Code Runs
+## How C++ Code Runs
 
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/c-introduction-part-1/1770628599435-Screenshot_2026-02-09_144418.png" />
 
-<approaches>
-## Arithmetic Operators
-
-Used to perform mathematical calculations
-
-| Operator | Description | Example |
-| --- | --- | --- |
-| + | Addition | a + b |
-| - | Subtraction | a - b |
-| * | Multiplication | a * b |
-| / | Division | a / b |
-| % | Modulus (remainder) | a % b |
+## Structure of a C++ Program
 
 ```cpp
-int a = 10, b = 3;
-cout << a + b;
+#include <iostream>
+
+int main() {
+    std::cout << "Hello World";
+    return 0;
+}
+
+```
+### Output
+Hello World
+
+## Breakdown
+
+🔹  `#include <iostream>` 
+- Preprocessor directive
+- Imports input/output functionality
+
+🔹  `main()` 
+
+- Program execution starts here
+- OS calls main() automatically
+
+🔹  `return 0;` 
+
+- Signals successful execution to OS
+
+---
+
+## Preprocessor Directives & Macros
+
+What is  `#include` ?
+
+- Copies content of header file before compilation
+
+### Header Files
+
+- iostream → input/output
+- cmath → math functions
+- cstring → string functions
+
+---
+
+## Macros
+
+ *`#define PI 3.14`* 
+
+📌  **Why macros are used** 
+
+- Constant values
+- Faster replacement (no memory allocation)
+
+---
+
+## Identifiers & Keywords
+
+Identifiers
+
+Names given to:
+
+- Variables
+- Functions
+- Classes
+
+```cpp
+int studentAge;
+float averageMarks;
 
 ```
 
-### Output
-13
+Rules
 
-## Relational (Comparison) Operators
+- Letters, digits, _ only
+- Cannot start with digit
+- No keywords
+- Case-sensitive
 
-Used to compare two values and return  **true (1)**  or  **false (0)** .
+### Naming Conventions
 
-| Operator | Meaning |
+| Entity | Style |
 | --- | --- |
-| == | Equal to |
-| != | Not equal to |
-| > | Greater than |
-| < | Less than |
-| >= | Greater than or equal to |
-| <= | Less than or equal to |
+| Variables | camelCase |
+| Functions | camelCase |
+| Classes | PascalCase |
 
-that is
+### Keywords vs Identifiers
 
-## Logical Operators
-
-Used to combine multiple conditions.
-
-| Operator | Name |
+| Keywords | Identifiers |
 | --- | --- |
-| && | Logical AND |
-| ! | Logical NOT |
+| Reserved | User-defined |
+| Define behavior | Name entities |
+| int, while | count, sum |
 
-## Approach
+---
 
+## Input & Output (I/O)
 
+Output –  `cout` 
 
-</approaches>
+```cpp
+cout << "Hello";
+
+```
+
+- Uses insertion operator  <<
+- Sends data to output stream
+
+---
+
+### Input –  `cin`
+
+```cpp
+int age;
+cin >> age;
+
+```
+
+- Uses extraction operator >>
+- Reads from keyboard → memory
+
+📌  **Stream concept** 
+Data flows like water:
+
+- Keyboard → Memory (cin)
+- Memory → Screen (cout)
 
 
 
