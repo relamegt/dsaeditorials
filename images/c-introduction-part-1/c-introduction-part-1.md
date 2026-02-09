@@ -13,18 +13,6 @@ Same with programs.
 
 ---
 
-Uses extraction operator  `>>` 
-
-Reads from keyboard → memory
-
-📌  **Stream concept** 
-
-Data flows like water:
-
-Keyboard → Memory ( `cin` )
-
-Memory → Screen ( `cout` )
-
 ## What is C++?
 
   **C++**   is a   **general-purpose programming language**   developed by   **Bjarne Stroustrup**   as an extension of the C language.
