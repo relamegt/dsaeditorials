@@ -172,7 +172,7 @@ cout << "Hello";
 
 ```
 
-- Uses insertion operator  <<
+- Uses insertion operator  "<<"
 - Sends data to output stream
 
 ---
@@ -185,14 +185,14 @@ cin >> age;
 
 ```
 
-- Uses extraction operator >>
+- Uses extraction operator ">>"
 - Reads from keyboard → memory
 
 📌  **Stream concept** 
 Data flows like water:
 
-- Keyboard → Memory (cin)
-- Memory → Screen (cout)
+- Keyboard → Memory ("cin")
+- Memory → Screen ("cout")
 
 
 
