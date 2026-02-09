@@ -26,6 +26,9 @@ int main() {
     return 0;
 }
 ```
+```python
+pythong
+```
 ### Output
 hello world
 
@@ -116,6 +119,9 @@ Explanation of Parts
 
 ```cpp
 hey there cpp
+```
+```python
+Pythong
 ```
 ### Output
 no outputs
