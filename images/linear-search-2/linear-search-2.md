@@ -1,156 +1,155 @@
 # Linear Search-2
 
-## 
+## What is Programming?
 
-### `code`
+ **Programming**  is the process of giving instructions to a computer to solve a problem or perform a task.
 
-```cpp
-cpp
-```
+A computer itself is dumb—it only understands  **machine-level instructions** . Programming languages act as a  **bridge between human logic and machine execution** .
 
-```cpp
-cpp2
-```
-
-Uses insertion operator  
-Uses insertion opera `code`  tor  " `*<<"*` 
-Sends data to output stream
-
-Sends data to output stream
-
-```cpp
-cpp
-```
-
-## 1. Arithmetic Operators
-
-These are used to perform basic mathematical operations.
-
-| Operator | Name | Description | Example |
-| --- | --- | --- | --- |
-| + | Addition | Adds two operands | a + b |
-| - | Subtraction | Subtracts second from first | a - b |
-| * | Multiplication | Multiplies two operands | a * b |
-| / | Division | Divides numerator by denominator | b / a |
-| % | Modulo | Returns the remainder | b % a |
-
- **Code Example:** 
-
-C++ `int a = 10, b = 3;
-cout << "Addition: " << (a + b) << endl;    // 13
-cout << "Remainder: " << (a % b) << endl;   // 1` 
+📌  **Real-life analogy** 
+Think of programming like giving step-by-step cooking instructions.
+If steps are wrong or unclear → dish fails.
+Same with programs.
 
 ---
 
-## 2. Relational (Comparison) Operators
+## What is C++?
 
-These operators compare two values and return a boolean result:  `true`  (1) or  `false`  (0).
+ **C++**  is a  **general-purpose programming language**  developed by  **Bjarne Stroustrup**  as an extension of the C language.
 
- **`==`** : Equal to
+It combines:
 
- **`!=`** : Not equal to
+Speed of low-level languages
 
- **`>`**  /  **`<`** : Greater than / Less than
+Abstraction of high-level languages
 
- **`>=`**  /  **`<=`** : Greater/Less than or equal to
+Object-Oriented Programming (OOP)
 
- **Code Example:** 
+📌  **Why C++ still matters** 
 
-C++ `int x = 5, y = 10;
-if (x < y) {
-    cout << "x is smaller than y";
-}` 
+Gives  **full control over memory** 
 
----
+Extremely  **fast execution** 
 
-## 3. Logical Operators
-
-Used to combine two or more conditions or complement the evaluation of the original condition.
-
-![Editorial Image](https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRjsnI5uYV05bTzZeZ-J2ay5T0ABMSHcUg3jYii_AbJAgJq3lM0UDWIwpQ0yYFRcUUXg-o0pBMsjmO265sl8HWxZriPLscvwfA4_uGDSyjx25ZMlso)
-
-Shutterstock
-
- **`&&`  (Logical AND):**  Returns true if both statements are true.
-
- **`||`  (Logical OR):**  Returns true if one of the statements is true.
-
- **`!`  (Logical NOT):**  Reverses the result (true becomes false).
-
- **Code Example:** 
-
-C++ `bool isSunny = true;
-bool isWarm = false;
-
-if (isSunny && !isWarm) {
-    cout << "It's a crisp, clear day!";
-}` 
+Used where  **performance is critical** 
 
 ---
 
-## 4. Increment and Decrement Operators
+## Features of C++
 
-These are shorthand for increasing or decreasing a value by 1.
+ **High Performance**  (close to hardware)
 
- **Prefix ( `++x` ):**  Increments the value, then returns it.
+ **Object-Oriented**  (classes, objects, inheritance)
 
- **Postfix ( `x++` ):**  Returns the current value, then increments it.
+ **Supports Procedural + OOP** 
 
- **Code Example:** 
+ **Manual Memory Control** 
 
-C++ `int count = 5;
-cout << ++count; // Outputs 6
-cout << count++; // Outputs 6, but 'count' is now 7` 
+ **STL (Standard Template Library)** 
 
 ---
 
-## 5. Assignment Operators
+## Where is C++ Used?
 
-Used to assign values to variables. You'll often see "Compound Assignments" which combine math and assignment.
+### 🔹 Placements & Interviews
 
- **`=`** : Simple assignment ( `a = b` )
+Strong base language for  **DSA** 
 
- **`+=`** : Add and assign ( `a = a + b` )
+Common in product-based companies
 
- **`*=`** : Multiply and assign ( `a = a * b` )
+### 🔹 Competitive Programming
+
+Fast I/O
+
+STL makes problem solving efficient
+
+### 🔹 System Software
+
+Operating Systems
+
+Game Engines
+
+Compilers
+
+Databases
 
 ---
 
-## 6. Bitwise Operators (Advanced)
+## How C++ Code Runs
 
-These perform operations on the binary representations of numbers (at the bit level).
+![Editorial Image](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/c-introduction-part-1/1770628599435-Screenshot_2026-02-09_144418.png)
 
- **`&`** : Bitwise AND
+## Structure of a C++ Program
 
- **`|`** : Bitwise OR
+## Breakdown
 
- **`^`** : Bitwise XOR
+🔹  `#include <iostream>` 
 
- **`<<`  /  `>>`** : Left shift / Right shift
+Preprocessor directive
 
-### 
+Imports input/output functionality
 
-### ![Editorial Image](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search-2/1770628857357-Screenshot_2026-01-18_152703.png)
+🔹  `main()` 
 
-Uses extraction operator  " **>> *"  `code`*** 
+Program execution  **starts here** 
 
-Reads from keyboard → memory
+OS calls  `main()`  automatically
 
-📌  **Stream concept** 
+🔹  `return 0;` 
 
-Data flows like water:
+Signals successful execution to OS
 
-Keyboard → Memory ( `cin` )
+---
 
-Memory → Screen ( `cout` )
+## Preprocessor Directives & Macros
 
- `code`  
+What is  `#include` ?
 
- `code testing don`  
+Copies content of header file  **before compilation** 
 
-```cpp
-cpp
-```
+### Header Files
+
+ `iostream`  → input/output
+
+ `cmath`  → math functions
+
+ `cstring`  → string functions
+
+---
+
+## Macros
+
+ *`#define PI 3.14`* 
+
+📌  **Why macros are used** 
+
+Constant values
+
+Faster replacement (no memory allocation)
+
+---
+
+## Identifiers & Keywords
+
+Identifiers
+
+Names given to:
+
+Variables
+
+Functions
+
+Classes
+
+Rules
+
+Letters, digits,  `_`  only
+
+Cannot start with digit
+
+No keywords
+
+Case-sensitive
 
 ### Naming Conventions
 
@@ -170,188 +169,30 @@ cpp
 
 ---
 
-```cpp
-cpp
-```
+## Input & Output (I/O)
 
-### Output
-no uptu
+Output –  `cout` 
 
-# Time Complexity
-1
-
-# Space Complexity
-1
-
-<carousel>
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search-2/1770628934689-4.jpeg" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search-2/1770628936651-3.jpeg" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search-2/1770628937893-2.jpeg" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search-2/1770628939391-1.jpeg" />
-</carousel>
-
-## 1. What is Linear Search?
-
- **Linear Search**  (also called  **Sequential Search** ) is a simple searching algorithm that checks  **each element one by one**  in a list until:
-
-the target element is found, or
-
-the list ends.
-
-It works on  **both sorted and unsorted arrays** .
-
-## 2. Structure of a C++ Program
-
-A basic C++ program has the following structure:
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hello, World!";
-    return 0;
-}
-```
-```python
-pythong
-```
-
-### Output
-hello world
-
-Explanation of Parts
-
-| Part | Purpose |
-| --- | --- |
-| #include <iostream> | Includes input-output library |
-| using namespace std; | Allows use of standard names |
-| int main() | Starting point of program |
-| { } | Body of the program |
-| return 0; | Ends the program |
-
-### 
+Uses insertion operator  " `*<<"*` 
+Sends data to output stream
 
 ---
 
-## 2. How Linear Search Works
+### Input –  `cin`
 
-Start from the first element.
+Uses extraction operator " `>>"` 
 
-Compare the current element with the key.
+Reads from keyboard → memory
 
-If it matches → return the index.
+📌  **Stream concept** 
+Data flows like water:
 
-If not → move to the next element.
+Keyboard → Memory (" `cin"` )
 
-If the end is reached → element not found
-
----
-
-## 3. Algorithm (Steps)
-
- **Input:**  Array  `A` , size  `n` , search key  `x` 
-
- *for i = 0 to n-1
-    if A[i] == x
-        return i
-return -1* 
-
----
-
-## 4. Time & Space Complexity
-
-| Case | Time Complexity |
-| --- | --- |
-| Best Case | O(1) |
-| Average Case | O(n) |
-| Worst Case | O(n) |
-
-### **Space Complexity:**  O(1)
-
----
-
-## 5. Advantages & Disadvantages
-
-### Advantages
-
-Very simple to implement
-
-Works on unsorted data
-
-No extra memory required
-
-### Disadvantages
-
-Slow for large datasets
-
-Inefficient compared to binary search
-
----
-
-## Below is Slide Play
-
-<carousel>
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483224034-Slide1.JPG" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483225252-Slide2.JPG" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483226569-Slide3.JPG" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483228002-Slide4.JPG" />
-<img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483229015-Slide5.JPG" />
-</carousel>
+Memory → Screen (" `cout"` )
 
 <approaches>
-## Hash Map
-
-Explanation of Parts
-
-| Part | Purpose |
-| --- | --- |
-| #include <iostream> | Includes input-output library |
-| using namespace std; | Allows use of standard names |
-| int main() | Starting point of program |
-| { } | Body of the program |
-| return 0; | Ends the program |
-
-```cpp
-cpp inline
-```
-
-```cpp
-hey there cpp
-```
-```python
-Pythong
-```
-
-### Output
-no outputs
-
-# Time Complexity
-no tc
-
-# Space Complexity
-no sc
-
-testing this blocl
-
-```cpp
-just cpp
-```
-
-### Output
-cpp output
-
-# Time Complexity
-no tc
-
-# Space Complexity
-no sc
-
-## Brute Force
-
-
-
-## Two_Pointer
+## Approach
 
 
 
