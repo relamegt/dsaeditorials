@@ -61,8 +61,6 @@ return -1*
 - Slow for large datasets
 - Inefficient compared to binary search
 
----
-
 <carousel>
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483224034-Slide1.JPG" />
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/linear-search/1768483225252-Slide2.JPG" />
