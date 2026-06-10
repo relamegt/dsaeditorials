@@ -94,7 +94,7 @@ Here:
 
 Defining a union does not allocate memory. Memory is allocated only when a union variable is created.
 
-## <carousel autoplay="true" loop="true" arrows="true" dots="true" direction="horizontal" interval="4000">
+<carousel autoplay="true" loop="true" arrows="true" dots="true" direction="horizontal" interval="4000">
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/unions-in-c/1781071836985-a80c491f-6e1a-42fd-bec6-d0d1ae79d5f2.png" />
 <img src="https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/unions-in-c/1781071840617-39c8a5b5-279f-4c7b-b97f-093c2ef6dbb8.png" />
 </carousel>
