@@ -239,9 +239,227 @@ Only matching records are copied.
 | Uses VALUES Clause | Yes | No |
 | Uses SET Clause | No | Yes |
 
-## Conclusion
+## SQL Query to Insert Multiple Rows
 
-The SQL `INSERT INTO` statement is an essential command for adding data to database tables. Whether inserting a single row, multiple rows, or copying records from another table, it provides a flexible and efficient way to populate and maintain database information.
+When working with databases, it is often necessary to insert multiple records into a table at once. SQL allows multiple rows to be inserted using a single `INSERT INTO` statement, making data entry faster and more efficient than executing separate insert statements for each record.
+
+This approach is commonly used when importing datasets, adding bulk records, or transferring information between tables.
+
+## Why Insert Multiple Rows?
+
+Inserting multiple rows in a single query offers several advantages:
+
+- Reduces the number of database operations.
+- Improves query performance.
+- Simplifies bulk data insertion.
+- Makes scripts easier to maintain.
+- Reduces network communication between applications and databases.
+
+## Creating a Sample Table
+
+```sql
+CREATE TABLE TeamMembers (
+    MemberID INT PRIMARY KEY,
+    MemberName VARCHAR(100),
+    Department VARCHAR(50),
+    ExperienceYears INT
+);
+```
+
+## Inserting a Single Row
+
+Before inserting multiple rows, let's look at a standard single-row insertion.
+
+```sql
+INSERT INTO TeamMembers
+VALUES
+(1, 'Akash Dangudubiyyapu', 'Management', 5);
+```
+
+View the record:
+
+```sql
+SELECT * FROM TeamMembers;
+```
+
+### Output
+
+| MemberID | MemberName | Department | ExperienceYears |
+| --- | --- | --- | --- |
+| 1 | Akash Dangudubiyyapu | Management | 5 |
+
+## Inserting Multiple Rows Using VALUES
+
+The most common method is to provide multiple sets of values within a single `INSERT INTO` statement.
+
+### Syntax
+
+```sql
+INSERT INTO table_name (column1, column2, column3)
+VALUES
+(value1, value2, value3),
+(value4, value5, value6),
+(value7, value8, value9);
+```
+
+### Example
+
+```sql
+INSERT INTO TeamMembers
+VALUES
+(2, 'Mohit Chandaluri', 'Content', 3),
+(3, 'Abhiram Gopisetti', 'Technical', 4),
+(4, 'Adapa Hemesh', 'Database', 2),
+(5, 'Kiran Kumar', 'Technical', 4);
+```
+
+View the records:
+
+```sql
+SELECT * FROM TeamMembers;
+```
+
+### Output
+
+| MemberID | MemberName | Department | ExperienceYears |
+| --- | --- | --- | --- |
+| 1 | Akash Dangudubiyyapu | Management | 5 |
+| 2 | Mohit Chandaluri | Content | 3 |
+| 3 | Abhiram Gopisetti | Technical | 4 |
+| 4 | Adapa Hemesh | Database | 2 |
+| 5 | Kiran Kumar | Technical | 4 |
+
+## Inserting Multiple Rows into Specific Columns
+
+You can also insert values into selected columns only.
+
+### Example
+
+```sql
+INSERT INTO TeamMembers (MemberID, MemberName, Department)
+VALUES
+(6, 'Sai Kumar', 'Support'),
+(7, 'Ravi Teja', 'Testing');
+```
+
+Columns that are not specified receive `NULL` values or their default values.
+
+## Using INSERT INTO ... SELECT
+
+Another common approach is copying records from one table to another.
+
+### Creating a Source Table
+
+```sql
+CREATE TABLE NewTeamMembers (
+    MemberID INT,
+    MemberName VARCHAR(100),
+    Department VARCHAR(50),
+    ExperienceYears INT
+);
+```
+
+### Adding Sample Records
+
+```sql
+INSERT INTO NewTeamMembers
+VALUES
+(8, 'Nikhil Reddy', 'Technical', 5),
+(9, 'Vamsi Krishna', 'Content', 2),
+(10, 'Rahul Kumar', 'Technical', 6);
+```
+
+## Copying All Records
+
+```sql
+INSERT INTO TeamMembers
+SELECT *
+FROM NewTeamMembers;
+```
+
+This copies every row from `NewTeamMembers` into `TeamMembers`.
+
+## Copying Specific Columns
+
+```sql
+INSERT INTO TeamMembers (MemberID, MemberName)
+SELECT MemberID, MemberName
+FROM NewTeamMembers;
+```
+
+Only the selected columns are copied.
+
+## Copying Records Based on Conditions
+
+The `WHERE` clause can be used to insert only matching records.
+
+### Example
+
+Copy only members having more than 4 years of experience.
+
+```sql
+INSERT INTO TeamMembers
+SELECT *
+FROM NewTeamMembers
+WHERE ExperienceYears > 4;
+```
+
+Only qualifying rows are inserted.
+
+## Inserting Multiple Rows Using Transactions
+
+Transactions help ensure that all inserts succeed together. If any statement fails, the changes can be rolled back.
+
+### Example
+
+```sql
+BEGIN TRANSACTION;
+
+INSERT INTO TeamMembers
+VALUES
+(11, 'Anil Kumar', 'Operations', 3);
+
+INSERT INTO TeamMembers
+VALUES
+(12, 'Harsha Vardhan', 'Support', 2);
+
+COMMIT;
+```
+
+### Transaction Commands
+
+| Command | Purpose |
+| --- | --- |
+| BEGIN TRANSACTION | Starts a transaction |
+| COMMIT | Saves changes permanently |
+| ROLLBACK | Cancels all changes within the transaction |
+
+## Common Methods for Inserting Multiple Rows
+
+| Method | Use Case |
+| --- | --- |
+| INSERT INTO ... VALUES | Manually adding multiple records |
+| INSERT INTO ... SELECT | Copying data from another table |
+| INSERT INTO ... SELECT WHERE | Copying filtered records |
+| Transactions | Ensuring safe bulk inserts |
+
+## Best Practices
+
+- Use a single INSERT statement whenever possible.
+- Verify column order before inserting values.
+- Use transactions for critical bulk operations.
+- Ensure primary key values remain unique.
+- Validate data before performing large inserts.
+
+## Important Points
+
+- Multiple rows can be inserted using a single SQL statement.
+- Bulk inserts are generally faster than individual inserts.
+- `INSERT INTO ... SELECT` is useful for copying data.
+- Transactions help maintain data consistency.
+- The number of values must match the number of specified columns.
+
+##
 
 
 
