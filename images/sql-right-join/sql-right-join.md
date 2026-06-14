@@ -6,6 +6,8 @@ The SQL `RIGHT JOIN` (also known as `RIGHT OUTER JOIN`) returns all records from
 
 RIGHT JOIN is useful when you want to keep all records from the right table regardless of whether matching data exists in the left table.
 
+---
+
 ## Why Use RIGHT JOIN?
 
 The `RIGHT JOIN` helps you:
@@ -34,6 +36,8 @@ ON table1.column_name = table2.column_name;
 | table2 | Right table whose records are preserved |
 | ON | Specifies the join condition |
 | column_name | Related column used for matching |
+
+---
 
 ## Creating a Sample Database
 
@@ -104,6 +108,8 @@ SELECT * FROM Departments;
 | 103 | Management |
 | 104 | Database |
 
+---
+
 ## Example 1: Basic RIGHT JOIN
 
 Retrieve all departments along with employee information.
@@ -131,6 +137,8 @@ ON Employees.DepartmentID = Departments.DepartmentID;
 - All departments are displayed.
 - Matching employee records are retrieved.
 - Departments without employees show NULL values.
+
+---
 
 ## Example 2: Finding Departments Without Employees
 
@@ -169,6 +177,8 @@ ON e.DepartmentID = d.DepartmentID;
 - e and d are aliases.
 - Aliases improve readability and shorten queries.
 
+---
+
 ## Applications of RIGHT JOIN
 
 ### Find Unassigned Departments
@@ -190,6 +200,8 @@ RIGHT JOIN Departments
 ON Employees.DepartmentID = Departments.DepartmentID;
 ```
 
+## ---
+
 ## RIGHT JOIN vs LEFT JOIN
 
 | Feature | RIGHT JOIN | LEFT JOIN |
@@ -200,6 +212,8 @@ ON Employees.DepartmentID = Departments.DepartmentID;
 | Displays NULL values | Yes | Yes |
 | Used for preserving right table data | Yes | No |
 
+---
+
 ## Best Practices
 
 - Use RIGHT JOIN when all records from the right table are required.
@@ -208,6 +222,8 @@ ON Employees.DepartmentID = Departments.DepartmentID;
 - Filter NULL values when identifying unmatched records.
 - Use meaningful join conditions.
 
+---
+
 ## Important Points
 
 - RIGHT JOIN returns all rows from the right table.
@@ -215,6 +231,8 @@ ON Employees.DepartmentID = Departments.DepartmentID;
 - Non-matching rows contain NULL values.
 - RIGHT JOIN is also called RIGHT OUTER JOIN.
 - It helps identify records without corresponding matches.
+
+---
 
 ## Conclusion
 
