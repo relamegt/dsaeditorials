@@ -2,35 +2,21 @@
 
 ## Introduction
 
-A Correlated Subquery is a subquery that depends on values from the outer query. Unlike a normal subquery, it cannot execute independently because it references columns from the outer query.
+A Correlated Subquery is a subquery that depends on values from the outer query. Unlike a regular subquery, a correlated subquery cannot execute independently because it references columns from the outer query.
 
-The subquery runs once for every row processed by the outer query, making it useful for row-by-row comparisons and advanced filtering.
+The subquery executes once for each row processed by the outer query, making it useful for row-by-row comparisons, filtering, and conditional operations.
 
-### Key Features
+### Why Use Correlated Subqueries?
 
-- Depends on values from the outer query.
-- Executes once for each row of the outer query.
-- Useful for row-specific calculations.
-- Commonly used with EXISTS and NOT EXISTS.
-- Helps solve complex filtering conditions.
-
----
-
-## Why Use Correlated Subqueries?
-
-Correlated subqueries are useful when:
-
-- Comparing a row against other rows in the same table.
-- Finding records above or below group averages.
-- Checking the existence of related records.
-- Performing conditional updates and deletions.
-- Working with hierarchical or grouped data.
-
----
+- Compare rows within the same table.
+- Perform row-specific calculations.
+- Filter data based on group averages.
+- Check the existence of related records.
+- Perform conditional updates and deletions.
 
 ## Syntax
 
-```sql id="corr1"
+```sql
 SELECT column1, column2
 FROM table1 t1
 WHERE column_name operator
@@ -46,20 +32,28 @@ WHERE column_name operator
 | Component | Description |
 | --- | --- |
 | Outer Query | Main query being executed |
-| Correlated Subquery | Query that references the outer query |
-| t1 | Alias for the outer table |
-| Operator | Comparison operator such as &gt;, &lt;, = |
+| Correlated Subquery | Subquery that references the outer query |
+| Operator | Comparison operator such as =, &gt;, &lt; |
+| Alias | Temporary table name used for reference |
 
 ---
 
-## Creating Sample Table
+## Creating Sample Tables
 
-```sql id="corr2"
+```sql
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(50)
+);
+```
+
+```sql
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
     EmployeeName VARCHAR(100),
     DepartmentID INT,
-    Salary DECIMAL(10,2)
+    Salary DECIMAL(10,2),
+    ManagerID INT
 );
 ```
 
@@ -67,38 +61,44 @@ CREATE TABLE Employees (
 
 ## Inserting Sample Records
 
-```sql id="corr3"
-INSERT INTO Employees VALUES
-(1,'Akash',101,50000),
-(2,'Rahul',101,60000),
-(3,'Sai',102,45000),
-(4,'Hemanth',102,70000),
-(5,'Abhiram',103,55000);
+```sql
+INSERT INTO Departments VALUES
+(101, 'IT'),
+(102, 'HR'),
+(103, 'Finance'),
+(104, 'Marketing');
 ```
 
-Display the table:
+```sql
+INSERT INTO Employees VALUES
+(1, 'Akash', 101, 50000, NULL),
+(2, 'Rahul', 101, 65000, 1),
+(3, 'Sai', 102, 45000, 1),
+(4, 'Abhiram', 102, 70000, 2),
+(5, 'Hemanth', 103, 55000, 2);
+```
 
-```sql id="corr4"
+Display all employees:
+
+```sql
 SELECT * FROM Employees;
 ```
 
 ### Output
 
-| EmployeeID | EmployeeName | DepartmentID | Salary |
-| --- | --- | --- | --- |
-| 1 | Akash | 101 | 50000 |
-| 2 | Rahul | 101 | 60000 |
-| 3 | Sai | 102 | 45000 |
-| 4 | Hemanth | 102 | 70000 |
-| 5 | Abhiram | 103 | 55000 |
+| EmployeeID | EmployeeName | DepartmentID | Salary | ManagerID |
+| --- | --- | --- | --- | --- |
+| 1 | Akash | 101 | 50000 | NULL |
+| 2 | Rahul | 101 | 65000 | 1 |
+| 3 | Sai | 102 | 45000 | 1 |
+| 4 | Abhiram | 102 | 70000 | 2 |
+| 5 | Hemanth | 103 | 55000 | 2 |
 
----
+## Example 1: Employees Earning Above Department Average
 
-# Example 1: Employees Earning Above Department Average
+Retrieve employees whose salary is greater than the average salary of their department.
 
-Find employees whose salary is greater than the average salary of their department.
-
-```sql id="corr5"
+```sql
 SELECT EmployeeName,
        Salary,
        DepartmentID
@@ -115,22 +115,20 @@ WHERE Salary >
 
 | EmployeeName | Salary | DepartmentID |
 | --- | --- | --- |
-| Rahul | 60000 | 101 |
-| Hemanth | 70000 | 102 |
+| Rahul | 65000 | 101 |
+| Abhiram | 70000 | 102 |
 
 ### Explanation
 
-- The subquery calculates the average salary for the current employee's department.
-- The outer query compares the employee's salary with that average.
-- Only employees earning above their department average are returned.
+- The subquery calculates the average salary for each department.
+- The outer query compares each employee's salary with that average.
+- Employees earning above the department average are returned.
 
----
+## Example 2: Correlated Subquery with UPDATE
 
-# Example 2: Correlated Subquery with UPDATE
+Update salaries of employees in Department 101 to the department average salary.
 
-Update salaries of employees in Department 101 to their department average salary.
-
-```sql id="corr6"
+```sql
 UPDATE Employees
 SET Salary =
 (
@@ -143,17 +141,15 @@ WHERE DepartmentID = 101;
 
 ### Explanation
 
-- The subquery calculates the department average.
-- UPDATE assigns that value to matching employees.
-- Each row uses its department information dynamically.
+- The subquery calculates the average salary for Department 101.
+- UPDATE modifies the matching employee records.
+- Each row uses its department value dynamically.
 
----
-
-# Example 3: Correlated Subquery with DELETE
+## Example 3: Correlated Subquery with DELETE
 
 Delete employees whose salary is below their department average.
 
-```sql id="corr7"
+```sql
 DELETE FROM Employees e
 WHERE Salary <
 (
@@ -166,43 +162,21 @@ WHERE Salary <
 ### Explanation
 
 - The subquery calculates the average salary for each department.
-- Employees earning below the average are deleted.
+- Employees earning less than the average are removed.
 
----
-
-# Example 4: Using EXISTS
+## Example 4: Using EXISTS with Correlated Subqueries
 
 Find employees who manage at least one other employee.
 
-Create another table:
-
-```sql id="corr8"
-CREATE TABLE Staff (
-    EmployeeID INT,
-    EmployeeName VARCHAR(50),
-    ManagerID INT
-);
-```
-
-```sql id="corr9"
-INSERT INTO Staff VALUES
-(1,'John',NULL),
-(2,'David',1),
-(3,'Emma',1),
-(4,'Sophia',2);
-```
-
-Query:
-
-```sql id="corr10"
-SELECT s1.EmployeeID,
-       s1.EmployeeName
-FROM Staff s1
+```sql
+SELECT e.EmployeeID,
+       e.EmployeeName
+FROM Employees e
 WHERE EXISTS
 (
     SELECT 1
-    FROM Staff s2
-    WHERE s2.ManagerID = s1.EmployeeID
+    FROM Employees sub
+    WHERE sub.ManagerID = e.EmployeeID
 );
 ```
 
@@ -210,91 +184,88 @@ WHERE EXISTS
 
 | EmployeeID | EmployeeName |
 | --- | --- |
-| 1 | John |
-| 2 | David |
+| 1 | Akash |
+| 2 | Rahul |
 
 ### Explanation
 
 - EXISTS checks whether the subquery returns any rows.
-- Employees who manage others are returned.
+- Employees who have subordinates are returned.
 
----
+## Example 5: Using NOT EXISTS with Correlated Subqueries
 
-# Example 5: Using NOT EXISTS
+Find departments that do not have any employees.
 
-Find managers who have no employees reporting to them.
-
-```sql id="corr11"
-SELECT s1.EmployeeID,
-       s1.EmployeeName
-FROM Staff s1
+```sql
+SELECT d.DepartmentID,
+       d.DepartmentName
+FROM Departments d
 WHERE NOT EXISTS
 (
     SELECT 1
-    FROM Staff s2
-    WHERE s2.ManagerID = s1.EmployeeID
+    FROM Employees e
+    WHERE e.DepartmentID = d.DepartmentID
 );
 ```
 
 ### Output
 
-| EmployeeID | EmployeeName |
+| DepartmentID | DepartmentName |
 | --- | --- |
-| 3 | Emma |
-| 4 | Sophia |
+| 104 | Marketing |
 
 ### Explanation
 
 - NOT EXISTS returns rows where the subquery finds no matching records.
-- Employees without subordinates are displayed.
+- Departments without employees are displayed.
 
 ---
 
-## Correlated vs Non-Correlated Subquery
+## Correlated Subquery vs Normal Subquery
 
-| Non-Correlated Subquery | Correlated Subquery |
+| Normal Subquery | Correlated Subquery |
 | --- | --- |
 | Executes once | Executes for every outer row |
 | Independent of outer query | Depends on outer query |
 | Faster for large datasets | Can be slower |
-| Can run separately | Cannot run independently |
+| Can execute separately | Cannot execute independently |
 | Simpler execution | Dynamic execution |
 
 ---
 
 ## Performance Considerations
 
-- Correlated subqueries execute multiple times.
-- Performance may decrease on large datasets.
-- Proper indexing improves execution speed.
-- JOINs are often faster alternatives.
-- Use correlated subqueries only when necessary.
+- Correlated subqueries execute repeatedly for each row.
+- Large datasets may experience slower performance.
+- Indexing can improve execution speed.
+- JOIN operations may sometimes provide better performance.
+- Use correlated subqueries only when row-level processing is required.
 
 ---
 
 ## Best Practices
 
 - Use meaningful table aliases.
-- Keep subqueries simple and readable.
-- Create indexes on frequently compared columns.
-- Consider JOINs for better performance.
-- Test correlated queries on large datasets before deployment.
+- Keep correlated subqueries simple.
+- Create indexes on frequently filtered columns.
+- Consider JOINs for better optimization.
+- Test query performance before deployment.
 
 ---
 
 ## Important Points
 
-- Correlated subqueries reference the outer query.
+- Correlated subqueries depend on the outer query.
 - They execute once for every row of the outer query.
 - Commonly used with EXISTS and NOT EXISTS.
-- Useful for row-level comparisons.
-- Cannot execute independently.
+- Useful for row-level comparisons and calculations.
+- Cannot run independently without the outer query.
 
 ---
 
 ## Conclusion
 
-SQL Correlated Subqueries are powerful tools for solving row-specific problems and advanced filtering requirements. Since they depend on the outer query, they provide dynamic results that standard subqueries cannot. Although they may be slower on large datasets, they are extremely useful when comparing rows within groups, checking existence conditions, and performing conditional updates or deletions.
+SQL Correlated Subqueries are powerful tools for performing row-specific comparisons and advanced filtering. Since they reference the outer query, they provide dynamic results that regular subqueries cannot. Although they may be slower on large datasets, they are highly effective for solving complex business and reporting requirements.
 
 
 
