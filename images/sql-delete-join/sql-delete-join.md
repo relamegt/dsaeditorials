@@ -97,6 +97,8 @@ SELECT * FROM Employees;
 | 4 | Hemanth | 103 |
 | 5 | Akhil | 101 |
 
+---
+
 ## Example 1: DELETE Records Using JOIN
 
 Delete employees belonging to the HR department.
@@ -129,6 +131,8 @@ SELECT * FROM Employees;
 - Employees belonging to the HR department are identified.
 - Matching employee records are deleted.
 
+---
+
 ## Example 2: DELETE Specific Employee Records
 
 Delete employees from the Finance department.
@@ -145,6 +149,8 @@ WHERE d.DepartmentName = 'Finance';
 
 - Finance department employees are selected through the join.
 - Matching rows are removed from the Employees table.
+
+---
 
 ## Example 3: DELETE Customer Orders Using JOIN
 
@@ -207,6 +213,8 @@ SELECT * FROM Orders;
 - Orders belonging to inactive customers are deleted.
 - Remaining orders stay unchanged.
 
+---
+
 ## Applications of DELETE JOIN
 
 ### Remove Inactive Customer Orders
@@ -248,6 +256,8 @@ WHERE t2.Status = 'Inactive';
 | Supports relationship-based deletion | No | Yes |
 | Useful for linked data | Limited | Yes |
 
+---
+
 ## Best Practices
 
 - Always test the JOIN with SELECT before deleting.
@@ -256,6 +266,8 @@ WHERE t2.Status = 'Inactive';
 - Verify affected rows before execution.
 - Use transactions when deleting critical data.
 
+---
+
 ## Important Points
 
 - DELETE JOIN removes rows from only one table.
@@ -263,6 +275,8 @@ WHERE t2.Status = 'Inactive';
 - WHERE controls which rows are deleted.
 - INNER JOIN is the most commonly used DELETE JOIN.
 - Always verify data before running DELETE statements.
+
+---
 
 ## Conclusion
 
