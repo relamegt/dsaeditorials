@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The SQL `PRIMARY KEY` constraint uniquely identifies each record in a table. It ensures that every row can be distinguished from all other rows by using one or more columns containing unique, non-NULL values.
+The SQL `PRIMARY KEY` constraint uniquely identifies each record in a table and ensures strong data integrity. It prevents duplicate and NULL values, making it one of the most important constraints in relational database design.
 
-A primary key is one of the most important constraints in relational databases because it maintains data integrity and establishes relationships between tables.
+A PRIMARY KEY helps maintain data consistency, improves query performance through indexing, and serves as the foundation for relationships between tables.
 
 ## Why Use a PRIMARY KEY?
 
@@ -12,18 +12,19 @@ A PRIMARY KEY helps:
 
 - Uniquely identify each row in a table.
 - Prevent duplicate records.
-- Prevent NULL values in key columns.
-- Improve query performance through indexing.
-- Establish relationships with foreign keys.
-- Maintain data consistency and integrity.
+- Prevent NULL values.
+- Improve query performance through automatic indexing.
+- Establish relationships between tables.
+- Maintain data integrity and consistency.
 
 ## Key Characteristics of PRIMARY KEY
 
 - Values must be unique.
 - Values cannot be NULL.
 - A table can have only one PRIMARY KEY.
-- A PRIMARY KEY can consist of one or multiple columns.
-- An index is automatically created for the PRIMARY KEY.
+- A PRIMARY KEY can contain one or multiple columns.
+- An index is automatically created.
+- Frequently referenced by FOREIGN KEY constraints.
 
 ---
 
@@ -31,7 +32,7 @@ A PRIMARY KEY helps:
 
 ### 1. Simple Primary Key
 
-A primary key that consists of a single column.
+A simple primary key consists of a single column.
 
 Example:
 
@@ -41,7 +42,7 @@ EmployeeID INT PRIMARY KEY
 
 ### 2. Composite Primary Key
 
-A primary key that consists of multiple columns.
+A composite primary key consists of multiple columns.
 
 Example:
 
@@ -49,7 +50,7 @@ Example:
 PRIMARY KEY (StudentID, CourseID)
 ```
 
-A combination of values from both columns must be unique.
+The combination of values from all columns must be unique.
 
 ---
 
@@ -81,9 +82,19 @@ ADD CONSTRAINT constraint_name
 PRIMARY KEY (column_name);
 ```
 
+### Syntax Components
+
+| Component | Description |
+| --- | --- |
+| PRIMARY KEY | Uniquely identifies each row in a table |
+| column_name | Column used as the primary key |
+| CONSTRAINT | Optional name assigned to the constraint |
+| ALTER TABLE | Adds a primary key to an existing table |
+| Composite Key | Primary key created using multiple columns |
+
 ---
 
-# Creating a Sample Database
+## Creating a Sample Database
 
 ```sql
 CREATE DATABASE AlphaKnowledgeDB;
@@ -97,27 +108,25 @@ USE AlphaKnowledgeDB;
 
 ---
 
-# Creating a Table with PRIMARY KEY
+## Creating a Table with PRIMARY KEY
 
 ```sql
 CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY,
-    EmployeeName VARCHAR(100),
-    Department VARCHAR(50),
-    Salary DECIMAL(10,2)
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(50),
+    Department VARCHAR(50)
 );
 ```
 
 ---
 
-# Inserting Records
+## Inserting Records
 
 ```sql
-INSERT INTO Employees
+INSERT INTO Employees (EmpID, EmpName, Department)
 VALUES
-(101, 'Akash', 'Management', 85000),
-(102, 'Mohit', 'Content', 55000),
-(103, 'Abhiram', 'Technical', 72000);
+(101, 'Bob', 'Sales'),
+(102, 'Lucas', 'HR');
 ```
 
 Display all records:
@@ -128,54 +137,55 @@ SELECT * FROM Employees;
 
 ### Output
 
-| EmployeeID | EmployeeName | Department | Salary |
-| --- | --- | --- | --- |
-| 101 | Akash | Management | 85000 |
-| 102 | Mohit | Content | 55000 |
-| 103 | Abhiram | Technical | 72000 |
+| EmpID | EmpName | Department |
+| --- | --- | --- |
+| 101 | Bob | Sales |
+| 102 | Lucas | HR |
 
 ### Explanation
 
-- EmployeeID is the PRIMARY KEY.
-- Each value is unique.
-- No value is NULL.
+- EmpID is the PRIMARY KEY.
+- Each value must be unique.
+- NULL values are not allowed.
 
 ---
 
-# Example 1: Duplicate PRIMARY KEY Value
+## Example 1: Duplicate PRIMARY KEY Value
 
 ```sql
 INSERT INTO Employees
 VALUES
-(101, 'Sai', 'Technical', 92000);
+(101, 'Alice', 'IT');
 ```
 
 ### Error
 
 ```text
-Duplicate entry '101' for PRIMARY KEY
+PRIMARY KEY constraint violation:
+Duplicate key value detected.
 ```
 
 ### Explanation
 
-- EmployeeID 101 already exists.
+- EmpID 101 already exists.
 - PRIMARY KEY values must be unique.
 - SQL rejects the insertion.
 
 ---
 
-# Example 2: NULL PRIMARY KEY Value
+## Example 2: NULL PRIMARY KEY Value
 
 ```sql
 INSERT INTO Employees
 VALUES
-(NULL, 'Hemesh', 'Database', 68000);
+(NULL, 'Emma', 'Finance');
 ```
 
 ### Error
 
 ```text
-Cannot insert NULL into PRIMARY KEY column
+PRIMARY KEY constraint violation:
+NULL values are not allowed.
 ```
 
 ### Explanation
@@ -185,9 +195,133 @@ Cannot insert NULL into PRIMARY KEY column
 
 ---
 
-# Example 3: PRIMARY KEY with AUTO_INCREMENT
+## Example 3: Creating a PRIMARY KEY in a New Table
 
-Many databases allow automatic key generation.
+```sql
+CREATE TABLE Persons (
+    PersonID INT PRIMARY KEY,
+    LastName VARCHAR(255),
+    FirstName VARCHAR(255),
+    Age INT
+);
+```
+
+Insert records:
+
+```sql
+INSERT INTO Persons VALUES
+(1, 'Johnson', 'Emily', 25),
+(2, 'Walker', 'James', 30);
+```
+
+Display records:
+
+```sql
+SELECT * FROM Persons;
+```
+
+### Output
+
+| PersonID | LastName | FirstName | Age |
+| --- | --- | --- | --- |
+| 1 | Johnson | Emily | 25 |
+| 2 | Walker | James | 30 |
+
+### Explanation
+
+- PersonID is the PRIMARY KEY.
+- Each row contains a unique identifier.
+- Duplicate values are not allowed.
+
+---
+
+## Example 4: Composite PRIMARY KEY
+
+```sql
+CREATE TABLE StudentCourses (
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    PRIMARY KEY (StudentID, CourseID)
+);
+```
+
+Insert records:
+
+```sql
+INSERT INTO StudentCourses VALUES
+(1, 101, '2025-01-10'),
+(1, 102, '2025-01-15'),
+(2, 101, '2025-01-20');
+```
+
+Display records:
+
+```sql
+SELECT * FROM StudentCourses;
+```
+
+### Output
+
+| StudentID | CourseID | EnrollmentDate |
+| --- | --- | --- |
+| 1 | 101 | 2025-01-10 |
+| 1 | 102 | 2025-01-15 |
+| 2 | 101 | 2025-01-20 |
+
+### Explanation
+
+- StudentID alone is not unique.
+- CourseID alone is not unique.
+- The combination of StudentID and CourseID must be unique.
+
+---
+
+## Example 5: Adding PRIMARY KEY to an Existing Table
+
+Create a table without a primary key:
+
+```sql
+CREATE TABLE Person (
+    PersonID INT,
+    LastName VARCHAR(255),
+    FirstName VARCHAR(255),
+    Age INT
+);
+```
+
+Add a primary key:
+
+```sql
+ALTER TABLE Person
+ADD CONSTRAINT PK_Person
+PRIMARY KEY (PersonID);
+```
+
+Display table structure:
+
+```sql
+DESCRIBE Person;
+```
+
+### Output
+
+| Field | Type | Key |
+| --- | --- | --- |
+| PersonID | INT | PRI |
+| LastName | VARCHAR(255) |  |
+| FirstName | VARCHAR(255) |  |
+| Age | INT |  |
+
+### Explanation
+
+- PersonID now uniquely identifies each row.
+- Duplicate values are prohibited.
+- NULL values are prohibited.
+
+---
+
+## Example 6: PRIMARY KEY with AUTO_INCREMENT
 
 ### MySQL Example
 
@@ -220,67 +354,11 @@ VALUES
 
 - StudentID values are generated automatically.
 - No need to manually provide IDs.
+- Every generated value remains unique.
 
 ---
 
-# Example 4: Composite PRIMARY KEY
-
-Create a table where one student can enroll in multiple courses.
-
-```sql
-CREATE TABLE StudentCourses (
-    StudentID INT,
-    CourseID INT,
-    EnrollmentDate DATE,
-    PRIMARY KEY (StudentID, CourseID)
-);
-```
-
-Insert records:
-
-```sql
-INSERT INTO StudentCourses
-VALUES
-(1, 101, '2025-01-10'),
-(1, 102, '2025-01-15'),
-(2, 101, '2025-01-20');
-```
-
-### Explanation
-
-- StudentID alone is not unique.
-- CourseID alone is not unique.
-- The combination of StudentID and CourseID must be unique.
-
----
-
-# Example 5: Adding PRIMARY KEY to an Existing Table
-
-Create a table without a primary key:
-
-```sql
-CREATE TABLE Departments (
-    DepartmentID INT,
-    DepartmentName VARCHAR(100)
-);
-```
-
-Add a primary key later:
-
-```sql
-ALTER TABLE Departments
-ADD CONSTRAINT PK_Department
-PRIMARY KEY (DepartmentID);
-```
-
-### Explanation
-
-- DepartmentID now uniquely identifies each department.
-- Duplicate and NULL values are no longer allowed.
-
----
-
-# Example 6: PRIMARY KEY and FOREIGN KEY Relationship
+## Example 7: PRIMARY KEY and FOREIGN KEY Relationship
 
 Create a parent table:
 
@@ -306,12 +384,12 @@ CREATE TABLE Employees (
 ### Explanation
 
 - DepartmentID is the PRIMARY KEY in Departments.
-- Employees references that key using a FOREIGN KEY.
-- This maintains referential integrity.
+- Employees references DepartmentID using a FOREIGN KEY.
+- This relationship maintains referential integrity.
 
 ---
 
-# PRIMARY KEY vs UNIQUE
+## PRIMARY KEY vs UNIQUE
 
 | Feature | PRIMARY KEY | UNIQUE |
 | --- | --- | --- |
@@ -323,40 +401,40 @@ CREATE TABLE Employees (
 
 ---
 
-# Benefits of PRIMARY KEY
+## Benefits of PRIMARY KEY
 
-## Ensures Uniqueness
+### Ensures Uniqueness
 
 ```sql
-PRIMARY KEY (EmployeeID)
+PRIMARY KEY (EmpID)
 ```
 
-Prevents duplicate employee IDs.
+Prevents duplicate record identifiers.
 
-## Prevents NULL Values
+### Prevents NULL Values
 
 Every record must contain a valid key value.
 
-## Improves Query Performance
+### Improves Query Performance
 
 The database automatically creates an index.
 
-## Supports Relationships
+### Supports Relationships
 
-Foreign keys reference primary keys to connect tables.
+Foreign keys reference primary keys to establish table relationships.
 
-## Maintains Data Integrity
+### Maintains Data Integrity
 
-Each row can be uniquely identified.
+Each record can be uniquely identified.
 
 ---
 
-# Common Use Cases
+## Common Use Cases
 
 ### Employee Table
 
 ```sql
-EmployeeID INT PRIMARY KEY
+EmpID INT PRIMARY KEY
 ```
 
 ### Customer Table
@@ -385,32 +463,32 @@ PRIMARY KEY (StudentID, CourseID)
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always define a PRIMARY KEY for every table.
-- Use numeric identifiers when possible.
-- Keep primary keys small and stable.
-- Avoid frequently changing primary key values.
+- Prefer numeric identifiers when possible.
+- Keep primary key values small and stable.
+- Avoid updating primary key values frequently.
 - Use composite keys only when necessary.
-- Use AUTO_INCREMENT or IDENTITY columns for surrogate keys.
+- Use AUTO_INCREMENT or IDENTITY for surrogate keys.
 
 ---
 
-# Important Points
+## Important Points
 
 - PRIMARY KEY uniquely identifies each record.
-- It automatically prevents NULL values.
-- It automatically prevents duplicate values.
-- Each table can have only one PRIMARY KEY.
-- A PRIMARY KEY may contain multiple columns.
-- An index is automatically created.
+- PRIMARY KEY values must be unique.
+- PRIMARY KEY columns cannot contain NULL values.
+- A table can have only one PRIMARY KEY.
+- A PRIMARY KEY can contain one or multiple columns.
+- PRIMARY KEY automatically creates an index.
 - PRIMARY KEY is commonly referenced by FOREIGN KEY constraints.
 
 ---
 
-# Conclusion
+## Conclusion
 
-The SQL `PRIMARY KEY` constraint is a fundamental component of relational database design. It uniquely identifies every record, prevents duplicate and NULL values, improves performance through indexing, and serves as the foundation for relationships between tables. Proper use of primary keys ensures data integrity, consistency, and efficient database operations.
+The SQL `PRIMARY KEY` constraint is a fundamental component of relational database design. It uniquely identifies every record in a table, prevents duplicate and NULL values, improves query performance through indexing, and serves as the foundation for relationships between tables. Proper use of primary keys ensures data integrity, consistency, and efficient database operations.
 
 
 
