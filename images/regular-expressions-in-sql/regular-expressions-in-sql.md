@@ -44,15 +44,13 @@ WHERE REGEXP_LIKE(
 
 ---
 
-# Types of Regular Expression Functions in SQL
+## Types of Regular Expression Functions in SQL
 
 Most SQL databases provide three primary regex functions:
 
 1. REGEXP_LIKE()
 2. REGEXP_REPLACE()
 3. REGEXP_SUBSTR()
-
----
 
 ## REGEXP_LIKE()
 
@@ -173,7 +171,7 @@ FROM users;
 
 ---
 
-# Basic Regular Expression Syntax
+## Basic Regular Expression Syntax
 
 The following symbols form the foundation of regex pattern matching.
 
@@ -200,7 +198,7 @@ The following symbols form the foundation of regex pattern matching.
 
 ---
 
-# Common Regex Patterns
+## Common Regex Patterns
 
 These patterns are frequently used in SQL applications.
 
@@ -210,8 +208,6 @@ These patterns are frequently used in SQL applications.
 | `^[0-9]+$` | Numeric strings only |
 | `https?://[^ ]+` | URL matching |
 | `^[A-Za-z0-9]+$` | Alphanumeric validation |
-
----
 
 ## Email Validation Pattern
 
@@ -232,8 +228,6 @@ alice@yahoo.in
 admin@company.org
 ```
 
----
-
 ## Numeric String Validation
 
 ```sql
@@ -253,8 +247,6 @@ WHERE REGEXP_LIKE(
 7890
 ```
 
----
-
 ## URL Validation
 
 ```sql
@@ -272,8 +264,6 @@ WHERE REGEXP_LIKE(
 https://example.com
 http://sample.org
 ```
-
----
 
 ## Alphanumeric Validation
 
@@ -294,11 +284,11 @@ admin99
 abc789
 ```
 
----
+## ---
 
-# Real-World Examples
+## Real-World Examples
 
-## Example 1: Extract URLs from Text
+### Example 1: Extract URLs from Text
 
 ```sql
 SELECT REGEXP_SUBSTR(
@@ -315,7 +305,7 @@ FROM messages;
 
 ---
 
-## Example 2: Validate Email Addresses
+### Example 2: Validate Email Addresses
 
 ```sql
 SELECT email
@@ -337,7 +327,7 @@ Ensures:
 
 ---
 
-## Example 3: Clean Phone Numbers
+### Example 3: Clean Phone Numbers
 
 ```sql
 SELECT REGEXP_REPLACE(
@@ -348,19 +338,19 @@ SELECT REGEXP_REPLACE(
 FROM contacts;
 ```
 
-### Before
+#### Before
 
-```text
-+91-98765-43210
-(040)12345678
-```
+| phone_number |
+| --- |
+| +91-98765-43210 |
+| (040)12345678 |
 
-### After
+#### After
 
-```text
-919876543210
-04012345678
-```
+| cleaned_number |
+| --- |
+| 919876543210 |
+| 04012345678 |
 
 ### Explanation
 
@@ -369,7 +359,7 @@ FROM contacts;
 
 ---
 
-## Example 4: Find Product Names Containing Digits
+### Example 4: Find Product Names Containing Digits
 
 ```sql
 SELECT product_name
@@ -380,17 +370,21 @@ WHERE REGEXP_LIKE(
 );
 ```
 
-### Matches
+#### Output
 
-```text
-iPhone16
-Galaxy25
-SQL101
-```
+| product_name |
+| --- |
+| iPhone16 |
+| Galaxy25 |
+| SQL101 |
+
+### Explanation
+
+Returns products whose names contain at least one digit.
 
 ---
 
-## Example 5: Extract Subdomains
+### Example 5: Extract Subdomains
 
 ```sql
 SELECT REGEXP_SUBSTR(
@@ -400,7 +394,7 @@ SELECT REGEXP_SUBSTR(
 FROM web_logs;
 ```
 
-### Output
+#### Output
 
 | URL | Subdomain |
 | --- | --- |
@@ -413,7 +407,7 @@ Extracts everything before the first dot.
 
 ---
 
-## Example 6: Validate Numeric Strings
+### Example 6: Validate Numeric Strings
 
 ```sql
 SELECT record_id
@@ -430,9 +424,9 @@ Returns records containing only digits.
 
 ---
 
-# Regular Expression Use Cases
+## Regular Expression Use Cases
 
-## Data Validation
+### Data Validation
 
 Validate:
 
@@ -447,9 +441,7 @@ Example:
 REGEXP_LIKE(email, pattern)
 ```
 
----
-
-## Data Cleaning
+### Data Cleaning
 
 Remove:
 
@@ -463,9 +455,7 @@ Example:
 REGEXP_REPLACE(phone, '[^0-9]', '')
 ```
 
----
-
-## Data Extraction
+### Data Extraction
 
 Extract:
 
@@ -480,9 +470,7 @@ Example:
 REGEXP_SUBSTR(email, '@[^.]+')
 ```
 
----
-
-## Pattern Searching
+### Pattern Searching
 
 Search records containing specific patterns.
 
@@ -494,9 +482,13 @@ FROM products
 WHERE REGEXP_LIKE(product_name, '[0-9]');
 ```
 
----
+## 
 
-# Advantages of Regular Expressions
+## 
+
+## 
+
+## Advantages of Regular Expressions
 
 - Powerful pattern matching.
 - Reduces complex string manipulation.
@@ -504,9 +496,7 @@ WHERE REGEXP_LIKE(product_name, '[0-9]');
 - Useful for cleaning large datasets.
 - Supports advanced searching capabilities.
 
----
-
-# Limitations of Regular Expressions
+## Limitations of Regular Expressions
 
 - Regex operations can be slower on large datasets.
 - Complex patterns may reduce readability.
@@ -515,7 +505,7 @@ WHERE REGEXP_LIKE(product_name, '[0-9]');
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep patterns simple whenever possible.
 - Use regex only when string functions are insufficient.
@@ -525,7 +515,7 @@ WHERE REGEXP_LIKE(product_name, '[0-9]');
 
 ---
 
-# Regular Expressions vs String Functions
+## Regular Expressions vs String Functions
 
 | Feature | String Functions | Regular Expressions |
 | --- | --- | --- |
@@ -537,7 +527,18 @@ WHERE REGEXP_LIKE(product_name, '[0-9]');
 
 ---
 
-# Conclusion
+## Important Points
+
+- Regular Expressions use patterns to search and manipulate text.
+- `REGEXP_LIKE()` is used for pattern matching and validation.
+- `REGEXP_REPLACE()` replaces text matching a pattern.
+- `REGEXP_SUBSTR()` extracts text matching a pattern.
+- Regex is commonly used for validation, extraction, cleaning, and searching.
+- Different SQL databases may support slightly different regex syntax.
+
+---
+
+## Conclusion
 
 Regular Expressions in SQL provide a powerful way to search, validate, extract, and transform text data. Functions such as `REGEXP_LIKE()`, `REGEXP_REPLACE()`, and `REGEXP_SUBSTR()` allow developers to perform advanced text processing directly within SQL queries. When used appropriately, regex can significantly simplify data validation, cleaning, and extraction tasks while improving overall database efficiency.
 
