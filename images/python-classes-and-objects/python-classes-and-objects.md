@@ -18,7 +18,7 @@ Without classes, managing related data and functions becomes difficult. Classes 
 
 ### Example Without Classes
 
-```Code
+```python
 name = "Akash Dangudubiyyapu"
 age = 22
 
@@ -40,7 +40,7 @@ A class is defined using the `class` keyword. It contains attributes and methods
 
 ### Example
 
-```Code
+```python
 class Student:
     course = "Python"
 ```
@@ -56,7 +56,7 @@ An object is created by calling the class.
 
 ### Example
 
-```Code
+```python
 class Student:
     course = "Python"
 
@@ -78,7 +78,7 @@ The `__init__()` method is automatically executed whenever an object is created.
 
 ### Example
 
-```Code
+```python
 class Student:
     institute = "AlphaKnowledge"
 
@@ -111,7 +111,7 @@ A class can create multiple objects, each having different data.
 
 ### Example
 
-```Code
+```python
 class Student:
     def __init__(self, name):
         self.name = name
@@ -137,7 +137,7 @@ Methods define the behavior of objects.
 
 ### Example
 
-```Code
+```python
 class Student:
     def __init__(self, name):
         self.name = name
@@ -163,7 +163,7 @@ The `__str__()` method provides a readable representation of an object.
 
 ### Example
 
-```Code
+```python
 class Student:
     def __init__(self, name, age):
         self.name = name
