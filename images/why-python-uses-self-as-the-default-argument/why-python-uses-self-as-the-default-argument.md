@@ -18,7 +18,7 @@ Every object created from a class contains its own data. The `self` parameter he
 
 ### Example Without `self`
 
-```id="q8n4k7"
+```python
 class Student:
     name = "Akash Dangudubiyyapu"
 
@@ -36,7 +36,7 @@ The `self` parameter refers to the current instance of the class. Python automat
 
 ### Example
 
-```id="f2m7x1"
+```python
 class Student:
     def __init__(self, name):
         self.name = name
@@ -81,7 +81,7 @@ Using `self` makes it clear that methods are working with object data instead of
 
 ### Example
 
-```id="r6h3v8"
+```python
 class Course:
     def __init__(self, topic):
         self.topic = topic
@@ -109,7 +109,7 @@ Each object maintains its own data through `self`.
 
 ### Example
 
-```id="w9k1a5"
+```python
 class Mentor:
     def __init__(self, name):
         self.name = name
@@ -138,7 +138,7 @@ Methods can use instance variables through `self` to perform computations.
 
 ### Example
 
-```id="u4c8j2"
+```python
 class Circle:
     def __init__(self, radius):
         self.radius = radius
@@ -164,7 +164,7 @@ No. `self` is not a keyword. You can technically use another name.
 
 ### Example
 
-```id="n5b2e9"
+```python
 class Student:
     def __init__(current, name):
         current.name = name
