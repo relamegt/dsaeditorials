@@ -18,7 +18,7 @@ Constructors eliminate the need to assign values manually after creating an obje
 
 ### Example Without Constructor
 
-```id="v1m9k3"
+```python
 class Student:
     pass
 
@@ -45,7 +45,7 @@ The `__new__()` method creates and returns a new object. It is executed before `
 
 ### Syntax
 
-```id="c7q4n2"
+```python
 class ClassName:
     def __new__(cls):
         instance = super().__new__(cls)
@@ -64,7 +64,7 @@ The `__init__()` method initializes the object after it has been created.
 
 ### Syntax
 
-```id="d2x8m1"
+```python
 class ClassName:
     def __init__(self):
         pass
@@ -92,7 +92,7 @@ A default constructor does not accept additional arguments except `self`. It ini
 
 ### Example
 
-```id="a6h9p4"
+```python
 class Course:
     def __init__(self):
         self.platform = "AlphaKnowledge"
@@ -120,7 +120,7 @@ A parameterized constructor accepts arguments and initializes objects with custo
 
 ### Example
 
-```id="k4r8y6"
+```python
 class Student:
     def __init__(self, name, age):
         self.name = name
@@ -151,7 +151,7 @@ A single class can create multiple objects using the same constructor.
 
 ### Example
 
-```id="u3w7b5"
+```python
 class Student:
     def __init__(self, name):
         self.name = name
@@ -180,7 +180,7 @@ Constructors are often used together with methods.
 
 ### Example
 
-```id="p8s5d2"
+```python
 class Mentor:
     def __init__(self, name):
         self.name = name
