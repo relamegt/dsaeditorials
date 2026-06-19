@@ -382,7 +382,7 @@ Python allows approximately 1000 recursive calls by default.
 - Merge Sort
 - Quick Sort
 - Dynamic Programming
-- Backtracking algorithms
+- Backtracking algorithms etc..
 
 # Summary
 
