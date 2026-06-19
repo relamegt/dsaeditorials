@@ -18,7 +18,7 @@ Without polymorphism, separate functions would be needed for every object type, 
 
 ### Example Without Polymorphism
 
-```id="q7m5r2"
+```python
 def process_card():
     print("Processing Card Payment")
 
@@ -43,7 +43,7 @@ Runtime polymorphism occurs when child classes provide their own implementation 
 
 ### Example
 
-```id="k3w8n1"
+```python
 class Payment:
     def process_payment(self):
         return "Payment Processing"
@@ -81,7 +81,7 @@ Python's built-in functions work with multiple data types.
 
 ### Example
 
-```id="a9c6p4"
+```python
 print(len("AlphaKnowledge"))
 print(len([1, 2, 3, 4]))
 
@@ -106,7 +106,7 @@ Functions can work with different object types if they provide the required beha
 
 ### Example
 
-```id="v4t7e8"
+```python
 class Keyboard:
     def use(self):
         return "Typing"
@@ -136,7 +136,7 @@ Operators can perform different operations depending on the operand types.
 
 ### Example
 
-```id="p2h9s6"
+```python
 print(10 + 5)
 
 print("Alpha" + "Knowledge")
@@ -163,7 +163,7 @@ Python does not support traditional method overloading, but similar behavior can
 
 ### Example
 
-```id="u6x1b5"
+```python
 class Calculator:
     def multiply(
         self,
@@ -205,7 +205,7 @@ Different classes can share the same method name.
 
 ### Example
 
-```id="r8j2m7"
+```python
 class Mentor:
     def introduce(self):
         return "Mohit Chandaluri"
