@@ -10,6 +10,8 @@ In simple terms:
 
 By locking down data visibility, encapsulation protects the internal state of an object and ensures that data changes are validated, consistent, and secure.
 
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/encapsulation-in-java/1781954381828-6220a06a-f079-48d1-a9eb-c2e33a93e9d4.png)
+
 ## Why Do We Need Encapsulation?
 
 In software development, allowing external objects to modify a class's internal fields directly introduces severe structural risks:
