@@ -1,176 +1,331 @@
-# Basic Input and Output in C++
+# Basic Input and Output in C
 
-Input and output operations enable a program to communicate with users and external devices. In C++, these operations are performed using **streams**, which represent the flow of data between a program and input/output devices.
+## Introduction
 
-A stream can be viewed as a sequence of characters or bytes transferred from one location to another.
+Input and Output (I/O) operations enable a C program to communicate with users and external devices. Input operations allow programs to receive data during execution, whereas output operations display information on the screen or send data to files and other devices.
 
-- **Input Stream:** Transfers data from an input device (such as a keyboard) to the program's memory.
-- **Output Stream:** Transfers data from the program's memory to an output device (such as a monitor).
+The Standard Input/Output library (`stdio.h`) provides several functions for handling input and output. Some functions support formatted data, while others are designed for simple text or character processing.
 
-The stream functionality in C++ is provided through the  header file, which contains several predefined stream objects for handling standard input, output, and error messages.
+### Key Features
 
-The most commonly used stream objects are:
+- Enables interaction between users and programs.
+- Supported through the Standard Input/Output library (`stdio.h`).
+- Provides formatted and unformatted input/output functions.
+- Supports integers, characters, strings, and other data types.
+- Allows reading data from keyboards and writing data to screens or files.
 
-- **cin** – Used for receiving input from the user.
-- **cout** – Used for displaying output on the screen.
-- **cerr** – Used for displaying error messages immediately.
-- **clog** – Used for logging messages through a buffered stream.
+# Output Operations in C
 
----
+Output operations are used to display information on the console or write data to files. The most commonly used output function is `printf()`.
 
-## Standard Output Stream (`cout`)
+### Features of Output Functions
 
-The `cout` object is an instance of the `ostream` class and is used to display output on the screen. Data is sent to the output stream using the **insertion operator (`<<`)**.
+- Display text and messages.
+- Print values stored in variables.
+- Support format specifiers for different data types.
+- Print expressions and strings.
 
-The following example demonstrates how to display text using `cout`.
+# Printing Text Using printf()
 
-### Example Code
+The following program prints a simple message on the screen.
 
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    cout << "Welcome to C++ Programming";
+    printf("Welcome to AlphaKnowledge");
+
     return 0;
 }
 ```
 
 ### Output
+Welcome to AlphaKnowledge
 
-```text
-Welcome to C++ Programming
+### Explanation
+
+The text enclosed within double quotes is called a string. The `printf()` function displays the string exactly as written.
+
+# Printing Variables
+
+Variables can also be displayed using format specifiers.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 22;
+
+    printf("%d", age);
+
+    return 0;
+}
 ```
 
-**Time Complexity:** O(1)
+### Output
+22
 
-**Space Complexity:** O(1)
+### Explanation
 
----
+`%d` is a format specifier used for integer values. The value stored inside `age` replaces `%d`.
 
-## Standard Input Stream (`cin`)
+# Printing Variables Along with Text
 
-The `cin` object is an instance of the `istream` class and is used to receive input from the keyboard. Data entered by the user is read using the **extraction operator (`>>`)** and stored in variables.
+Formatted output allows variables and strings to be combined.
 
-The following example demonstrates how to read input from the user and display it back on the screen.
+```c
+#include <stdio.h>
 
-### Example Code
+int main()
+{
+    int age = 22;
 
-```cpp
-#include <iostream>
-using namespace std;
+    printf("Akash is %d years old", age);
+
+    return 0;
+}
+```
+
+### Output
+Akash is 22 years old
+
+### Explanation
+
+The `printf()` function inserts the value of `age` in place of `%d`.
+
+# Using fputs()
+
+The `fputs()` function writes strings to files, but it can also display text on the console.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    fputs("Learning C Programming with AlphaKnowledge", stdout);
+
+    return 0;
+}
+```
+
+### Output
+Learning C Programming with AlphaKnowledge
+
+### Explanation
+
+`stdout` represents the standard output device, which is usually the console screen.
+
+# Input Operations in C
+
+Input functions are used to receive data from users during program execution.
+
+### Features of Input Functions
+
+- Read integers, characters, and strings.
+- Support formatted input through `scanf()`.
+- Provide safer string handling with `fgets()`.
+- Allow character-by-character input using `getchar()`.
+
+# Using scanf()
+
+### Syntax
+
+```c
+scanf("format_specifier", &variable);
+```
+
+The address operator (`&`) is used because `scanf()` stores the entered value in memory.
+
+# Reading an Integer
+
+```c
+#include <stdio.h>
 
 int main()
 {
     int marks;
 
-    cin >> marks;
+    printf("Enter marks: ");
 
-    cout << "Marks: " << marks;
+    scanf("%d", &marks);
+
+    printf("Marks = %d", marks);
 
     return 0;
 }
 ```
 
-### Input
-
-```text
-95
-```
-
 ### Output
+Enter marks: 95
+Marks = 95
 
-```text
-Marks: 95
-```
+### Explanation
 
-**Time Complexity:** O(1)
+The `%d` format specifier reads an integer value and stores it in `marks`.
 
-**Space Complexity:** O(1)
+# Reading a Character
 
----
-
-## Unbuffered Standard Error Stream (`cerr`)
-
-The `cerr` object is used to display error and warning messages. It belongs to the `ostream` class and operates as an **unbuffered output stream**, meaning messages are displayed immediately without waiting for a buffer to fill.
-
-This behavior makes `cerr` particularly useful for reporting runtime errors and debugging information that should appear instantly.
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    cerr << "Invalid input detected!";
+    char grade;
+
+    printf("Enter grade: ");
+
+    scanf("%c", &grade);
+
+    printf("Grade = %c", grade);
+
     return 0;
 }
 ```
 
 ### Output
+Enter grade: A
+Grade = A
 
-```text
-Invalid input detected!
-```
+### Explanation
 
-**Time Complexity:** O(1)
+The `%c` format specifier reads a single character.
 
-**Space Complexity:** O(1)
+# Reading a String Using scanf()
 
----
-
-## Buffered Standard Logging Stream (`clog`)
-
-The `clog` object is used for logging and diagnostic messages. Like `cerr`, it belongs to the `ostream` class, but unlike `cerr`, it is a **buffered stream**.
-
-Messages written to `clog` are stored temporarily in a buffer and displayed when the buffer is flushed or becomes full. This makes `clog` suitable for logging information that does not need to appear immediately.
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    clog << "Program started successfully.";
+    char name[20];
+
+    printf("Enter your name: ");
+
+    scanf("%s", name);
+
+    printf("Hello %s", name);
+
     return 0;
 }
 ```
 
 ### Output
+Enter your name: Mohit
+Hello Mohit
 
-```text
-Program started successfully.
+### Explanation
+
+`%s` reads characters until a space or newline is encountered. Therefore, it is suitable only for single-word strings.
+
+# Using fgets()
+
+The `fgets()` function reads an entire line, including spaces, and limits the number of characters to prevent buffer overflow.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    char name[30];
+
+    printf("Enter your full name: ");
+
+    fgets(name, sizeof(name), stdin);
+
+    printf("Welcome %s", name);
+
+    return 0;
+}
 ```
 
-**Time Complexity:** O(1)
+### Output
+Enter your full name: Abhiram Gopisetti
+Welcome Abhiram Gopisetti
 
-**Space Complexity:** O(1)
+### Explanation
 
----
+Unlike `scanf("%s")`, `fgets()` can read multiple words and provides better safety.
 
-## Difference Between `cout`, `cerr`, and `clog`
+# Using getchar()
 
-| Stream | Purpose | Buffered |
+The `getchar()` function reads a single character from the keyboard.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    char ch;
+
+    printf("Enter a character: ");
+
+    ch = getchar();
+
+    printf("You entered %c", ch);
+
+    return 0;
+}
+```
+
+### Output
+Enter a character: K
+You entered K
+
+### Explanation
+
+`getchar()` reads one character and returns it.
+
+# Common Format Specifiers
+
+| Format Specifier | Data Type |
+| --- | --- |
+| `%d` | Integer |
+| `%f` | Float |
+| `%lf` | Double |
+| `%c` | Character |
+| `%s` | String |
+| `%u` | Unsigned Integer |
+| `%x` | Hexadecimal Integer |
+| `%o` | Octal Integer |
+
+# Difference Between printf() and scanf()
+
+| Feature | printf() | scanf() |
 | --- | --- | --- |
-| cout | Standard output | Yes |
-| cerr | Error and warning messages | No |
-| clog | Logging and diagnostic messages | Yes |
+| Purpose | Displays output | Reads input |
+| Direction | Program to user | User to program |
+| Return Type | Number of characters printed | Number of values successfully read |
+| Format Specifiers | Required | Required |
+| Uses Address Operator | No | Yes |
 
-While `cout` is primarily used for normal program output, `cerr` and `clog` are intended for reporting errors and logging information. The key distinction is that `cerr` displays messages immediately, whereas `clog` may delay output due to buffering.
+# Difference Between scanf() and fgets()
 
-<approaches>
-## Approach
+| Feature | scanf("%s") | fgets() |
+| --- | --- | --- |
+| Reads Single Word | Yes | Yes |
+| Reads Spaces | No | Yes |
+| Safer Input | No | Yes |
+| Prevents Buffer Overflow | Limited | Better |
+| Suitable for Sentences | No | Yes |
 
+# Advantages of Input and Output Functions
 
+1. Enable communication between programs and users.
+2. Support various data types.
+3. Allow formatted display of information.
+4. Simplify data entry and output operations.
+5. Provide functions for both character-based and string-based input.
 
+# Limitations
 
-</approaches>
+1. Incorrect format specifiers may lead to unexpected results.
+2. `scanf("%s")` cannot read strings containing spaces.
+3. Buffer overflow can occur if input size is not controlled.
+4. Some functions require careful handling of memory addresses.
 
+# Summary
 
-
+Input and Output operations are essential components of C programming. The Standard Input/Output library provides functions such as `printf()`, `scanf()`, `fputs()`, `fgets()`, and `getchar()` for displaying and reading data. Formatted functions allow handling multiple data types efficiently, while safer functions like `fgets()` help prevent buffer overflow. Understanding these functions is fundamental for building interactive C programs.
 
