@@ -10,8 +10,6 @@ Key features of method references include:
 - **Improved Readability**: Makes the code more intuitive by referencing methods directly by name.
 - **Pass-Through Mapping**: Used when a lambda expression acts only as a pass-through call, forwarding its inputs directly to an existing method.
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/java-method-references/1782028801813-7b89d80c-f3ae-4335-9c30-95ddb3081a2c.png)
-
 ## Basic Code Demo
 
 The following program creates a list of name strings and uses a static method reference to print each name sequentially.
