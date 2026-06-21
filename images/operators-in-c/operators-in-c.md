@@ -1,22 +1,178 @@
-# Operators in C++
+# Operators in C
 
-### 
+## Introduction
 
-Operators are special symbols that instruct the compiler to perform specific operations on one or more operands. They are essential building blocks of C++ programs and are used to perform arithmetic calculations, comparisons, logical evaluations, assignments, and many other tasks.
+Operators are special symbols in C that perform operations on values, variables, or expressions. They are one of the fundamental building blocks of C programming and enable programmers to carry out mathematical calculations, comparisons, logical evaluations, bit-level manipulations, and many other operations.
 
-For example, in the expression `10 + 20`, the symbol `+` is an operator that adds the two operands and produces the result `30`.
+The values or variables on which operators act are called **operands**. Depending on the number of operands involved, operators can be classified into unary, binary, and ternary operators.
 
-The following example demonstrates the use of an arithmetic operator in C++.
+### Key Features
 
-```cpp
-#include <iostream>
-using namespace std;
+- Perform operations on values and variables.
+- Simplify arithmetic and logical calculations.
+- Support comparison and decision-making.
+- Provide bit-level manipulation capabilities.
+- Allow assigning and modifying values efficiently.
+- Include unary, binary, and ternary operators.
 
-int main() {
+# Why Use Operators?
 
-    int total = 15 + 25;
+Operators help programmers perform computations and manipulate data easily. Without operators, writing expressions and processing data would be difficult and inefficient.
 
-    cout << total;
+## Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int totalMarks = 40 + 50;
+
+    printf("%d", totalMarks);
+
+    return 0;
+}
+```
+
+### Output
+90
+
+### Explanation
+
+The `+` operator adds two numbers and stores the result in `totalMarks`.
+
+# Classification Based on Number of Operands
+
+Operators can be classified according to the number of operands they require.
+
+## Unary Operators
+
+Unary operators work with a single operand.
+
+### Examples
+
+- Increment (`++`)
+- Decrement (`--`)
+- Unary Plus (`+`)
+- Unary Minus (`-`)
+- Logical NOT (`!`)
+- Bitwise Complement (`~`)
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int count = 10;
+
+    count++;
+
+    printf("%d", count);
+
+    return 0;
+}
+```
+
+### Output
+11
+
+## Binary Operators
+
+Binary operators require two operands.
+
+### Examples
+
+- Addition (`+`)
+- Subtraction (`-`)
+- Multiplication (`*`)
+- Division (`/`)
+- Modulus (`%`)
+- Relational operators
+- Logical operators
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int a = 15;
+    int b = 5;
+
+    printf("%d", a + b);
+
+    return 0;
+}
+```
+
+### Output
+20
+
+## Ternary Operators
+
+Ternary operators work with three operands.
+
+The conditional operator (`?:`) is the only ternary operator in C.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 20;
+
+    int result = (age >= 18) ? 1 : 0;
+
+    printf("%d", result);
+
+    return 0;
+}
+```
+
+### Output
+1
+
+# Types of Operators in C
+
+Based on functionality, operators are broadly classified into:
+
+1. Arithmetic Operators
+2. Relational Operators
+3. Logical Operators
+4. Bitwise Operators
+5. Assignment Operators
+6. Special Operators
+
+# Arithmetic Operators
+
+Arithmetic operators are used to perform mathematical calculations.
+
+| Operator | Description |
+| --- | --- |
+| + | Addition |
+| - | Subtraction |
+| * | Multiplication |
+| / | Division |
+| % | Modulus |
+| ++ | Increment |
+| -- | Decrement |
+
+## Addition Operator
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int a = 25;
+    int b = 15;
+
+    printf("%d", a + b);
 
     return 0;
 }
@@ -25,170 +181,76 @@ int main() {
 ### Output
 40
 
-### **Types of Operators in C++**
+## Subtraction Operator
 
-Based on the operations they perform, C++ operators can be broadly classified into the following categories:
+```c
+#include <stdio.h>
 
-| Operator Category | Purpose |
-| --- | --- |
-| Arithmetic Operators | Perform mathematical calculations such as addition and subtraction |
-| Relational Operators | Compare two values and produce a Boolean result |
-| Logical Operators | Combine or negate logical expressions |
-| Bitwise Operators | Perform operations at the binary bit level |
-| Assignment Operators | Assign and update values of variables |
-| Conditional (Ternary) Operator | Select a value based on a condition |
-| Miscellaneous Operators | Provide special functionalities such as size calculation, type casting, and member access |
+int main()
+{
+    int a = 40;
+    int b = 18;
 
-### **Arithmetic Operators**
-
-Arithmetic operators are used to perform basic mathematical operations on numeric values. These operators can be applied to integers, floating-point numbers, and other compatible data types.
-
-| Operator | Description |
-| --- | --- |
-| + | Addition |
-| - | Subtraction |
-| * | Multiplication |
-| / | Division |
-| % | Modulus (remainder) |
-| ++ | Increment |
-| -- | Decrement |
-
-The following example demonstrates the use of common arithmetic operators in C++.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    int a = 12, b = 5;
-
-    cout << "Addition: " << a + b << endl;
-    cout << "Subtraction: " << a - b << endl;
-    cout << "Multiplication: " << a * b << endl;
-    cout << "Division: " << a / b << endl;
-    cout << "Remainder: " << a % b;
+    printf("%d", a - b);
 
     return 0;
 }
 ```
 
 ### Output
-Addition: 17
-Subtraction: 7
-Multiplication: 60
-Division: 2
-Remainder: 2
+22
 
-### **Important Notes on Arithmetic Operators**
+## Multiplication Operator
 
-When working with arithmetic operators in C++, it is important to understand a few key concepts:
+```c
+#include <stdio.h>
 
-- The modulus operator (`%`) is primarily used with integer operands and returns the remainder after division.
-- Increment (`++`) and decrement (`--`) operators modify the value of a variable by one.
-- Arithmetic operators can be used with variables, constants, and expressions.
-- Division between two integers produces an integer result, discarding any fractional part.
+int main()
+{
+    int a = 12;
+    int b = 5;
 
-Based on the number of operands they require, operators can also be categorized as:
-
-- **Unary Operators:** Operate on a single operand (e.g., `++a`, `--b`, `!flag`).
-- **Binary Operators:** Operate on two operands (e.g., `a + b`, `x * y`).
-- **Ternary Operators:** Operate on three operands (e.g., `condition ? value1 : value2`).
-
-### **Relational Operators**
-
-Relational operators are used to compare two values or expressions. The result of a relational operation is a Boolean value, which is represented as `1` (true) or `0` (false) when displayed.
-
-| Operator | Description |
-| --- | --- |
-| == | Equal to |
-| != | Not equal to |
-| > | Greater than |
-| < | Less than |
-| >= | Greater than or equal to |
-| <= | Less than or equal to |
-
-The following example demonstrates the use of relational operators in C++.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    int x = 15, y = 10;
-
-    cout << (x > y) << endl;
-    cout << (x == y) << endl;
-    cout << (x != y);
+    printf("%d", a * b);
 
     return 0;
 }
 ```
 
 ### Output
-1
-0
-1
+60
 
-### **Logical Operators**
+## Division Operator
 
-Logical operators are used to combine multiple conditions or reverse the result of a condition. They are commonly used in decision-making statements such as `if`, `while`, and `for`.
+```c
+#include <stdio.h>
 
-| Operator | Description |
-| --- | --- |
-| && | Logical AND |
-|  | Logical OR |
-| ! | Logical NOT |
+int main()
+{
+    int a = 20;
+    int b = 4;
 
-The result of a logical operation is either `true` or `false`.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    bool a = true;
-    bool b = false;
-
-    cout << (a && b) << endl;
-    cout << (a || b) << endl;
-    cout << (!b);
+    printf("%d", a / b);
 
     return 0;
 }
 ```
 
 ### Output
-0
-1
-1
+5
 
-### **Bitwise Operators**
+## Modulus Operator
 
-Bitwise operators perform operations directly on the binary representation of integer values. They are commonly used in low-level programming, embedded systems, and performance-critical applications.
+The modulus operator returns the remainder after division.
 
-| Operator | Name |
-| --- | --- |
-| & | Bitwise AND |
-|  | Bitwise OR |
-| ^ | Bitwise XOR |
-| ~ | Bitwise NOT |
-| << | Left Shift |
-| >> | Right Shift |
+```c
+#include <stdio.h>
 
-```cpp
-#include <iostream>
-using namespace std;
+int main()
+{
+    int a = 17;
+    int b = 5;
 
-int main() {
-
-    int a = 6, b = 3;
-
-    cout << (a & b) << endl;
-    cout << (a | b) << endl;
-    cout << (a ^ b);
+    printf("%d", a % b);
 
     return 0;
 }
@@ -196,109 +258,210 @@ int main() {
 
 ### Output
 2
-7
-5
 
-### **Assignment Operators**
+## Increment Operator
 
-Assignment operators are used to assign values to variables and update existing values. They provide a concise way to perform calculations and assignments in a single statement.
+The increment operator increases the value of a variable by one.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int count = 10;
+
+    count++;
+
+    printf("%d", count);
+
+    return 0;
+}
+```
+
+### Output
+11
+
+## Decrement Operator
+
+The decrement operator decreases the value of a variable by one.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int count = 10;
+
+    count--;
+
+    printf("%d", count);
+
+    return 0;
+}
+```
+
+### Output
+9
+
+# Relational Operators
+
+Relational operators are used to compare two values. They return either `1` (true) or `0` (false).
+
+| Operator | Meaning |
+| --- | --- |
+| &lt; | Less than |
+| &gt; | Greater than |
+| &lt;= | Less than or equal to |
+| &gt;= | Greater than or equal to |
+| == | Equal to |
+| != | Not equal to |
+
+## Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks = 90;
+    int passingMarks = 35;
+
+    printf("%d\n", marks > passingMarks);
+    printf("%d", marks == passingMarks);
+
+    return 0;
+}
+```
+
+### Output
+1
+0
+
+### Explanation
+
+- `marks > passingMarks` evaluates to true.
+- `marks == passingMarks` evaluates to false.
+
+# Logical Operators
+
+Logical operators are used to combine multiple conditions or reverse the result of a condition. They are commonly used in decision-making statements such as `if`, `if-else`, and loops.
+
+The result of a logical expression is either `1` (true) or `0` (false).
 
 | Operator | Description |
 | --- | --- |
-| = | Assign |
-| += | Add and assign |
-| -= | Subtract and assign |
-| *= | Multiply and assign |
-| /= | Divide and assign |
-| %= | Modulus and assign |
+| && | Logical AND |
+| `__SAFE_PIPE_PLACEHOLDER____SAFE_PIPE_PLACEHOLDER__` | Logical OR |
+| ! | Logical NOT |
 
-```cpp
-#include <iostream>
-using namespace std;
+## Logical AND Operator (&&)
 
-int main() {
+The logical AND operator returns true only when both conditions are true.
 
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 20;
+    int marks = 85;
+
+    printf("%d", age >= 18 && marks >= 35);
+
+    return 0;
+}
+```
+
+### Output
+1
+
+### Explanation
+
+Both conditions are true, so the result is `1`.
+
+## Logical OR Operator (||)
+
+The logical OR operator returns true if at least one condition is true.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 16;
+    int marks = 90;
+
+    printf("%d", age >= 18 || marks >= 35);
+
+    return 0;
+}
+```
+
+### Output
+1
+
+### Explanation
+
+Since one of the conditions is true, the entire expression evaluates to true.
+
+## Logical NOT Operator (!)
+
+The logical NOT operator reverses the result of a condition.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
     int value = 10;
 
-    value += 5;
-
-    cout << value;
+    printf("%d", !value);
 
     return 0;
 }
 ```
 
 ### Output
-15
+0
 
-### **Ternary (Conditional) Operator**
+### Explanation
 
-The conditional operator, also known as the **ternary operator**, is a shorthand alternative to the `if-else` statement. It evaluates a condition and returns one of two values depending on whether the condition is true or false.
+Since `value` is non-zero (true), applying `!` changes it to false (`0`).
 
-**Syntax:**
+# Bitwise Operators
 
-`condition ? expression1 : expression2;`
+Bitwise operators perform operations directly on individual bits of numbers.
 
-- If the condition evaluates to `true`, `expression1` is executed.
-- If the condition evaluates to `false`, `expression2` is executed.
-
-The ternary operator requires three operands, which is why it is called a ternary operator.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    int a = 15, b = 20;
-
-    int largest = (a > b) ? a : b;
-
-    cout << "Largest number: " << largest;
-
-    return 0;
-}
-```
-
-### Output
-Largest number: 20
-
-### **Miscellaneous Operators**
-
-Apart from arithmetic, relational, logical, bitwise, assignment, and conditional operators, C++ provides several special-purpose operators that are used for memory management, type conversion, object manipulation, and other advanced operations.
-
-Some commonly used miscellaneous operators are listed below:
-
-| Operator | Purpose |
+| Operator | Description |
 | --- | --- |
-| sizeof | Determines the size of a variable or data type |
-| , | Comma operator |
-| & | Address-of operator |
-| . | Member access operator |
-| -> | Pointer member access operator |
-| static_cast | Type conversion operator |
-| dynamic_cast | Runtime type conversion |
-| const_cast | Removes or adds const qualification |
-| reinterpret_cast | Low-level type conversion |
+| & | Bitwise AND |
+|  |  | Bitwise OR |
+| ^ | Bitwise XOR |
+| ~ | Bitwise Complement |
+| &lt;&lt; | Left Shift |
+| &gt;&gt; | Right Shift |
 
-These operators are used in specialized programming scenarios and provide additional control over memory, objects, and data types.
+## Bitwise AND Operator (&)
 
-**1. `sizeof` Operator**
+The bitwise AND operator compares corresponding bits and returns 1 only when both bits are 1.
 
-The `sizeof` operator is a unary operator used to determine the amount of memory occupied by a data type or variable in bytes. It is commonly used when working with memory management and data structures.
+### Example
 
-**Example:**
+```c
+#include <stdio.h>
 
-`sizeof(int);
-sizeof(variable);`
+int main()
+{
+    int a = 12;
+    int b = 10;
 
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    cout << sizeof(double);
+    printf("%d", a & b);
 
     return 0;
 }
@@ -307,69 +470,607 @@ int main() {
 ### Output
 8
 
-**2. Comma Operator (`,`)**
+## Bitwise OR Operator (|)
 
-The comma operator evaluates multiple expressions from left to right and returns the value of the last expression. It can also be used to declare multiple variables in a single statement.
+The bitwise OR operator returns 1 if at least one corresponding bit is 1.
 
-**Example:**
+### Example
 
-`int result = (5, 10, 15);`
+```c
+#include <stdio.h>
 
-Here, the value of `result` becomes `15`.
+int main()
+{
+    int a = 12;
+    int b = 10;
 
-**3. Address-of Operator (`&`)**
+    printf("%d", a | b);
 
-The address-of operator returns the memory address of a variable. It is widely used with pointers and references.
+    return 0;
+}
+```
 
-**Example:**
+### Output
+14
 
-`int num = 10;
-cout << &num;`
+## Bitwise XOR Operator (^)
 
-The output will be the memory address where `num` is stored.
+The XOR operator returns 1 only when corresponding bits are different.
 
-**4. Dot Operator (`.`)**
+### Example
 
-The dot operator is used to access members (variables or functions) of an object or structure.
+```c
+#include <stdio.h>
 
-**Example:**
+int main()
+{
+    int a = 12;
+    int b = 10;
 
-`student.name;
-car.startEngine();`
+    printf("%d", a ^ b);
 
-It allows direct access to the members of an object.
+    return 0;
+}
+```
 
-****5. Arrow Operator** (`->`)**
+### Output
+6
 
-The arrow operator is used to access members of an object through a pointer. It combines dereferencing and member access into a single operation.
+## Bitwise Complement Operator (~)
 
-**Example:**
+The complement operator reverses all bits.
 
-`studentPtr->name;`
+### Example
 
-This is equivalent to:
+```c
+#include <stdio.h>
 
-`(*studentPtr).name;`
+int main()
+{
+    int num = 10;
 
-**6. Casting Operators** 
+    printf("%d", ~num);
 
-Casting operators are used to convert a value from one data type to another. They are useful when performing operations involving different data types.
+    return 0;
+}
+```
 
-**Examples:**
+### Output
+-11
 
-`(float)x
+## Left Shift Operator (&lt;&lt;)
 
-static_cast<float>(x)`
+The left shift operator shifts bits to the left.
 
-Common C++ casting operators include:
+### Example
 
-- `static_cast` – General-purpose type conversion.
-- `dynamic_cast` – Safe conversion in inheritance hierarchies.
-- `const_cast` – Adds or removes `const` qualifiers.
-- `reinterpret_cast` – Low-level type conversion between unrelated types.
+```c
+#include <stdio.h>
 
-These operators provide greater control and type safety compared to traditional C-style casting.
+int main()
+{
+    int num = 5;
 
+    printf("%d", num << 2);
 
+    return 0;
+}
+```
 
+### Output
+20
+
+### Explanation
+
+Shifting left by 2 positions multiplies the number by 4.
+
+## Right Shift Operator (&gt;&gt;)
+
+The right shift operator shifts bits to the right.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int num = 20;
+
+    printf("%d", num >> 2);
+
+    return 0;
+}
+```
+
+### Output
+5
+
+### Explanation
+
+Shifting right by 2 positions divides the number by 4.
+
+# Assignment Operators
+
+Assignment operators are used to assign values to variables.
+
+## Simple Assignment Operator (=)
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks;
+
+    marks = 95;
+
+    printf("%d", marks);
+
+    return 0;
+}
+```
+
+### Output
+95
+
+# Compound Assignment Operators
+
+Compound assignment operators combine arithmetic and assignment operations.
+
+| Operator | Equivalent Expression |
+| --- | --- |
+| += | a = a + b |
+| -= | a = a - b |
+| *= | a = a * b |
+| /= | a = a / b |
+| %= | a = a % b |
+| &= | a = a & b |
+| `__SAFE_PIPE_PLACEHOLDER__=` | a = a | b |
+| ^= | a = a ^ b |
+| &lt;&lt;= | a = a &lt;&lt; b |
+| &gt;&gt;= | a = a &gt;&gt; b |
+
+## += Operator
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks = 80;
+
+    marks += 10;
+
+    printf("%d", marks);
+
+    return 0;
+}
+```
+
+### Output
+90
+
+## -= Operator
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int balance = 100;
+
+    balance -= 20;
+
+    printf("%d", balance);
+
+    return 0;
+}
+```
+
+### Output
+80
+
+## *= Operator
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int value = 10;
+
+    value *= 5;
+
+    printf("%d", value);
+
+    return 0;
+}
+```
+
+### Output
+50
+
+## /= Operator
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int value = 100;
+
+    value /= 4;
+
+    printf("%d", value);
+
+    return 0;
+}
+```
+
+### Output
+25
+
+## %= Operator
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int value = 17;
+
+    value %= 5;
+
+    printf("%d", value);
+
+    return 0;
+}
+```
+
+### Output
+2
+
+# Special Operators in C
+
+Apart from arithmetic, relational, logical, bitwise, and assignment operators, C provides several special operators that are used for specific purposes such as determining memory size, type conversion, pointer manipulation, and conditional evaluation.
+
+# sizeof Operator
+
+The `sizeof` operator returns the amount of memory occupied by a data type or variable in bytes. It is evaluated at compile time and returns a value of type `size_t`.
+
+### Syntax
+
+```c
+sizeof(operand)
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 20;
+
+    printf("Size of age = %zu bytes", sizeof(age));
+
+    return 0;
+}
+```
+
+### Output
+Size of age = 4 bytes
+
+### Explanation
+
+The `sizeof` operator calculates the number of bytes required to store the variable `age`.
+
+# Comma Operator (,)
+
+The comma operator evaluates multiple expressions from left to right and returns the value of the last expression.
+
+### Syntax
+
+```c
+expression1, expression2
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int value;
+
+    value = (10, 20, 30);
+
+    printf("%d", value);
+
+    return 0;
+}
+```
+
+### Output
+30
+
+### Explanation
+
+The expressions are evaluated sequentially, and the value of the final expression is assigned to `value`.
+
+# Conditional Operator (? :)
+
+The conditional operator is the only ternary operator in C. It works as a compact alternative to an `if-else` statement.
+
+### Syntax
+
+```c
+condition ? expression1 : expression2;
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks = 82;
+
+    char result = (marks >= 35) ? 'P' : 'F';
+
+    printf("%c", result);
+
+    return 0;
+}
+```
+
+### Output
+P
+
+### Explanation
+
+Since the condition is true, the first expression is executed and `'P'` is assigned to `result`.
+
+# Dot Operator (.)
+
+The dot operator is used to access members of a structure or union object.
+
+### Syntax
+
+```c
+structure_variable.member
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+struct Student
+{
+    int rollNo;
+};
+
+int main()
+{
+    struct Student akash;
+
+    akash.rollNo = 101;
+
+    printf("%d", akash.rollNo);
+
+    return 0;
+}
+```
+
+### Output
+101
+
+### Explanation
+
+The dot operator accesses the member `rollNo` of the structure variable `akash`.
+
+# Arrow Operator (-&gt;)
+
+The arrow operator is used to access structure members through a pointer.
+
+### Syntax
+
+```c
+pointer -> member
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+struct Student
+{
+    int rollNo;
+};
+
+int main()
+{
+    struct Student akash = {101};
+
+    struct Student *ptr = &akash;
+
+    printf("%d", ptr->rollNo);
+
+    return 0;
+}
+```
+
+### Output
+101
+
+### Explanation
+
+The arrow operator accesses structure members through a pointer variable.
+
+# Cast Operator
+
+The cast operator converts one data type into another.
+
+### Syntax
+
+```c
+(new_type) operand
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    float marks = 95.75;
+
+    int result = (int) marks;
+
+    printf("%d", result);
+
+    return 0;
+}
+```
+
+### Output
+95
+
+### Explanation
+
+The cast operator converts the floating-point value into an integer by discarding the decimal part.
+
+# Address-of Operator (&)
+
+The address-of operator returns the memory address of a variable.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 21;
+
+    printf("%p", &age);
+
+    return 0;
+}
+```
+
+### Output
+0x7ffd.... (Address may vary)
+
+### Explanation
+
+The memory address differs from one execution to another and across systems.
+
+# Dereference Operator (*)
+
+The dereference operator accesses the value stored at a memory address.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 21;
+
+    int *ptr = &age;
+
+    printf("%d", *ptr);
+
+    return 0;
+}
+```
+
+### Output
+21
+
+### Explanation
+
+`*ptr` retrieves the value stored at the address contained in `ptr`.
+
+# Operator Precedence and Associativity
+
+When multiple operators appear in an expression, precedence determines which operator is evaluated first. Associativity determines the order of evaluation when operators have the same precedence.
+
+## Common Precedence Order
+
+| Operator Category | Operators |
+| --- | --- |
+| Parentheses | () |
+| Unary Operators | ++ -- ! ~ |
+| Multiplication and Division | * / % |
+| Addition and Subtraction | + - |
+| Relational Operators | &lt; &lt;= &gt; &gt;= |
+| Equality Operators | == != |
+| Logical AND | && |
+| Logical OR | `__SAFE_PIPE_PLACEHOLDER____SAFE_PIPE_PLACEHOLDER__` |
+| Conditional Operator | ? : |
+| Assignment Operators | = += -= *= /= |
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int result = 10 + 5 * 2;
+
+    printf("%d", result);
+
+    return 0;
+}
+```
+
+### Output
+20
+
+### Explanation
+
+Multiplication has higher precedence than addition, so `5 * 2` is evaluated first.
+
+# Advantages of Operators
+
+1. Simplify mathematical and logical computations.
+2. Reduce the amount of code required.
+3. Improve program readability.
+4. Support bit-level operations for efficient processing.
+5. Provide concise ways to perform assignments and conditions.
+6. Enable pointer and memory manipulation.
+
+# Limitations of Operators
+
+1. Incorrect precedence may produce unexpected results.
+2. Complex expressions can reduce readability.
+3. Misuse of bitwise operators may lead to logical errors.
+4. Excessive use of nested conditional operators decreases maintainability.
+
+# Summary
+
+Operators are special symbols used to perform operations on values and variables in C. They are classified into arithmetic, relational, logical, bitwise, assignment, and special operators. Special operators such as `sizeof`, conditional, cast, address-of, dereference, dot, and arrow operators provide additional functionality for memory handling, type conversion, and structure access. Understanding operator precedence and associativity is essential for writing correct and efficient C programs.
 
