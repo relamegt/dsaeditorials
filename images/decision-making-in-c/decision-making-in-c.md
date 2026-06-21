@@ -1,39 +1,112 @@
-# Decision Making in C++
+# Decision Making in C
 
-Decision-making is a fundamental concept in programming that allows a program to choose different actions based on specific conditions. In C++, decision-making statements control the flow of execution by evaluating conditions and executing particular blocks of code depending on whether those conditions are true or false.
+## Introduction
 
-The primary decision-making constructs available in C++ are:
+Decision making is an important concept in C programming that allows a program to choose different paths of execution based on certain conditions. These conditions are evaluated at runtime, and depending on whether they are true or false, specific blocks of code are executed.
 
-1. `if` Statement
-2. `if-else` Statement
-3. `if-else-if` Ladder
-4. Nested `if-else`
-5. `switch` Statement
-6. Ternary Operator (`?:`)
+Decision-making statements make programs interactive and intelligent by enabling them to perform different actions under different situations.
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/decision-making-in-c/1781012399460-ChatGPT_Image_Jun_9%2C_2026%2C_07_09_11_PM.png)
+### Key Features
 
-## 1. if Statement
+- Executes code based on conditions.
+- Supports single and multiple conditions.
+- Helps implement real-world logic.
+- Improves flexibility and control flow.
+- Provides different conditional statements for various scenarios.
 
-The `if` statement is the simplest decision-making construct in C++. It executes a block of code only when the specified condition evaluates to `true`.
+# Why Use Decision-Making Statements?
 
-**Flowchart:**
+Decision-making statements help programs decide which block of code should be executed depending on the result of a condition.
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/decision-making-in-c/1781012481470-53f5e2d4-8047-438a-a66b-063bb88d3708.png)
+## Example
 
-### Example Code
+```c
+#include <stdio.h>
 
-```cpp
-#include <iostream>
-using namespace std;
+int main()
+{
+    int audience = 100;
 
-int main() {
+    if (audience > 50)
+    {
+        printf("Start the show");
+    }
 
+    return 0;
+}
+```
+
+### Output
+Start the show
+
+### Explanation
+
+Since the number of people is greater than 50, the condition becomes true and the statement inside the `if` block gets executed.
+
+# Types of Decision-Making Statements in C
+
+C provides the following decision-making statements:
+
+1. if Statement
+2. if-else Statement
+3. Nested if-else Statement
+4. if-else-if Ladder
+5. switch Statement
+6. Conditional Operator
+
+# if Statement
+
+The `if` statement is the simplest decision-making statement in C. It executes a block of code only when a specified condition evaluates to true.
+
+## Syntax
+
+```c
+if(condition)
+{
+    // statements
+}
+```
+
+## Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 20;
+
+    if (age >= 18)
+    {
+        printf("Akash is eligible to vote");
+    }
+
+    return 0;
+}
+```
+
+### Output
+Akash is eligible to vote
+
+### Explanation
+
+The condition `age >= 18` evaluates to true, so the statements inside the `if` block are executed.
+
+## if Statement Without Braces
+
+If only one statement exists inside the body, braces are optional.
+
+### Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
     int marks = 85;
 
-    if (marks >= 50) {
-        cout << "Pass";
-    }
+    if (marks >= 35)
+        printf("Pass");
 
     return 0;
 }
@@ -42,42 +115,39 @@ int main() {
 ### Output
 Pass
 
-### 
+# if-else Statement
 
-### Note
+The `if-else` statement provides an alternative block of code that executes when the condition becomes false.
 
-If the `if` block contains only one statement, curly braces `{}` can be omitted.
+## Syntax
 
-```cpp
-if (marks >= 50)
-    cout << "Pass";
+```c
+if(condition)
+{
+    // true block
+}
+else
+{
+    // false block
+}
 ```
 
----
+## Example
 
-## 2. if-else Statement
+```c
+#include <stdio.h>
 
-The `if-else` statement allows a program to choose between two alternative blocks of code. If the condition is true, the `if` block executes; otherwise, the `else` block executes.
+int main()
+{
+    int age = 15;
 
-**Flowchart:**
-
-### ![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/decision-making-in-c/1781012555309-cd7a7c21-7741-4f2d-8267-07938b455ad1.png)
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    int number = -5;
-
-    if (number >= 0) {
-        cout << "Non-negative number";
+    if (age >= 18)
+    {
+        printf("Eligible for voting");
     }
-    else {
-        cout << "Negative number";
+    else
+    {
+        printf("Not eligible for voting");
     }
 
     return 0;
@@ -85,46 +155,29 @@ int main() {
 ```
 
 ### Output
+Not eligible for voting
 
-```text
-Negative number
-```
+### Explanation
 
-**Time Complexity:** O(1)
+Since the condition is false, the statements inside the `else` block are executed.
 
-**Space Complexity:** O(1)
+# Multiple Statements Inside if-else
 
----
+```c
+#include <stdio.h>
 
-## 3. if-else-if Ladder
+int main()
+{
+    int percentage = 72;
 
-The `if-else-if` ladder is used when multiple conditions need to be evaluated. Conditions are checked sequentially, and the first condition that evaluates to true has its corresponding block executed.
-
-**Flowchart:**
-
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/decision-making-in-c/1781012711148-f702f5c8-11bd-455d-9125-4f2b89ba0c0e.png)
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    int score = 78;
-
-    if (score >= 90) {
-        cout << "Grade A";
+    if (percentage >= 60)
+    {
+        printf("First Class\n");
+        printf("Congratulations");
     }
-    else if (score >= 75) {
-        cout << "Grade B";
-    }
-    else if (score >= 50) {
-        cout << "Grade C";
-    }
-    else {
-        cout << "Grade F";
+    else
+    {
+        printf("Needs Improvement");
     }
 
     return 0;
@@ -132,46 +185,60 @@ int main() {
 ```
 
 ### Output
+First Class
+Congratulations
 
-```text
-Grade B
+### Explanation
+
+Since the percentage is greater than 60, both statements inside the `if` block are executed.
+
+# Nested if-else Statement
+
+A nested `if-else` statement is an `if` statement placed inside another `if` or `else` block. It is useful when multiple conditions need to be checked sequentially.
+
+## Syntax
+
+```c
+if(condition1)
+{
+    if(condition2)
+    {
+        // statements
+    }
+    else
+    {
+        // statements
+    }
+}
+else
+{
+    // statements
+}
 ```
 
-**Time Complexity:** O(1)
+## Example
 
-**Space Complexity:** O(1)
+```c
+#include <stdio.h>
 
----
+int main()
+{
+    int age = 65;
 
-## 4. Nested if-else
-
-A nested `if-else` statement contains one `if` statement inside another. It is useful when multiple levels of conditions need to be checked.
-
-**Flowchart:**
-
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/decision-making-in-c/1781012736897-f702f5c8-11bd-455d-9125-4f2b89ba0c0e.png)
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    int num = 24;
-
-    if (num > 0) {
-
-        if (num % 2 == 0) {
-            cout << "Positive Even Number";
+    if (age >= 18)
+    {
+        if (age >= 60)
+        {
+            printf("Senior Citizen Eligible for Voting");
         }
-        else {
-            cout << "Positive Odd Number";
+        else
+        {
+            printf("Eligible for Voting");
         }
     }
-    else {
-        cout << "Non-positive Number";
+    else
+    {
+        printf("Not Eligible for Voting");
     }
 
     return 0;
@@ -179,51 +246,242 @@ int main() {
 ```
 
 ### Output
+Senior Citizen Eligible for Voting
 
-```text
-Positive Even Number
+### Explanation
+
+The outer condition checks whether the person is eligible to vote. Since the age is greater than 18, the inner condition checks whether the person is a senior citizen.
+
+## Example with Nested if-else Inside else Block
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 12;
+
+    if (age >= 18)
+    {
+        printf("Eligible for Voting");
+    }
+    else
+    {
+        if (age >= 13)
+        {
+            printf("Teenager");
+        }
+        else
+        {
+            printf("Child");
+        }
+    }
+
+    return 0;
+}
 ```
 
-**Time Complexity:** O(1)
+### Output
+Child
 
-**Space Complexity:** O(1)
+### Explanation
 
----
+Since the age is less than 18 and also less than 13, the final else block gets executed.
 
-## 5. switch Statement
+# if-else-if Ladder
 
-The `switch` statement is used to select one block of code from multiple alternatives based on the value of a variable or expression. It often provides a cleaner alternative to lengthy `if-else-if` ladders.
+The `if-else-if` ladder is used when multiple conditions need to be checked. Conditions are evaluated from top to bottom. As soon as one condition becomes true, the corresponding block executes and the remaining conditions are skipped.
 
-**Flowchart:**
+## Syntax
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/decision-making-in-c/1781012805271-5e2b5985-9164-44e9-b778-e3d17bcc171c.png)
+```c
+if(condition1)
+{
+    // statements
+}
+else if(condition2)
+{
+    // statements
+}
+else if(condition3)
+{
+    // statements
+}
+else
+{
+    // statements
+}
+```
 
-### Example Code
+## Example
 
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
-int main() {
+int main()
+{
+    int marks = 82;
 
-    int day = 3;
+    if (marks >= 90)
+    {
+        printf("Grade A+");
+    }
+    else if (marks >= 75)
+    {
+        printf("Grade A");
+    }
+    else if (marks >= 60)
+    {
+        printf("Grade B");
+    }
+    else if (marks >= 35)
+    {
+        printf("Grade C");
+    }
+    else
+    {
+        printf("Fail");
+    }
 
-    switch (day) {
+    return 0;
+}
+```
 
-    case 1:
-        cout << "Monday";
+### Output
+Grade A
+
+### Explanation
+
+The first condition is false, but the second condition is true, so the corresponding block is executed and the remaining conditions are ignored.
+
+# Example: Finding Largest of Three Numbers
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int a = 25, b = 40, c = 15;
+
+    if (a > b && a > c)
+    {
+        printf("%d is largest", a);
+    }
+    else if (b > c)
+    {
+        printf("%d is largest", b);
+    }
+    else
+    {
+        printf("%d is largest", c);
+    }
+
+    return 0;
+}
+```
+
+### Output
+40 is largest
+
+### Explanation
+
+The program compares all three numbers and prints the largest value.
+
+# Example: Checking Grade of a Student
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks = 58;
+
+    if (marks >= 90)
+    {
+        printf("Outstanding");
+    }
+    else if (marks >= 75)
+    {
+        printf("Excellent");
+    }
+    else if (marks >= 50)
+    {
+        printf("Good");
+    }
+    else
+    {
+        printf("Needs Improvement");
+    }
+
+    return 0;
+}
+```
+
+### Output
+Good
+
+### Explanation
+
+Since the marks are greater than or equal to 50 but less than 75, the third condition becomes true.
+
+# switch Statement
+
+The `switch` statement is a multi-way decision-making statement that allows a program to select one block of code from several alternatives based on the value of an expression.
+
+It is often used as an alternative to long `if-else-if` ladders when comparing the same variable with multiple constant values.
+
+## Syntax
+
+```c
+switch(expression)
+{
+    case constant1:
+        // statements
         break;
 
-    case 2:
-        cout << "Tuesday";
+    case constant2:
+        // statements
         break;
 
-    case 3:
-        cout << "Wednesday";
-        break;
+    ...
 
     default:
-        cout << "Invalid Day";
+        // statements
+}
+```
+
+### Components of switch Statement
+
+- **Expression**: The value that is evaluated.
+- **case**: Represents possible values of the expression.
+- **break**: Terminates the current case and exits the switch block.
+- **default**: Executes when none of the cases match.
+
+## Example
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int day = 3;
+
+    switch (day)
+    {
+        case 1:
+            printf("Monday");
+            break;
+
+        case 2:
+            printf("Tuesday");
+            break;
+
+        case 3:
+            printf("Wednesday");
+            break;
+
+        default:
+            printf("Invalid Day");
     }
 
     return 0;
@@ -231,89 +489,172 @@ int main() {
 ```
 
 ### Output
-
-```text
 Wednesday
+
+### Explanation
+
+Since the value of `day` is 3, the third case is executed.
+
+# Example Without break
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int num = 1;
+
+    switch (num)
+    {
+        case 1:
+            printf("One\n");
+
+        case 2:
+            printf("Two\n");
+
+        case 3:
+            printf("Three");
+    }
+
+    return 0;
+}
 ```
 
-**Time Complexity:** O(1)
+### Output
+One
+Two
+Three
 
-**Space Complexity:** O(1)
+### Explanation
 
-### Important Notes
+Since there is no `break` statement, execution continues into the subsequent cases. This behavior is known as **fall-through**.
 
-- The `break` statement prevents execution from continuing into the next case.
-- The `default` block executes when no case matches the expression value.
-- Case labels must contain constant values.
+# default Statement
 
----
+The `default` block executes when none of the cases match.
 
-## 6. Ternary Operator (`?:`)
+## Example
 
-The ternary operator is a compact alternative to a simple `if-else` statement. It evaluates a condition and returns one of two expressions depending on the result.
+```c
+#include <stdio.h>
 
-### Syntax
+int main()
+{
+    int option = 10;
 
-```cpp
+    switch (option)
+    {
+        case 1:
+            printf("Add");
+            break;
+
+        case 2:
+            printf("Delete");
+            break;
+
+        default:
+            printf("Invalid Option");
+    }
+
+    return 0;
+}
+```
+
+### Output
+Invalid Option
+
+### Explanation
+
+No case matches the value 10, so the default block is executed.
+
+# Conditional Operator (? :)
+
+The conditional operator is also known as the **ternary operator** because it works with three operands.
+
+It provides a compact alternative to an `if-else` statement.
+
+## Syntax
+
+```c
 condition ? expression1 : expression2;
 ```
 
-- If the condition is true, `expression1` is evaluated.
-- If the condition is false, `expression2` is evaluated.
+If the condition is true, `expression1` is executed; otherwise, `expression2` is executed.
 
-### Example Code
+## Example
 
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
-int main() {
+int main()
+{
+    int age = 20;
 
-    int a = 15, b = 25;
+    char result = (age >= 18) ? 'Y' : 'N';
 
-    int larger = (a > b) ? a : b;
-
-    cout << larger;
+    printf("%c", result);
 
     return 0;
 }
 ```
 
 ### Output
+Y
 
-```text
-25
+### Explanation
+
+Since the condition is true, `'Y'` is assigned to `result`.
+
+# Example Using Ternary Operator
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks = 75;
+
+    printf("%s",
+           (marks >= 35) ? "Pass" : "Fail");
+
+    return 0;
+}
 ```
 
-**Time Complexity:** O(1)
+### Output
+Pass
 
-**Space Complexity:** O(1)
+### Explanation
 
----
+The condition evaluates to true, so "Pass" is printed.
 
-## Summary
+# Difference Between if-else and switch
 
-Decision-making statements allow a C++ program to execute different blocks of code based on conditions. These constructs help create dynamic and intelligent programs that can respond to varying inputs and situations.
+| Feature | if-else | switch |
+| --- | --- | --- |
+| Conditions | Supports relational and logical expressions | Supports equality checks |
+| Data Types | Any valid expression | Integer, character, enum |
+| Readability | Better for complex conditions | Better for multiple fixed values |
+| Execution Speed | Slightly slower | Usually faster |
+| Range Checking | Supported | Not supported |
 
-The major decision-making constructs in C++ are:
+# Advantages of Decision-Making Statements
 
-- `if` Statement
-- `if-else` Statement
-- `if-else-if` Ladder
-- Nested `if-else`
-- `switch` Statement
-- Ternary Operator (`?:`)
+1. Enable programs to make logical decisions.
+2. Improve flexibility and control flow.
+3. Support execution of different blocks based on conditions.
+4. Reduce unnecessary code execution.
+5. Help solve real-world problems effectively.
+6. Improve readability and maintainability.
 
-Mastering these statements is essential for controlling program flow and implementing real-world logic in C++ applications.
+# Limitations
 
-<approaches>
-## Approach
+1. Deep nesting can reduce readability.
+2. Complex conditions may become difficult to maintain.
+3. Excessive use of nested `if-else` statements can increase program complexity.
+4. The `switch` statement supports only specific data types.
 
+# Summary
 
-
-
-</approaches>
-
-
-
+Decision-making statements allow C programs to execute different blocks of code based on conditions. The `if`, `if-else`, nested `if-else`, and `if-else-if` ladder are useful for evaluating one or more conditions. The `switch` statement provides an efficient alternative when multiple fixed values are involved, while the conditional operator offers a concise way to perform simple decisions. Understanding these constructs is essential for building interactive and logical C programs.
 
