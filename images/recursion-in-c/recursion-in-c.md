@@ -1,299 +1,263 @@
-# Recursion in C++
+# Recursion in C
 
-Recursion is a programming technique in which a function calls itself to solve a problem. Instead of solving a large problem directly, recursion breaks it into smaller versions of the same problem and continues solving them until a stopping condition is reached.
+## Introduction
 
-A function that calls itself is known as a **recursive function**, and each self-call is called a **recursive call**.
+Recursion is a programming technique in which a function calls itself to solve a problem. A function that calls itself is known as a **recursive function**. Recursive calls continue until a specific condition, called the **base case**, is reached.
 
-Recursion is widely used in programming because many problems can naturally be divided into smaller subproblems. Examples include calculating factorials, generating Fibonacci numbers, traversing trees, and solving problems such as Tower of Hanoi.
+Recursion is commonly used to solve problems that can be broken down into smaller subproblems, such as factorial calculation, tree traversal, searching, and divide-and-conquer algorithms.
 
-## Example Code
+### Key Features
 
-```cpp
-#include <iostream>
-using namespace std;
+- A recursive function calls itself.
+- Every recursive function must contain a base case.
+- Problems are solved by dividing them into smaller subproblems.
+- Recursive calls are stored in the function call stack.
+- Control returns back after reaching the base case.
 
-void printMessage(int n)
+## Basic Example
+
+```c
+#include <stdio.h>
+
+void printNumbers(int n)
 {
-    if(n == 0)
+    if (n == 6)
         return;
 
-    cout << "Hello Mohit" << endl;
+    printf("Number %d\n", n);
 
-    printMessage(n - 1);
+    printNumbers(n + 1);
 }
 
 int main()
 {
-    printMessage(5);
+    printNumbers(1);
 
     return 0;
 }
 ```
 
 ### Output
-Hello Mohit
-Hello Mohit
-Hello Mohit
-Hello Mohit
-Hello Mohit
+Number 1
+Number 2
+Number 3
+Number 4
+Number 5
 
-# Time Complexity
-O(n)
+### Explanation
 
-# Space Complexity
-O(n)
+The function prints the current number and calls itself with the next number. When `n` becomes 6, the base case is reached and recursion stops.
 
-### 
+# How Recursion Works
 
-The function starts with `n = 5`. Each time it prints the message and calls itself with a smaller value of `n`. When `n` becomes `0`, the function stops making further calls and returns.
+Every recursive call creates a new stack frame in memory. These stack frames are stored in the function call stack. Once the base case is reached, the stack frames are removed one by one and control returns to previous calls.
 
-## Understanding a Recursive Function
+## Example
 
-Every recursive function must contain two important parts:
+```c
+#include <stdio.h>
 
-### 1. Base Case
+void display(int n)
+{
+    printf("Entering %d\n", n);
 
-The base case is the stopping condition that terminates recursion.
+    if (n > 1)
+    {
+        display(n - 1);
+    }
 
-Without a base case, the function would continue calling itself forever, eventually causing a stack overflow.
+    printf("Leaving %d\n", n);
+}
 
-Example:
+int main()
+{
+    display(3);
 
-```cpp
-if(n == 0)
+    return 0;
+}
+```
+
+### Output
+Entering 3
+Entering 2
+Entering 1
+Leaving 1
+Leaving 2
+Leaving 3
+
+### Explanation
+
+Function calls go deeper until `n` becomes 1. After that, execution returns back in reverse order.
+
+# Components of Recursion
+
+## Base Case
+
+The base case stops recursive calls and prevents infinite recursion.
+
+```c
+if (n == 0)
     return;
 ```
 
-### 2. Recursive Case
+## Recursive Case
 
-The recursive case is the part where the function calls itself with a modified input.
+The recursive case contains the function call itself.
 
-Example:
-
-```cpp
-printMessage(n - 1);
+```c
+factorial(n - 1);
 ```
 
-This recursive call reduces the problem size and moves the function closer to the base case.
+# Example: Factorial Using Recursion
 
-### General Structure of Recursion
+```c
+#include <stdio.h>
 
-```cpp
-returnType functionName(parameters)
+int factorial(int n)
 {
-    if(baseCondition)
-        return baseValue;
+    if (n == 0)
+        return 1;
 
-    return functionName(modifiedParameters);
-}
-```
-
-A recursive function repeatedly reduces the problem until the base condition is satisfied.
-
-## How Recursion Works
-
-To understand recursion, it is important to understand the **call stack**.
-
-Whenever a function is called, the system stores information about that function in memory. This stored information is called a **stack frame**.
-
-In recursion:
-
-1. A function calls itself.
-2. A new stack frame is created.
-3. Another recursive call creates another stack frame.
-4. This continues until the base case is reached.
-5. Functions then return one by one.
-
-This process consists of two phases:
-
-### Descending Phase
-
-The function keeps calling itself and moving deeper into recursion.
-
-### Ascending Phase
-
-After reaching the base case, functions start returning one by one and the call stack begins to shrink.
-
-## Example: Understanding the Call Stack
-
-```cpp
-#include <iostream>
-using namespace std;
-
-void show(int n)
-{
-    cout << "Entering Function " << n << endl;
-
-    if(n > 1)
-    {
-        show(n - 1);
-    }
-
-    cout << "Leaving Function " << n << endl;
+    return n * factorial(n - 1);
 }
 
 int main()
 {
-    show(3);
+    int result = factorial(5);
+
+    printf("Factorial = %d", result);
 
     return 0;
 }
 ```
 
 ### Output
-Entering Function 3
-Entering Function 2
-Entering Function 1
-Leaving Function 1
-Leaving Function 2
-Leaving Function 3
+Factorial = 120
 
-# Time Complexity
-O(n)
+### Explanation
 
-# Space Complexity
-O(n)
+The recursive calls are:
 
-### 
+```text
+factorial(5)
+5 × factorial(4)
+5 × 4 × factorial(3)
+5 × 4 × 3 × factorial(2)
+5 × 4 × 3 × 2 × factorial(1)
+5 × 4 × 3 × 2 × 1
+= 120
+```
 
-The output clearly shows how recursive calls move deeper first and then return back one by one.
-
-## Memory Management in Recursion
-
-Like any other function, a recursive function uses memory.
+# Memory Management in Recursion
 
 Each recursive call creates a separate stack frame containing:
 
-- Function parameters
+- Parameters
 - Local variables
 - Return address
-- Execution state
 
-As recursion goes deeper, more stack frames are added to memory.
+When the function finishes execution, its stack frame is removed from memory.
 
-When the base case is reached:
+## Example
 
-1. The topmost function completes.
-2. Its stack frame is removed.
-3. Control returns to the previous function.
-4. This process continues until all stack frames are removed.
+```c
+#include <stdio.h>
 
-Unlike loops, recursion relies heavily on the call stack, which increases memory usage.
-
-## Stack Overflow
-
-A stack overflow occurs when the program uses more stack memory than the system allows.
-
-This usually happens when:
-
-- A base case is missing.
-- The base case is incorrect.
-- Too many recursive calls are made.
-
-Example of Infinite Recursion:
-
-```cpp
-#include <iostream>
-using namespace std;
-
-void recurse()
+void demo(int n)
 {
-    cout << "Running..." << endl;
+    if (n == 0)
+        return;
 
-    recurse();
+    printf("%d\n", n);
+
+    demo(n - 1);
 }
 
 int main()
 {
-    recurse();
+    demo(3);
 
     return 0;
 }
 ```
 
-Since there is no base condition, the function keeps calling itself indefinitely until the program crashes with a stack overflow error.
+### Output
+3
+2
+1
 
-## Applications of Recursion
+### Explanation
 
-Recursion is used in many important algorithms and data structures.
+Three stack frames are created and removed one by one after reaching the base case.
 
-### Problem Solving
+# Stack Overflow
 
-Many problems are naturally recursive, including:
+If recursion continues indefinitely or becomes too deep, the call stack becomes full. This condition is called **stack overflow**, causing abnormal program termination.
 
-- Factorial
-- Fibonacci Series
+## Example
+
+```c
+#include <stdio.h>
+
+void infinite()
+{
+    infinite();
+}
+
+int main()
+{
+    infinite();
+
+    return 0;
+}
+```
+
+### Output
+Program terminated due to stack overflow
+
+### Explanation
+
+Since there is no base case, recursive calls continue forever and exhaust stack memory.
+
+# Applications of Recursion
+
+- Factorial and Fibonacci series
+- Binary search
 - Tower of Hanoi
+- Tree traversals
+- Graph algorithms
+- Merge sort
+- Quick sort
+- Dynamic programming
+- Divide and conquer algorithms
 
-### Divide and Conquer Algorithms
-
-Recursion forms the foundation of:
-
-- Merge Sort
-- Quick Sort
-- Binary Search
-
-### Backtracking Algorithms
-
-Used in problems such as:
-
-- N-Queens Problem
-- Sudoku Solver
-- Maze Solving
-
-### Tree and Graph Traversal
-
-Recursion is commonly used for:
-
-- Depth First Search (DFS)
-- Binary Tree Traversals
-- Graph Traversals
-
-## Advantages of Recursion
-
-- Produces shorter and cleaner code.
-- Simplifies complex problems.
-- Useful for tree and graph structures.
-- Naturally fits divide-and-conquer algorithms.
-- Makes certain mathematical problems easier to implement.
-
-## Limitations of Recursion
-
-Although recursion is powerful, it also has some drawbacks.
-
-### Performance Overhead
-
-Each recursive call creates a new stack frame, which increases execution overhead.
-
-### Higher Memory Usage
-
-Recursion consumes additional memory because every function call is stored on the call stack.
-
-### Difficult Debugging
-
-Tracking multiple recursive calls can be challenging, especially in deeply nested recursion.
-
-### Stack Overflow Risk
-
-Deep or infinite recursion can exhaust stack memory and terminate the program.
-
-## Recursion vs Iteration
+# Recursion vs Iteration
 
 | Feature | Recursion | Iteration |
 | --- | --- | --- |
-| Uses Function Calls | Yes | No |
-| Uses Call Stack | Yes | No |
+| Uses | Function calls | Loops |
 | Memory Usage | Higher | Lower |
-| Code Length | Usually Shorter | Usually Longer |
-| Performance | Slightly Slower | Usually Faster |
-| Risk of Stack Overflow | Yes | No |
+| Speed | Slightly slower | Faster |
+| Stack Usage | Yes | No |
+| Suitable For | Trees and divide-and-conquer | Repetitive tasks |
 
-In practice, iteration is often preferred when performance and memory efficiency are important, while recursion is preferred when it leads to a simpler and more natural solution.
+# Advantages of Recursion
 
-## Summary
+1. Makes code shorter and cleaner.
+2. Simplifies complex problems.
+3. Useful for trees and graphs.
+4. Natural fit for divide-and-conquer algorithms.
+5. Easier implementation of recursive data structures.
 
-Recursion is a technique in which a function solves a problem by calling itself. Every recursive function must contain a base case to stop recursion and a recursive case to reduce the problem size. Internally, recursion relies on the call stack to manage function calls. It is widely used in algorithms involving divide-and-conquer, backtracking, trees, and graphs. Although recursion can produce elegant solutions, it consumes additional memory and may lead to stack overflow if not implemented carefully.
+# Limitations
 
+1. Function call overhead makes execution slower.
+2. Uses additional stack memory.
+3. Excessive recursion can cause stack overflow.
+4. Sometimes iterative solutions are more efficient.
+5. Recursive logic can be difficult to understand for beginners.
 
+# Summary
 
+Recursion is a technique in which a function calls itself repeatedly until a base condition is satisfied. Each recursive call creates a separate stack frame and execution returns in reverse order after reaching the base case. Recursion is widely used in mathematical problems, searching, sorting, trees, and divide-and-conquer algorithms. Although it provides elegant solutions, it consumes additional memory and may cause stack overflow if not implemented carefully.
 
