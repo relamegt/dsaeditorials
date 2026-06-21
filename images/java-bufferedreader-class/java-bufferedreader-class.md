@@ -10,7 +10,7 @@ The `BufferedReader` class in Java (located in the `java.io` package) is a concr
 
 The `BufferedReader` class extends `java.io.Reader`, implementing the `AutoCloseable` and `Readable` interfaces.
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/java-bufferedreader-class/1782052679760-95907baf-206f-409d-b8da-050196bff051.png)
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/java-bufferedreader-class/1782052755660-95907baf-206f-409d-b8da-050196bff051.png)
 
 The class declaration is:
 
