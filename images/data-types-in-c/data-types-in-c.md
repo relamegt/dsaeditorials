@@ -1,401 +1,350 @@
-# Data Types in C++
+# Data Types in C
 
-Data types specify the category of values that a variable can hold within a program.
+## Introduction
 
-- In C++, the data type assigned to a variable determines how the compiler stores and interprets its value in memory.
-- Different data types occupy different amounts of memory, depending on the nature and size of the data they are designed to represent.
+Data types are one of the fundamental concepts in C programming. Every variable in C must have an associated data type that specifies what kind of value it can store, how much memory it occupies, and which operations can be performed on it.
 
-![Data Types in C++](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/data-types-in-c/1780987108089-9.png)
+Different data types are designed to represent different kinds of information, such as integers, characters, decimal numbers, and user-defined structures. Choosing an appropriate data type helps improve memory utilization and program efficiency.
 
-The example below illustrates how the **integer data type (`int`)** is declared and used in C++. The `int` type is commonly employed to store numerical values that do not contain fractional components.
+### Key Features
 
-```cpp
-#include <iostream>
-using namespace std;
+- Define the type of data stored in variables.
+- Determine the amount of memory allocated.
+- Specify the range of values a variable can hold.
+- Control the operations that can be performed on data.
+- Help in writing efficient and reliable programs.
 
-int main() {
+# Classification of Data Types in C
 
-    // Declaring and initializing an integer variable
-    int age = 20;
+Data types in C are broadly classified into three categories:
 
-    cout << "Age: " << age;
+1. Primitive Data Types
+2. Derived Data Types
+3. User-Defined Data Types
 
-    return 0;
-}
-```
+# Primitive Data Types
 
-### Output
-Age: 20
+Primitive data types are built-in data types provided by the C language. They are used to store simple values such as integers, characters, and decimal numbers.
 
-# Time Complexity
-O(1)
+## Integer Data Type
 
-# Space Complexity
-O(1)
+The `int` data type is used to store whole numbers.
 
-Let us now examine the primitive data types available in C++ and understand how they are used in programs.
+### Features
 
-### **Character Data Type (`char`)**
+- Stores positive, negative, and zero values.
+- Typical size: 4 bytes.
+- Format specifier: `%d`.
 
-The `char` data type is designed to store a single character, such as a letter, digit, or symbol. It is declared using the keyword `char` and typically occupies **1 byte** of memory. Character values are written inside **single quotation marks** (`' '`).
+### Example
 
-Internally, a character is stored as a numeric code based on a character encoding scheme such as ASCII. Because a `char` usually uses 1 byte, it can represent up to 256 unique character values, depending on the implementation.
-
-**Examples:**
-
-- `'A'`
-- `'b'`
-- `'7'`
-- `'@'`
-
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    // Character variable
-    char grade = 'B';
+    int marks = 95;
 
-    cout << "Grade: " << grade;
+    printf("Marks = %d", marks);
 
     return 0;
 }
 ```
 
 ### Output
-Grade: B
+Marks = 95
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The variable `marks` stores an integer value. The `%d` format specifier is used to display integer values.
 
-### **Integer Data Type (`int`)**
+## Character Data Type
 
-The `int` data type is used to store whole numbers that do not contain any fractional or decimal part. In C++, integers are declared using the `int` keyword. On most modern systems, an `int` typically occupies **4 bytes** of memory, although the exact size may vary depending on the compiler and platform.
+The `char` data type stores a single character.
 
-Integer values can be represented in different number systems, including **decimal (base 10)**, **binary (base 2)**, **octal (base 8)**, and **hexadecimal (base 16)**. A standard 4-byte integer generally supports values ranging from **−2,147,483,648** to **2,147,483,647**.
+### Features
 
-**Examples of integer values:**
+- Typical size: 1 byte.
+- Format specifier: `%c`.
+- Characters are enclosed within single quotes.
 
-- `25`
-- `-100`
-- `0`
-- `0b1010` (binary)
-- `012` (octal)
-- `0xA` (hexadecimal)
+### Example
 
-The example below illustrates the declaration and usage of an **integer variable (`int`)** in C++. The program stores an integer value and prints it to the console.
-
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    // Creating an integer variable
-    int num = 100;
-    cout << num << endl;
+    char grade = 'A';
 
-    // Using binary base value
-    num = 0b1100100;
-    cout << num;
+    printf("Grade = %c", grade);
 
     return 0;
 }
 ```
 
 ### Output
-100
-100
+Grade = A
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The variable `grade` stores a single character. The `%c` format specifier prints character values.
 
-### **Boolean Data Type (`bool`)**
+## Float Data Type
 
-The `bool` data type is used to represent logical values in C++. A boolean variable can store only one of two possible states: **`true`** or **`false`**. It is declared using the `bool` keyword and typically occupies **1 byte** of memory on most systems.
+The `float` data type stores decimal numbers with single precision.
 
-Boolean values are commonly used in decision-making statements, comparisons, loops, and conditional expressions where a result must evaluate to either true or false.
+### Features
 
-**Examples of boolean values:**
+- Typical size: 4 bytes.
+- Format specifier: `%f`.
+- Suitable for storing fractional values.
 
-- `true`
-- `false`
+### Example
 
-In C++, `true` is generally represented by the value **1**, while `false` is represented by **0** when displayed as numeric output.
-
-The following example demonstrates the use of the **boolean (**`**bool**`**) data type** in C++. A boolean variable named `isStudent` is declared and assigned the value `false`. The program then displays the stored value using the `cout` statement.
-
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    // Creating a boolean variable
-    bool isStudent = false;
+    float percentage = 92.75;
 
-    cout << isStudent;
+    printf("Percentage = %f", percentage);
 
     return 0;
 }
 ```
 
 ### Output
-0
+Percentage = 92.750000
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The `%f` format specifier is used for floating-point values.
 
-### **Floating Point Data Type (`float`)**
+## Double Data Type
 
-The `float` data type is used to store real numbers that contain fractional or decimal values. It is declared using the `float` keyword and typically occupies **4 bytes** of memory on most modern systems. A floating-point variable can represent a wide range of values, approximately from **1.2 × 10⁻³⁸** to **3.4 × 10³⁸**.
+The `double` data type provides higher precision compared to `float`.
 
-The `float` type is commonly used in applications that require decimal precision, such as scientific calculations, measurements, and financial computations where extremely high precision is not required.
+### Features
 
-**Examples of floating-point values:**
+- Typical size: 8 bytes.
+- Format specifier: `%lf`.
+- Stores large decimal values accurately.
 
-- `3.14`
-- `25.75`
-- `-0.5`
-- `100.0`
+### Example
 
-The following example demonstrates how the **`float` data type** can be used to store and display decimal values in C++.
-
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
 int main()
 {
-    // Floating point variable
-    float price = 49.99f;
+    double cgpa = 9.2456;
 
-    cout << price;
+    printf("CGPA = %lf", cgpa);
 
     return 0;
 }
 ```
 
 ### Output
-49.99
+CGPA = 9.245600
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The `double` type provides greater precision than `float`.
 
-### **Double Data Type (`double`)**
+## Void Data Type
 
-The `double` data type is used to store decimal numbers that require greater precision than the `float` data type. It is declared using the `double` keyword and typically occupies **8 bytes** of memory on most modern 64-bit systems.
+The `void` data type represents the absence of a value.
 
-Because of its larger size, a `double` can represent a much wider range of values, approximately from **1.7 × 10⁻³⁰⁸** to **1.7 × 10³⁰⁸**. It is commonly used in scientific computations, engineering applications, and financial calculations where higher accuracy is important.
+### Example
 
-**Examples of double values:**
+```c
+#include <stdio.h>
 
-- `3.1415926535`
-- `12345.6789`
-- `-0.000125`
-- `2.5e10`
-
-The following example demonstrates how the **`double` data type** can be used to store and display high-precision decimal values in C++.
-
-```cpp
-#include <iostream>
-using namespace std;
+void greet()
+{
+    printf("Welcome to AlphaKnowledge");
+}
 
 int main()
 {
-    // Double precision floating-point variable
-    double pi = 3.14159265358979;
-
-    cout << pi;
+    greet();
 
     return 0;
 }
 ```
 
 ### Output
-3.14159
+Welcome to AlphaKnowledge
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The function `greet()` does not return any value, so its return type is `void`.
 
-### **Void Data Type (`void`)**
+# Derived Data Types
 
-The `void` data type is used to indicate the absence of a value or data. Unlike other primitive data types, variables of type `void` cannot be created because `void` does not represent any storage type. It is commonly used with functions that do not return a value and with generic pointers (`void*`) that can reference objects of different data types.
+Derived data types are created from primitive data types.
 
-The `void` keyword helps programmers clearly specify when a function is intended to perform an action without producing a return value.
+## Arrays
 
-### **Type Safety in C++**
+An array stores multiple elements of the same type in contiguous memory locations.
 
-C++ is a strongly typed programming language, which means every variable must be declared with a specific data type before it can be used. Once a variable is declared, its data type remains fixed throughout its lifetime, although the value stored in it can change.
+### Example
 
-C++ supports both implicit and explicit type conversions, allowing values of one type to be converted to another when necessary. However, such conversions may sometimes result in loss of precision or information if the destination type cannot fully represent the original value.
+```c
+int marks[5] = {90, 85, 95, 88, 92};
+```
 
-For example, when an integer value is assigned to a boolean variable, C++ automatically performs an implicit conversion: a value of `0` becomes `false`, while any non-zero value is converted to `true`.
+## Pointers
 
-The following example demonstrates **implicit type conversion** in C++. A floating-point value is assigned to a boolean variable. Since the value is non-zero, C++ automatically converts it to `true`, which is displayed as `1` when printed.
+Pointers store the address of another variable.
 
-```cpp
-#include <iostream>
-using namespace std;
+### Example
+
+```c
+int age = 20;
+int *ptr = &age;
+```
+
+## Functions
+
+Functions perform specific tasks and may return values.
+
+### Example
+
+```c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+
+# User-Defined Data Types
+
+User-defined data types allow programmers to create custom data structures.
+
+## Structure
+
+A structure groups related variables under a single name.
+
+### Example
+
+```c
+struct Student
+{
+    char name[30];
+    int age;
+};
+```
+
+## Union
+
+A union allows multiple members to share the same memory location.
+
+### Example
+
+```c
+union Data
+{
+    int number;
+    float value;
+};
+```
+
+## Enumeration
+
+Enumeration defines named integer constants.
+
+### Example
+
+```c
+enum Day
+{
+    MON,
+    TUE,
+    WED,
+    THU,
+    FRI
+};
+```
+
+# Size of Data Types
+
+The `sizeof()` operator returns the size occupied by a data type or variable.
+
+### Example
+
+```c
+#include <stdio.h>
 
 int main()
 {
-    // Assigning a floating-point value to a boolean variable
-    bool isActive = 5.75f;
-
-    cout << isActive;
-
-    return 0;
-}
-```
-
-### Output
-1
-
-# Time Complexity
-O(1)
-
-# Space Complexity
-O(1)
-
-### **Data Type Conversion**
-
-Data type conversion is the process of transforming a value from one data type to another compatible data type. This feature enables different types of data to interact within the same program and helps improve flexibility when performing calculations, comparisons, or data processing tasks.
-
-In C++, conversions can occur automatically through **implicit conversion** or be performed manually using **explicit conversion (casting)**. Proper use of data type conversion ensures that values are interpreted correctly while minimizing the risk of data loss or unexpected results.
-
-The following example demonstrates **explicit type conversion (type casting)** in C++. A character value is converted into its corresponding ASCII integer value and then displayed.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    char ch = 'A';
-
-    // Converting character to integer
-    int asciiValue = (int)ch;
-
-    cout << asciiValue;
+    printf("Size of int = %zu\n", sizeof(int));
+    printf("Size of char = %zu\n", sizeof(char));
+    printf("Size of float = %zu\n", sizeof(float));
+    printf("Size of double = %zu", sizeof(double));
 
     return 0;
 }
 ```
 
 ### Output
-65
+Size of int = 4
+Size of char = 1
+Size of float = 4
+Size of double = 8
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The size of a data type depends on the system architecture and compiler implementation.
 
-### **Size of Data Types in C++**
+# Data Type Modifiers
 
-The amount of memory occupied by a data type in C++ is not fixed across all systems. The actual size may vary depending on factors such as the computer architecture (32-bit or 64-bit), the compiler being used, and the underlying system implementation.
+Modifiers are used to alter the size or range of certain primitive data types.
 
-As a result, the same data type may consume different amounts of memory on different platforms. These differences can affect the range of values that a variable can store.
+| Modifier | Purpose |
+| --- | --- |
+| short | Reduces size |
+| long | Increases size |
+| signed | Stores positive and negative values |
+| unsigned | Stores only non-negative values |
 
-C++ provides the **`sizeof`** operator, which can be used to determine the memory size of a data type or variable during program execution. Understanding data type sizes is important for efficient memory usage and for selecting appropriate data types in applications.
+### Example
 
-The following example uses the **`sizeof`** operator to determine and display the memory occupied by various data types in C++.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    cout << "Size of int: " << sizeof(int) << " bytes" << endl;
-    cout << "Size of char: " << sizeof(char) << " byte" << endl;
-    cout << "Size of float: " << sizeof(float) << " bytes" << endl;
-    cout << "Size of double: " << sizeof(double) << " bytes";
-
-    return 0;
-}
+```c
+unsigned int population = 1500000;
+long int distance = 100000;
 ```
 
-### Output
-Size of int: 4 bytes
-Size of char: 1 byte
-Size of float: 4 bytes
-Size of double: 8 bytes
+# Common Format Specifiers
 
-# Time Complexity
-O(1)
+| Data Type | Format Specifier |
+| --- | --- |
+| int | `%d` |
+| char | `%c` |
+| float | `%f` |
+| double | `%lf` |
+| unsigned int | `%u` |
+| long int | `%ld` |
 
-# Space Complexity
-O(1)
+# Advantages of Proper Data Types
 
-### **Data Type Modifiers**
+1. Improve memory efficiency.
+2. Increase program performance.
+3. Prevent invalid operations.
+4. Enhance code readability.
+5. Allow proper handling of different kinds of data.
 
-Data type modifiers are special keywords in C++ that alter the size, range, or behavior of fundamental data types. They are placed before a primitive data type to extend its storage capacity or modify the range of values it can represent.
+# Limitations
 
-The four commonly used data type modifiers in C++ are:
+1. Data type sizes may vary across systems.
+2. Incorrect type selection may waste memory.
+3. Overflow can occur when values exceed the allowed range.
+4. Type conversions may lead to loss of precision.
 
-- `short`
-- `long`
-- `signed`
-- `unsigned`
+# Summary
 
-These modifiers allow programmers to choose data types that best suit the requirements of a program. For example, applying the `long` modifier to an integer type generally increases its storage capacity, enabling it to store larger values than a regular `int`.
-
-Some commonly used modified data types include:
-
-- `long int`
-- `long long int`
-- `unsigned int`
-- `short int`
-- `long double`
-
-Using appropriate modifiers can improve memory efficiency and ensure that variables can accommodate the required range of values.
-
-The following example demonstrates how data type modifiers can be used to change the size and range of primitive data types in C++.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    int num1 = 100;
-    long int num2 = 1000000;
-
-    cout << "Size of int: " << sizeof(num1) << " bytes" << endl;
-    cout << "Size of long int: " << sizeof(num2) << " bytes";
-
-    return 0;
-}
-```
-
-### Output
-Size of int: 4 bytes
-Size of long int: 8 bytes
-
-# Time Complexity
-O(1)
-
-# Space Complexity
-O(1)
-
-
-
+Data types in C define the nature, size, and range of data stored in variables. They are classified into primitive, derived, and user-defined data types. Primitive types such as `int`, `char`, `float`, `double`, and `void` form the basis of data representation, while arrays, pointers, structures, unions, and enumerations provide more advanced ways to organize and manipulate data. Understanding data types is essential for writing efficient, reliable, and memory-conscious C programs.
 
