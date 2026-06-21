@@ -1,210 +1,140 @@
-# Variables in C++
+# Variables in C
 
-### 
+## Introduction
 
-In C++, variables are named memory locations used to store data that can be accessed and modified during program execution. They provide a way to manage and manipulate information efficiently within a program.
+A variable in C is a named memory location used to store data that can be accessed and modified during program execution. Variables make it easier to work with data without needing to remember actual memory addresses. Every variable has a name, a data type, and a value.
 
-Every variable in C++ consists of three essential components:
+C provides several data types such as `int`, `char`, `float`, and `double` to store different kinds of information. Before a variable is used, it must be declared so that the compiler knows what type of data it will contain.
 
-1. **Data Type** – Specifies the type of data the variable can hold, such as `int`, `char`, `float`, or `string`.
-2. **Variable Name** – A unique identifier used to reference the variable in the program. The name must follow the rules for valid C++ identifiers.
-3. **Value** – The actual data stored in the variable, which can be assigned when the variable is declared or later during program execution.
+### Key Features
 
-For example, in the declaration `int age = 20;`:
+- Variables store values in memory.
+- Each variable has a unique name within its scope.
+- Variables are associated with a specific data type.
+- Values stored in variables can be modified during execution.
+- Multiple variables of the same type can be declared in one statement.
 
-- `int` is the data type.
-- `age` is the variable name.
-- `20` is the value assigned to the variable.
+# Declaring Variables
 
-Variables play a fundamental role in programming by enabling data storage, retrieval, and modification throughout the execution of a program.
+To create a variable in C, specify the data type followed by the variable name.
 
-The following example illustrates how a variable can be declared, accessed, and modified in C++. The variable `score` is initially assigned a value and later updated to a new value before being displayed again.
+### Syntax
 
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-
-    // Creating an integer variable
-    int score = 50;
-
-    // Displaying the initial value
-    cout << score << endl;
-
-    // Updating the value
-    score = 85;
-
-    // Displaying the updated value
-    cout << score;
-
-    return 0;
-}
+```c
+data_type variable_name;
 ```
 
-### Output
-50
-85
+### Example
 
-# Time Complexity
-O(1)
-
-# Space Complexity
-O(1)
-
-### **Variable Declaration**
-
-The process of creating a variable and assigning it a unique name is known as **variable declaration** (or variable definition). During declaration, the compiler allocates memory for the variable based on its data type and makes it available for use within the program.
-
-A variable declaration specifies both the **data type** and the **name** of the variable.
-
-**Syntax:**
-
-`data_type variable_name;`
-
-**![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/variables-in-c/1780990754103-ChatGPT_Image_Jun_9%2C_2026%2C_01_09_03_PM.png)**
-
-**Examples:**
-
-`int age;
-float salary;
+```c
+int age;
+float percentage;
 char grade;
-bool isActive;`
+```
 
-In the above examples:
+# Creating Variables
 
-- `int`, `float`, `char`, and `bool` are data types.
-- `age`, `salary`, `grade`, and `isActive` are variable names.
+```c
+#include <stdio.h>
 
-Once declared, a variable can be assigned a value and used throughout the program.
+int main()
+{
+    int age = 20;
+    float height = 5.8;
+    char grade = 'A';
 
-### **Variable Initialization**
-
-Declaring a variable only creates it in memory; it does not always assign a meaningful value to it. To ensure that a variable starts with a known and valid value, it should be **initialized** at the time of declaration.
-
-Initialization is the process of assigning an initial value to a variable. This is commonly done using the assignment operator (`=`).
-
-**Syntax:**
-
-`data_type variable_name = value;`
-
-**Examples:**
-
-`int age = 20;
-float price = 49.99f;
-char grade = 'A';
-bool isActive = true;`
-
-Initializing variables is considered a good programming practice because it helps prevent the use of uninitialized variables, which may contain unpredictable values.
-
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/variables-in-c/1780990912536-ChatGPT_Image_Jun_9%2C_2026%2C_01_11_39_PM.png)
-
-### **Accessing and Updating Variables**
-
-Once a variable has been declared and initialized, its value can be accessed or modified whenever needed. Accessing a variable simply involves using its name, while updating a variable is performed using the assignment operator (`=`).
-
-Variables make programs flexible because their values can change during execution, allowing the same memory location to store different data at different times.
-
-The following example demonstrates how a variable's value can be accessed and later updated in a C++ program.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    int score = 50;
-
-    cout << score << endl;
-
-    // Updating the value
-    score = 95;
-
-    cout << score;
+    printf("Age: %d\n", age);
+    printf("Height: %.1f\n", height);
+    printf("Grade: %c", grade);
 
     return 0;
 }
 ```
 
 ### Output
-50
+Age: 20
+Height: 5.8
+Grade: A
+
+### Explanation
+
+- `age` stores an integer value.
+- `height` stores a decimal value.
+- `grade` stores a single character.
+
+# Rules for Naming Variables
+
+A variable name must follow these rules:
+
+1. It can contain letters, digits, and underscores.
+2. It must begin with an alphabet or underscore.
+3. It cannot start with a digit.
+4. Spaces are not allowed.
+5. Keywords cannot be used as variable names.
+6. Variable names are case-sensitive.
+7. Variable names should be meaningful and descriptive.
+
+# Variable Initialization
+
+Assigning the first value to a variable is called initialization.
+
+## Initialization During Declaration
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int marks = 95;
+    float cgpa = 9.24;
+
+    printf("%d\n", marks);
+    printf("%.2f", cgpa);
+
+    return 0;
+}
+```
+
+### Output
 95
+9.24
 
-# Time Complexity
-O(1)
+## Initialization After Declaration
 
-# Space Complexity
-O(1)
+```c
+#include <stdio.h>
 
-### **Rules for Naming Variables**
+int main()
+{
+    char section;
 
-The names assigned to variables are known as identifiers. To ensure that variable names are valid in C++, the following rules must be followed:
+    section = 'B';
 
-1. A variable name may contain letters, digits, and underscores (`_`).
-2. The first character must be a letter or an underscore.
-3. Variable names are case-sensitive.
-4. Spaces and special characters such as `#`, `$`, `%`, and `&` are not allowed.
-5. Reserved C++ keywords cannot be used as variable names.
-
-**Valid Variable Names:**
-
-- `studentAge`
-- `_count`
-- `totalMarks`
-- `num1`
-
-**Invalid Variable Names:**
-
-- `2value`
-- `student age`
-- `class`
-- `price$`
-
-### **How Are Variables Used?**
-
-Variables act as references to memory locations that store values. Instead of repeatedly using literal values in a program, variables allow those values to be stored, reused, and modified easily.
-
-A variable can be assigned the value of another variable, provided both are of compatible data types.
-
-The following example shows how the value stored in one variable can be assigned to another variable.
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    int marks = 90;
-    int finalMarks;
-
-    finalMarks = marks;
-
-    cout << marks << " " << finalMarks;
+    printf("%c", section);
 
     return 0;
 }
 ```
 
 ### Output
-90 90
+B
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+Variables can be initialized either while declaring them or later using the assignment operator (`=`).
 
-Variables can also be used in arithmetic expressions and calculations. Since variables store values, they can be substituted wherever those values would normally be used.
+# Accessing Variables
 
-The following example demonstrates how variables can participate in arithmetic operations.
+Values stored inside variables can be accessed using their names.
 
-```cpp
-#include <iostream>
-using namespace std;
+```c
+#include <stdio.h>
 
-int main() {
-    int length = 15;
-    int width = 10;
+int main()
+{
+    int rollNumber = 25;
 
-    cout << length + width;
+    printf("%d", rollNumber);
 
     return 0;
 }
@@ -213,31 +143,157 @@ int main() {
 ### Output
 25
 
-# Time Complexity
-O(1)
+### Explanation
 
-# Space Complexity
-O(1)
+The variable name acts as a reference to the value stored in memory.
 
-### **Memory Management of Variables**
+# Updating Variable Values
 
-Whenever a variable is declared in C++, the compiler reserves a specific amount of memory based on the variable's data type. The variable name acts as a reference to that memory location, allowing the program to store, retrieve, and modify data efficiently.
+The value stored inside a variable can be changed at any time.
 
-Key points regarding variable memory management include:
+```c
+#include <stdio.h>
 
-- When a variable is created, memory is automatically allocated according to its data type.
-- Local (automatic) variables may contain unpredictable or indeterminate values if they are not explicitly initialized before use.
-- Global and static variables are automatically initialized to zero when no initial value is provided.
-- Initialization assigns a meaningful starting value to a variable, helping to prevent unexpected behavior.
-- Variables serve as symbolic names for memory locations, making it easier to access stored data.
-- Depending on their storage class and scope, variables may reside in different memory regions such as the stack, data segment, or static storage area.
+int main()
+{
+    int score = 50;
 
-Understanding how variables are stored and managed in memory is essential for writing efficient, reliable, and error-free C++ programs.
+    printf("Initial Score: %d\n", score);
 
-The following illustration shows how memory is allocated to variables and how variable names are used to access the values stored at specific memory locations.
+    score = 80;
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/variables-in-c/1780991361406-ChatGPT_Image_Jun_9%2C_2026%2C_01_18_57_PM.png)
+    printf("Updated Score: %d\n", score);
 
+    score = score + 10;
 
+    printf("Final Score: %d", score);
 
+    return 0;
+}
+```
+
+### Output
+Initial Score: 50
+Updated Score: 80
+Final Score: 90
+
+### Explanation
+
+The assignment operator updates the value stored in the variable.
+
+# Using Variables in Expressions
+
+Variables can participate in arithmetic expressions.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int a = 30;
+    int b = 20;
+
+    int sum = a + b;
+    int product = a * b;
+
+    printf("Sum = %d\n", sum);
+    printf("Product = %d", product);
+
+    return 0;
+}
+```
+
+### Output
+Sum = 50
+Product = 600
+
+### Explanation
+
+The values stored in variables are used during calculations, and the results are stored in other variables.
+
+# Declaring Multiple Variables
+
+Multiple variables of the same data type can be declared in a single statement.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int physics = 85, chemistry = 90, mathematics = 95;
+
+    printf("%d %d %d",
+           physics,
+           chemistry,
+           mathematics);
+
+    return 0;
+}
+```
+
+### Output
+85 90 95
+
+# Memory Allocation for Variables
+
+Each variable occupies memory according to its data type.
+
+The `sizeof()` operator can be used to determine the size occupied by a variable.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 21;
+
+    printf("%zu bytes", sizeof(age));
+
+    return 0;
+}
+```
+
+### Output
+4 bytes
+
+### Explanation
+
+The actual size depends on the system and compiler, but an integer generally occupies 4 bytes.
+
+# Common Data Types and Their Sizes
+
+| Data Type | Typical Size |
+| --- | --- |
+| char | 1 byte |
+| int | 4 bytes |
+| float | 4 bytes |
+| double | 8 bytes |
+| long int | 8 bytes |
+
+# Declaration vs Definition
+
+| Feature | Declaration | Definition |
+| --- | --- | --- |
+| Purpose | Tells the compiler that a variable exists | Allocates memory |
+| Memory Allocation | No | Yes |
+| Example | extern int age; | int age = 20; |
+
+# Advantages of Variables
+
+1. Provide meaningful names for memory locations.
+2. Simplify program development.
+3. Allow values to be modified dynamically.
+4. Improve readability and maintainability.
+5. Support arithmetic and logical operations.
+
+# Limitations
+
+1. Uninitialized variables contain garbage values.
+2. Incorrect data types may lead to unexpected results.
+3. Variables occupy memory resources.
+4. Improper naming reduces code readability.
+
+# Summary
+
+Variables are named memory locations used to store and manipulate data in C programs. They enable programmers to work with values efficiently without dealing with actual memory addresses. Every variable has a data type, a name, and a value. Understanding variable declaration, initialization, modification, and memory allocation is essential for writing efficient and maintainable C programs.
 
