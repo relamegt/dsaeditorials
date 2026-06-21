@@ -1,271 +1,321 @@
-# Parameter Passing Techniques in C++
+# Parameter Passing Techniques in C
 
-When a function is called, data is often passed to it so that it can perform operations using that data. The process of transferring data from the calling function to the called function is known as **parameter passing**.
+## Introduction
 
-Parameter passing is an important concept because it determines whether changes made inside a function affect the original variables or only temporary copies of them.
+Parameter passing is the process of transferring data from a calling function to a called function. Parameters enable functions to receive input values, perform operations, and optionally return results.
 
-Before learning the different parameter-passing techniques, it is important to understand two commonly used terms.
+In C, data is transferred to functions through arguments. Understanding parameter passing techniques is essential because they determine whether modifications inside a function affect the original variables.
 
-## Formal Parameters and Actual Parameters
+### Key Features
 
-**Formal Parameters** are the variables declared in the function definition. They act as placeholders that receive values when the function is called.
+- Enables communication between functions.
+- Allows functions to receive input values.
+- Improves code reusability and modularity.
+- Supports efficient handling of large data structures.
+- Provides control over whether original data should be modified.
 
-```cpp
-void display(int num)
+# Actual Parameters and Formal Parameters
+
+## Actual Parameters
+
+Actual parameters, also called arguments, are the values passed during the function call.
+
+### Example
+
+```c
+add(10, 20);
 ```
 
-In the above example, `num` is a formal parameter.
+Here, `10` and `20` are actual parameters.
 
-**Actual Parameters (Arguments)** are the values or variables passed during the function call.
+## Formal Parameters
 
-```cpp
-display(10);
+Formal parameters are variables declared in the function definition that receive values from the calling function.
+
+### Example
+
+```c
+int add(int a, int b)
+{
+    return a + b;
+}
 ```
 
-Here, `10` is an actual parameter or argument.
+Here, `a` and `b` are formal parameters.
 
-When a function is invoked, the actual parameters are transferred to the formal parameters using one of the parameter-passing techniques provided by C++.
+# Parameter Passing Techniques
 
-## Parameter Passing Methods in C++
+C mainly uses two techniques:
 
-C++ supports three main techniques for passing data to functions:
+1. Pass By Value
+2. Pass By Pointer
 
-1. Pass by Value
-2. Pass by Reference
-3. Pass by Pointer
+# Pass By Value
 
-Each method behaves differently and has its own advantages and use cases.
+In pass by value, a copy of the actual argument is passed to the function. Changes made inside the function affect only the copy and do not modify the original variable.
 
-| Method | Original Variable Modified? | Additional Copy Created? |
+## How Pass By Value Works
+
+1. The value of the variable is copied.
+2. The copied value is assigned to the formal parameter.
+3. Any modification affects only the local copy.
+4. The original variable remains unchanged.
+
+## Example
+
+```c
+#include <stdio.h>
+
+void updateValue(int number)
+{
+    number = 100;
+}
+
+int main()
+{
+    int marks = 50;
+
+    updateValue(marks);
+
+    printf("Marks = %d", marks);
+
+    return 0;
+}
+```
+
+### Output
+Marks = 50
+
+### Explanation
+
+The value of `marks` is copied into `number`. Changing `number` does not affect the original variable.
+
+# Memory Representation of Pass By Value
+
+```Code
+Main Function
+
+marks = 50
+      |
+      | Copy
+      ↓
+
+updateValue()
+
+number = 50
+
+number = 100
+```
+
+The original variable remains unchanged.
+
+# Example: Swapping Numbers Using Pass By Value
+
+```c
+#include <stdio.h>
+
+void swap(int a, int b)
+{
+    int temp;
+
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+int main()
+{
+    int num1 = 10, num2 = 20;
+
+    swap(num1, num2);
+
+    printf("%d %d", num1, num2);
+
+    return 0;
+}
+```
+
+### Output
+10 20
+
+### Explanation
+
+Only copies of the variables are swapped. The original variables remain unchanged.
+
+# Advantages of Pass By Value
+
+1. Original data remains safe.
+2. Easy to understand and implement.
+3. Avoids unintended side effects.
+4. Suitable for primitive data types.
+
+# Limitations of Pass By Value
+
+1. Additional memory is required for copies.
+2. Inefficient for large arrays and structures.
+3. Cannot modify original variables.
+
+# Pass By Pointer
+
+Pass by pointer allows a function to access and modify the original data by passing its memory address.
+
+Pointers are used to simulate call by reference in C.
+
+## How Pass By Pointer Works
+
+1. Address of the variable is passed.
+2. The pointer receives that address.
+3. Dereferencing accesses the original variable.
+4. Changes are reflected in the calling function.
+
+## Example
+
+```c
+#include <stdio.h>
+
+void updateValue(int *number)
+{
+    *number = 100;
+}
+
+int main()
+{
+    int marks = 50;
+
+    updateValue(&marks);
+
+    printf("Marks = %d", marks);
+
+    return 0;
+}
+```
+
+### Output
+Marks = 100
+
+### Explanation
+
+The address of `marks` is passed. The pointer accesses the original memory location and changes its value.
+
+# Memory Representation of Pass By Pointer
+
+```Code
+Main Function
+
+marks = 50
+Address = 2000
+      ↑
+      |
+number points here
+
+*number = 100
+
+marks becomes 100
+```
+
+Since both refer to the same memory location, changes are reflected in the original variable.
+
+# Example: Swapping Numbers Using Pass By Pointer
+
+```c
+#include <stdio.h>
+
+void swap(int *a, int *b)
+{
+    int temp;
+
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main()
+{
+    int num1 = 10, num2 = 20;
+
+    swap(&num1, &num2);
+
+    printf("%d %d", num1, num2);
+
+    return 0;
+}
+```
+
+### Output
+20 10
+
+### Explanation
+
+Addresses are passed to the function. Therefore, the original variables are modified.
+
+# Pass By Value vs Pass By Pointer
+
+| Feature | Pass By Value | Pass By Pointer |
 | --- | --- | --- |
-| Pass by Value | No | Yes |
-| Pass by Reference | Yes | No |
-| Pass by Pointer | Yes | No |
+| What is Passed | Copy of data | Address of data |
+| Original Variable Modified | No | Yes |
+| Memory Usage | Higher for large data | Lower |
+| Performance | Slower for large structures | Faster |
+| Side Effects | None | Possible |
+| Suitable For | Primitive values | Arrays, structures, and large data |
 
-## 1. Pass by Value
+# Arrays and Parameter Passing
 
-In pass-by-value, a copy of the original variable is created and passed to the function. The function works with this copy rather than the original variable.
+Arrays are effectively passed using pointers because the array name represents the address of the first element.
 
-Since the function receives a separate copy, any modifications made inside the function affect only the copied value and not the original variable.
+## Example
 
-This technique is easy to understand and prevents accidental modification of the caller's data.
+```c
+#include <stdio.h>
 
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
-
-void changeValue(int num)
+void modifyArray(int arr[])
 {
-    num = 50;
+    arr[0] = 99;
 }
 
 int main()
 {
-    int value = 10;
+    int marks[] = {10, 20, 30};
 
-    changeValue(value);
+    modifyArray(marks);
 
-    cout << value;
+    printf("%d", marks[0]);
 
     return 0;
 }
 ```
 
 ### Output
-10
+99
 
-### 
+### Explanation
 
-The output remains `10` because the function modifies only the copied value. The original variable `value` remains unchanged.
+Arrays are passed by address, so modifications affect the original array.
 
-When the function is called:
+# Important Points
 
-```cpp
-changeValue(value);
-```
+- C fundamentally supports only pass by value.
+- Pass by pointer is achieved by passing addresses.
+- Pointers themselves are also passed by value.
+- Arrays naturally behave like pointer parameters.
+- Pass by pointer improves efficiency for large data structures.
 
-the compiler internally creates a copy of `value` and assigns it to `num`. Therefore, any changes made to `num` do not affect `value`.
+# Advantages of Parameter Passing
 
-### Advantages
+1. Enables communication between functions.
+2. Improves code modularity.
+3. Supports data sharing.
+4. Reduces code duplication.
+5. Increases flexibility.
 
-- Easy to implement.
-- Original data remains safe.
-- Suitable for primitive data types such as integers and characters.
+# Limitations
 
-### Disadvantages
+1. Pointer-based programming is more complex.
+2. Incorrect pointer usage may cause errors.
+3. Pass by value consumes extra memory for large data.
+4. Side effects may occur when using pointers improperly.
 
-- Extra memory is required for copying.
-- Less efficient for large objects, arrays, and structures.
+# Summary
 
-## 2. Pass by Reference
-
-In pass-by-reference, the function receives a reference to the original variable instead of a copy.
-
-A reference acts as another name for the same memory location. Therefore, modifications made inside the function directly affect the original variable.
-
-This approach avoids unnecessary copying and is widely used in modern C++ programming.
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
-
-void changeValue(int &num)
-{
-    num = 50;
-}
-
-int main()
-{
-    int value = 10;
-
-    changeValue(value);
-
-    cout << value;
-
-    return 0;
-}
-```
-
-### Output
-50
-
-### 
-
-The output becomes `50` because `num` is a reference to `value`. Both names refer to the same memory location.
-
-When the function executes:
-
-```cpp
-num = 50;
-```
-
-it directly modifies the original variable `value`.
-
-The ampersand (`&`) in the parameter declaration indicates that the parameter is being passed by reference.
-
-```cpp
-void changeValue(int &num)
-```
-
-### Advantages
-
-- No copying overhead.
-- Efficient for large data structures.
-- Allows direct modification of original data.
-
-### Disadvantages
-
-- Original data can be changed unintentionally.
-- Requires careful handling.
-
-## 3. Pass by Pointer
-
-Pass-by-pointer is similar to pass-by-reference because it allows the function to modify the original variable.
-
-However, instead of passing the variable itself, the memory address of the variable is passed to the function.
-
-The function then uses the address to access and modify the original value.
-
-### Example Code
-
-```cpp
-#include <iostream>
-using namespace std;
-
-void changeValue(int *num)
-{
-    *num = 50;
-}
-
-int main()
-{
-    int value = 10;
-
-    changeValue(&value);
-
-    cout << value;
-
-    return 0;
-}
-```
-
-### Output
-50
-
-### 
-
-The output becomes `50` because the function receives the memory address of `value`.
-
-The statement:
-
-```cpp
-&value
-```
-
-returns the address of the variable and passes it to the function.
-
-Inside the function:
-
-```cpp
-*num = 50;
-```
-
-the dereference operator (`*`) accesses the actual value stored at that address and modifies it.
-
-### Understanding the Symbols
-
-| Symbol | Purpose |
-| --- | --- |
-| & | Returns the memory address of a variable |
-| * | Accesses the value stored at an address |
-
-### Advantages
-
-- No unnecessary copying.
-- Allows modification of original data.
-- Useful in dynamic memory management and low-level programming.
-
-### Disadvantages
-
-- Syntax is more complex.
-- Higher risk of programming errors.
-- Invalid pointers can cause runtime issues.
-
-## Pass by Reference vs Pass by Pointer
-
-Both methods allow modification of the original variable, but they differ in syntax and usability.
-
-| Feature | Pass by Reference | Pass by Pointer |
-| --- | --- | --- |
-| Syntax | Simple | More Complex |
-| Uses Addresses Explicitly | No | Yes |
-| Requires Dereferencing | No | Yes |
-| Can Be Null | No | Yes |
-| Readability | High | Moderate |
-| Preferred in Modern C++ | Yes | Only When Necessary |
-
-Pass-by-reference is generally preferred because it offers the efficiency of pointers while keeping the code simpler and easier to read.
-
-## When to Use Each Technique?
-
-- Use **Pass by Value** when the function should not modify the original data.
-- Use **Pass by Reference** when the function needs to modify the original variable or when large objects must be passed efficiently.
-- Use **Pass by Pointer** when working with dynamic memory, arrays, or situations where null values need to be handled.
-
-Choosing the right technique improves both performance and code clarity.
-
-## Summary
-
-Parameter passing defines how data is transferred from a calling function to a called function. C++ provides three parameter-passing techniques: pass by value, pass by reference, and pass by pointer.
-
-In pass-by-value, a copy of the original variable is created, so modifications do not affect the caller. In pass-by-reference, the function receives an alias to the original variable, allowing direct modification without copying. In pass-by-pointer, the memory address of the variable is passed, enabling the function to access and modify the original data through dereferencing.
-
-Understanding these techniques is essential for writing efficient, reusable, and maintainable C++ programs.
-
-
-
+Parameter passing techniques determine how data is transferred between functions. In pass by value, copies of variables are passed, so modifications do not affect the original variables. In pass by pointer, memory addresses are passed, allowing functions to modify the original data. Although C officially supports only pass by value, pointers provide behavior similar to call by reference and are widely used for efficient manipulation of arrays, structures, and large data objects.
 
