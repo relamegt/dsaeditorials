@@ -21,6 +21,8 @@ The differences between the `Collection` interface and the `Collections` utility
 | **Instantiation** | Cannot be instantiated directly (must be implemented by a concrete class). | Cannot be instantiated (contains a private constructor). |
 | **Methods** | Instance methods (e.g., `add()`, `remove()`, `clear()`). | Exclusively static methods (e.g., `sort()`, `reverse()`). |
 
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/collections-class-in-java/1782020768828-9c3f366e-1fbd-435e-a071-29a998528a25.png)
+
 ## Collections Class Declaration
 
 At the language level, the `Collections` class is declared as a final utility class extending `java.lang.Object`.
