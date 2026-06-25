@@ -42,9 +42,6 @@ Yes
 4. If the remainder is `0`, print `Yes`.
 5. Otherwise, print `No`.
 
-Output:
-Yes
-
 ```C
 #include <stdio.h>
 
@@ -121,6 +118,9 @@ class Program
 For Input:
 1236
 
+Output:
+Yes
+
 # Time Complexity
 O(N)
 
@@ -143,9 +143,6 @@ O(1)
 
 1. Check whether the obtained number is divisible by `4`.
 2. If it is divisible, print `Yes`; otherwise, print `No`.
-
-Output:
-Yes
 
 ```C
 #include <stdio.h>
@@ -261,6 +258,9 @@ class Program
 For Input:
 1236
 
+Output:
+Yes
+
 # Time Complexity
 O(1)
 
@@ -269,3 +269,6 @@ O(1)
 
 </approaches>
 
+
+
+###
