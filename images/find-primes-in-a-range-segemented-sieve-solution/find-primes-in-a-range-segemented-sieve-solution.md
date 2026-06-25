@@ -20,13 +20,10 @@ There are two common approaches to print all prime numbers in a given range.
 - **Segmented Sieve of Eratosthenes (Recommended):** First generate all prime numbers up to `√R` using the Sieve of Eratosthenes. Then use those primes to mark multiples inside the range `[L, R]`. The numbers that remain unmarked are prime.
 
 For example, when `L = 10` and `R = 30`:
-
 Numbers in the range are:
-
 `10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30`
 
 Removing all composite numbers leaves:
-
 `11 13 17 19 23 29`
 
 Output:
