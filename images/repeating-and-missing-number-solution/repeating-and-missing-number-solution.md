@@ -14,9 +14,7 @@ Second line: `N` space-separated integers.
 
 ### Output Format
 
-Print two integers separated by a space:
-
-`repeating missing`
+Print two integers separated by a space: `repeating missing`
 
 ## Explanation
 
