@@ -79,7 +79,7 @@ int main()
     {
         for(int j=0;j<n;j++)
             printf("%lld ",t[i][j]);
-        printf(" ");
+        printf("\n");
     }
 
     return 0;
@@ -110,7 +110,7 @@ int main()
     {
         for(int j=0;j<n;j++)
             cout<<t[i][j]<<" ";
-        cout<<" ";
+        cout<<"\n";
     }
 
     return 0;
@@ -276,7 +276,7 @@ int main()
     {
         for(int j=0;j<n;j++)
             printf("%lld ",a[i][j]);
-        printf(" ");
+        printf("\n");
     }
 
     return 0;
@@ -308,7 +308,7 @@ int main()
     {
         for(int j=0;j<n;j++)
             cout<<a[i][j]<<" ";
-        cout<<" ";
+        cout<<"\n";
     }
 
     return 0;
