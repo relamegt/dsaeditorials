@@ -2,28 +2,32 @@
 
 ## Problem Statement
 
-Given two sorted arrays `arr1[]` and `arr2[]` of sizes `N` and `M`, find their intersection. The intersection should contain all distinct elements that are present in both arrays, in sorted order, without duplicates.
+Given two sorted arrays `arr1` and `arr2` of sizes `N` and `M` respectively, find their intersection.
 
-### Input Format
+Each element in the output must appear only once, and the output must be in sorted order.
 
-First line: integer `N`.
+## Input Format
 
-Second line: `N` space-separated integers of `arr1` (sorted).
+First line: Integer `N`
 
-Third line: integer `M`.
+Second line: `N` space-separated integers representing `arr1`
 
-Fourth line: `M` space-separated integers of `arr2` (sorted).
+Third line: Integer `M`
 
-### Output Format
+Fourth line: `M` space-separated integers representing `arr2`
 
-Print the distinct common elements in sorted order. If there is no intersection, print nothing.
+## Output Format
+
+Print the intersection as space-separated integers in sorted order.
+
+If there is no common element, print `-1`.
 
 ## Explanation
 
-There are two common approaches to solve this problem.
+There are two approaches to solve this problem.
 
-- **Two Pointers (Recommended):** Traverse both sorted arrays simultaneously and print common distinct elements.
-- **Hash Set:** Store one array in a hash set and check the second array.
+- **Approach 1:** Hash Set
+- **Approach 2:** Two Pointers (Optimal)
 
 For example,
 
@@ -31,498 +35,138 @@ Input
 
 5
 
-1 2 3 4 5
+1 2 2 3 4
 
-5
+4
 
-1 2 3 4 5
+2 2 4 6
 
 Output
 
-1 2 3 4 5
+2 4
 
 <approaches>
-## Approach 1: Two Pointers (Recommended)
-
-### Algorithm
-
-1. Read both sorted arrays.
-2. Initialize two pointers `i = 0` and `j = 0`.
-3. Compare `arr1[i]` and `arr2[j]`.
-4. If `arr1[i] < arr2[j]`, increment `i`.
-5. If `arr1[i] > arr2[j]`, increment `j`.
-6. If both are equal:
-
-- Print the element if it has not already been printed.
-- Increment both pointers.
-
-1. Continue until either array is exhausted.
-
-```C
-#include <stdio.h>
-
-int main()
-{
-    int N;
-    scanf("%d", &N);
-
-    long long arr1[N];
-
-    for(int i = 0; i < N; i++)
-        scanf("%lld", &arr1[i]);
-
-    int M;
-    scanf("%d", &M);
-
-    long long arr2[M];
-
-    for(int i = 0; i < M; i++)
-        scanf("%lld", &arr2[i]);
-
-    int i = 0;
-    int j = 0;
-
-    int first = 1;
-    long long last = 0;
-
-    while(i < N && j < M)
-    {
-        if(arr1[i] < arr2[j])
-        {
-            i++;
-        }
-        else if(arr1[i] > arr2[j])
-        {
-            j++;
-        }
-        else
-        {
-            if(first || arr1[i] != last)
-            {
-                printf("%lld ", arr1[i]);
-                last = arr1[i];
-                first = 0;
-            }
-
-            i++;
-            j++;
-        }
-    }
-
-    return 0;
-}
-```
-```cpp
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    int N;
-    cin >> N;
-
-    long long arr1[N];
-
-    for(int i = 0; i < N; i++)
-        cin >> arr1[i];
-
-    int M;
-    cin >> M;
-
-    long long arr2[M];
-
-    for(int i = 0; i < M; i++)
-        cin >> arr2[i];
-
-    int i = 0;
-    int j = 0;
-
-    bool first = true;
-    long long last = 0;
-
-    while(i < N && j < M)
-    {
-        if(arr1[i] < arr2[j])
-        {
-            i++;
-        }
-        else if(arr1[i] > arr2[j])
-        {
-            j++;
-        }
-        else
-        {
-            if(first || arr1[i] != last)
-            {
-                cout << arr1[i] << " ";
-                last = arr1[i];
-                first = false;
-            }
-
-            i++;
-            j++;
-        }
-    }
-
-    return 0;
-}
-```
-```Java
-import java.util.*;
-
-public class Main
-{
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner(System.in);
-
-        int N = sc.nextInt();
-
-        long[] arr1 = new long[N];
-
-        for(int i = 0; i < N; i++)
-            arr1[i] = sc.nextLong();
-
-        int M = sc.nextInt();
-
-        long[] arr2 = new long[M];
-
-        for(int i = 0; i < M; i++)
-            arr2[i] = sc.nextLong();
-
-        int i = 0;
-        int j = 0;
-
-        boolean first = true;
-        long last = 0;
-
-        while(i < N && j < M)
-        {
-            if(arr1[i] < arr2[j])
-            {
-                i++;
-            }
-            else if(arr1[i] > arr2[j])
-            {
-                j++;
-            }
-            else
-            {
-                if(first || arr1[i] != last)
-                {
-                    System.out.print(arr1[i] + " ");
-                    last = arr1[i];
-                    first = false;
-                }
-
-                i++;
-                j++;
-            }
-        }
-    }
-}
-```
-```Python
-N = int(input())
-
-arr1 = list(map(int, input().split()))
-
-M = int(input())
-
-arr2 = list(map(int, input().split()))
-
-i = 0
-j = 0
-
-first = True
-last = 0
-
-while i < N and j < M:
-
-    if arr1[i] < arr2[j]:
-        i += 1
-
-    elif arr1[i] > arr2[j]:
-        j += 1
-
-    else:
-        if first or arr1[i] != last:
-            print(arr1[i], end=" ")
-            last = arr1[i]
-            first = False
-
-        i += 1
-        j += 1
-```
-```C#
-using System;
-
-class Program
-{
-    static void Main()
-    {
-        int N = int.Parse(Console.ReadLine());
-
-        long[] arr1 = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
-
-        int M = int.Parse(Console.ReadLine());
-
-        long[] arr2 = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
-
-        int i = 0;
-        int j = 0;
-
-        bool first = true;
-        long last = 0;
-
-        while(i < N && j < M)
-        {
-            if(arr1[i] < arr2[j])
-            {
-                i++;
-            }
-            else if(arr1[i] > arr2[j])
-            {
-                j++;
-            }
-            else
-            {
-                if(first || arr1[i] != last)
-                {
-                    Console.Write(arr1[i] + " ");
-                    last = arr1[i];
-                    first = false;
-                }
-
-                i++;
-                j++;
-            }
-        }
-    }
-}
-```
-```JavaScript
-const input = require("fs").readFileSync(0, "utf8").trim().split(/\s+/).map(Number);
-
-let idx = 0;
-
-const N = input[idx++];
-const arr1 = [];
-
-for(let i = 0; i < N; i++)
-    arr1.push(input[idx++]);
-
-const M = input[idx++];
-const arr2 = [];
-
-for(let i = 0; i < M; i++)
-    arr2.push(input[idx++]);
-
-let i = 0;
-let j = 0;
-
-let first = true;
-let last = 0;
-
-let ans = [];
-
-while(i < N && j < M)
-{
-    if(arr1[i] < arr2[j])
-    {
-        i++;
-    }
-    else if(arr1[i] > arr2[j])
-    {
-        j++;
-    }
-    else
-    {
-        if(first || arr1[i] !== last)
-        {
-            ans.push(arr1[i]);
-            last = arr1[i];
-            first = false;
-        }
-
-        i++;
-        j++;
-    }
-}
-
-console.log(ans.join(" "));
-```
-
-### Output
-For Input:
-5
-1 2 3 4 5
-5
-1 2 3 4 5
-
-Output:
-1 2 3 4 5
-
-# Time Complexity
-O(N + M)
-
-# Space Complexity
-O(1)
-
-## Approach 2: Hash Set
+## Approach 1: Hash Set
 
 ### Algorithm
 
 1. Read both arrays.
-2. Insert every element of the first array into a hash set.
+2. Insert all elements of the first array into a hash set.
 3. Traverse the second array.
-4. If the current element exists in the hash set, insert it into another set (or ordered set) to avoid duplicates.
-5. Print all elements of the answer set in sorted order.
+4. If an element exists in the hash set, add it to another set storing the intersection.
+5. Print the intersection in sorted order.
+6. If no common elements exist, print `-1`.
 
 ```C
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 200003
-
-typedef struct Node
+int cmp(const void *a,const void *b)
 {
-    long long key;
-    struct Node *next;
-} Node;
-
-Node *table[SIZE];
-
-int hash(long long x)
-{
-    if(x < 0)
-        x = -x;
-
-    return x % SIZE;
-}
-
-int exists(long long key)
-{
-    Node *cur = table[hash(key)];
-
-    while(cur)
-    {
-        if(cur->key == key)
-            return 1;
-
-        cur = cur->next;
-    }
-
-    return 0;
-}
-
-void insert(long long key)
-{
-    if(exists(key))
-        return;
-
-    int h = hash(key);
-
-    Node *node = (Node *)malloc(sizeof(Node));
-
-    node->key = key;
-    node->next = table[h];
-    table[h] = node;
-}
-
-int compare(const void *a, const void *b)
-{
-    long long x = *(long long *)a;
-    long long y = *(long long *)b;
-
-    if(x < y)
-        return -1;
-
-    if(x > y)
-        return 1;
-
-    return 0;
+    return (*(int *)a-*(int *)b);
 }
 
 int main()
 {
-    int N;
-    scanf("%d", &N);
+    int n,m;
 
-    for(int i = 0; i < N; i++)
+    scanf("%d",&n);
+
+    int arr1[n];
+
+    for(int i=0;i<n;i++)
+        scanf("%d",&arr1[i]);
+
+    scanf("%d",&m);
+
+    int arr2[m];
+
+    for(int i=0;i<m;i++)
+        scanf("%d",&arr2[i]);
+
+    int ans[n<m?n:m];
+    int k=0;
+
+    for(int i=0;i<n;i++)
     {
-        long long x;
-        scanf("%lld", &x);
-        insert(x);
-    }
-
-    int M;
-    scanf("%d", &M);
-
-    long long ans[M];
-    int cnt = 0;
-
-    for(int i = 0; i < M; i++)
-    {
-        long long x;
-        scanf("%lld", &x);
-
-        if(exists(x))
-            ans[cnt++] = x;
-    }
-
-    qsort(ans, cnt, sizeof(long long), compare);
-
-    if(cnt > 0)
-    {
-        printf("%lld", ans[0]);
-
-        for(int i = 1; i < cnt; i++)
+        for(int j=0;j<m;j++)
         {
-            if(ans[i] != ans[i - 1])
-                printf(" %lld", ans[i]);
+            if(arr1[i]==arr2[j])
+            {
+                int found=0;
+
+                for(int x=0;x<k;x++)
+                {
+                    if(ans[x]==arr1[i])
+                    {
+                        found=1;
+                        break;
+                    }
+                }
+
+                if(!found)
+                    ans[k++]=arr1[i];
+
+                break;
+            }
         }
     }
+
+    if(k==0)
+    {
+        printf("-1");
+        return 0;
+    }
+
+    qsort(ans,k,sizeof(int),cmp);
+
+    for(int i=0;i<k;i++)
+        printf("%d ",ans[i]);
 
     return 0;
 }
 ```
 ```cpp
 #include <iostream>
-#include <unordered_set>
+#include <vector>
 #include <set>
 using namespace std;
 
 int main()
 {
-    int N;
-    cin >> N;
+    int n,m;
 
-    unordered_set<long long> st;
+    cin>>n;
 
-    for(int i = 0; i < N; i++)
+    vector<int> arr1(n);
+
+    for(int i=0;i<n;i++)
+        cin>>arr1[i];
+
+    cin>>m;
+
+    vector<int> arr2(m);
+
+    for(int i=0;i<m;i++)
+        cin>>arr2[i];
+
+    set<int> s(arr1.begin(),arr1.end());
+    set<int> ans;
+
+    for(int x:arr2)
     {
-        long long x;
-        cin >> x;
-        st.insert(x);
-    }
-
-    int M;
-    cin >> M;
-
-    set<long long> ans;
-
-    for(int i = 0; i < M; i++)
-    {
-        long long x;
-        cin >> x;
-
-        if(st.count(x))
+        if(s.count(x))
             ans.insert(x);
     }
 
-    for(long long x : ans)
-        cout << x << " ";
+    if(ans.empty())
+    {
+        cout<<-1;
+        return 0;
+    }
+
+    for(int x:ans)
+        cout<<x<<" ";
 
     return 0;
 }
@@ -534,50 +178,54 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc=new Scanner(System.in);
 
-        int N = sc.nextInt();
+        int n=sc.nextInt();
 
-        HashSet<Long> set = new HashSet<>();
+        HashSet<Integer> set=new HashSet<>();
 
-        for(int i = 0; i < N; i++)
-            set.add(sc.nextLong());
+        for(int i=0;i<n;i++)
+            set.add(sc.nextInt());
 
-        int M = sc.nextInt();
+        int m=sc.nextInt();
 
-        TreeSet<Long> ans = new TreeSet<>();
+        TreeSet<Integer> ans=new TreeSet<>();
 
-        for(int i = 0; i < M; i++)
+        for(int i=0;i<m;i++)
         {
-            long x = sc.nextLong();
+            int x=sc.nextInt();
 
             if(set.contains(x))
                 ans.add(x);
         }
 
-        for(long x : ans)
-            System.out.print(x + " ");
+        if(ans.isEmpty())
+        {
+            System.out.print(-1);
+            return;
+        }
+
+        for(int x:ans)
+            System.out.print(x+" ");
     }
 }
 ```
 ```Python
-N = int(input())
+n=int(input())
 
-arr1 = list(map(int, input().split()))
+arr1=list(map(int,input().split()))
 
-M = int(input())
+m=int(input())
 
-arr2 = list(map(int, input().split()))
+arr2=list(map(int,input().split()))
 
-elements = set(arr1)
+s=set(arr1)
+ans=sorted(set(arr2)&s)
 
-answer = set()
-
-for x in arr2:
-    if x in elements:
-        answer.add(x)
-
-print(*sorted(answer))
+if not ans:
+    print(-1)
+else:
+    print(*ans)
 ```
 ```C#
 using System;
@@ -587,28 +235,340 @@ class Program
 {
     static void Main()
     {
-        int N = int.Parse(Console.ReadLine());
+        int n=int.Parse(Console.ReadLine());
 
-        long[] arr1 = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+        long[] arr1=Array.ConvertAll(Console.ReadLine().Split(),long.Parse);
 
-        int M = int.Parse(Console.ReadLine());
+        int m=int.Parse(Console.ReadLine());
 
-        long[] arr2 = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+        long[] arr2=Array.ConvertAll(Console.ReadLine().Split(),long.Parse);
 
-        HashSet<long> set = new HashSet<long>();
-
-        foreach(long x in arr1)
-            set.Add(x);
-
-        SortedSet<long> answer = new SortedSet<long>();
+        HashSet<long> set=new HashSet<long>(arr1);
+        SortedSet<long> ans=new SortedSet<long>();
 
         foreach(long x in arr2)
         {
             if(set.Contains(x))
-                answer.Add(x);
+                ans.Add(x);
         }
 
-        foreach(long x in answer)
+        if(ans.Count==0)
+        {
+            Console.Write(-1);
+            return;
+        }
+
+        foreach(long x in ans)
+            Console.Write(x+" ");
+    }
+}
+```
+```JavaScript
+const input=require("fs").readFileSync(0,"utf8").trim().split(/\s+/).map(Number);
+
+let idx=0;
+
+const n=input[idx++];
+
+const arr1=[];
+
+for(let i=0;i<n;i++)
+    arr1.push(input[idx++]);
+
+const m=input[idx++];
+
+const arr2=[];
+
+for(let i=0;i<m;i++)
+    arr2.push(input[idx++]);
+
+const set=new Set(arr1);
+const ans=new Set();
+
+for(const x of arr2)
+{
+    if(set.has(x))
+        ans.add(x);
+}
+
+const result=[...ans].sort((a,b)=>a-b);
+
+if(result.length===0)
+    console.log(-1);
+else
+    console.log(result.join(" "));
+```
+
+### Output
+Input
+
+5
+
+1 2 2 3 4
+
+4
+
+2 2 4 6
+
+Output
+
+2 4
+
+# Time Complexity
+O(N + M)
+
+# Space Complexity
+O(N)
+
+## Approach 2: Two Pointers (Optimal)
+
+### Algorithm
+
+1. Read both sorted arrays.
+2. Initialize two pointers `i` and `j` to the beginning of the arrays.
+3. If both elements are equal, add the element to the answer only if it is not already added, then move both pointers.
+4. If `arr1[i] < arr2[j]`, increment `i`.
+5. Otherwise, increment `j`.
+6. If no common elements are found, print `-1`.
+
+```C
+#include <stdio.h>
+
+int main()
+{
+    int n,m;
+
+    scanf("%d",&n);
+
+    int arr1[n];
+
+    for(int i=0;i<n;i++)
+        scanf("%d",&arr1[i]);
+
+    scanf("%d",&m);
+
+    int arr2[m];
+
+    for(int i=0;i<m;i++)
+        scanf("%d",&arr2[i]);
+
+    int i=0,j=0;
+    int found=0;
+    int last=0;
+
+    while(i<n && j<m)
+    {
+        if(arr1[i]==arr2[j])
+        {
+            if(!found || arr1[i]!=last)
+            {
+                printf("%d ",arr1[i]);
+                last=arr1[i];
+                found=1;
+            }
+
+            i++;
+            j++;
+        }
+        else if(arr1[i]<arr2[j])
+            i++;
+        else
+            j++;
+    }
+
+    if(!found)
+        printf("-1");
+
+    return 0;
+}
+```
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    int n,m;
+
+    cin>>n;
+
+    vector<int> arr1(n);
+
+    for(int i=0;i<n;i++)
+        cin>>arr1[i];
+
+    cin>>m;
+
+    vector<int> arr2(m);
+
+    for(int i=0;i<m;i++)
+        cin>>arr2[i];
+
+    int i=0,j=0;
+    bool found=false;
+    int last=0;
+
+    while(i<n && j<m)
+    {
+        if(arr1[i]==arr2[j])
+        {
+            if(!found || arr1[i]!=last)
+            {
+                cout<<arr1[i]<<" ";
+                last=arr1[i];
+                found=true;
+            }
+
+            i++;
+            j++;
+        }
+        else if(arr1[i]<arr2[j])
+            i++;
+        else
+            j++;
+    }
+
+    if(!found)
+        cout<<-1;
+
+    return 0;
+}
+```
+```Java
+import java.util.*;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+
+        int n=sc.nextInt();
+
+        int[] arr1=new int[n];
+
+        for(int i=0;i<n;i++)
+            arr1[i]=sc.nextInt();
+
+        int m=sc.nextInt();
+
+        int[] arr2=new int[m];
+
+        for(int i=0;i<m;i++)
+            arr2[i]=sc.nextInt();
+
+        int i=0,j=0;
+        boolean found=false;
+        int last=0;
+
+        while(i<n && j<m)
+        {
+            if(arr1[i]==arr2[j])
+            {
+                if(!found || arr1[i]!=last)
+                {
+                    System.out.print(arr1[i]+" ");
+                    last=arr1[i];
+                    found=true;
+                }
+
+                i++;
+                j++;
+            }
+            else if(arr1[i]<arr2[j])
+                i++;
+            else
+                j++;
+        }
+
+        if(!found)
+            System.out.print(-1);
+    }
+}
+```
+```Python
+n = int(input())
+
+arr1 = list(map(int, input().split()))
+
+m = int(input())
+
+arr2 = list(map(int, input().split()))
+
+i = 0
+j = 0
+
+ans = []
+
+while i < n and j < m:
+
+    if arr1[i] == arr2[j]:
+
+        if not ans or ans[-1] != arr1[i]:
+            ans.append(arr1[i])
+
+        i += 1
+        j += 1
+
+    elif arr1[i] < arr2[j]:
+        i += 1
+    else:
+        j += 1
+
+if ans:
+    print(*ans)
+else:
+    print(-1)
+```
+```C#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+
+        long[] arr1 = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+
+        int m = int.Parse(Console.ReadLine());
+
+        long[] arr2 = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+
+        int i = 0;
+        int j = 0;
+
+        List<long> ans = new List<long>();
+
+        while (i < n && j < m)
+        {
+            if (arr1[i] == arr2[j])
+            {
+                if (ans.Count == 0 || ans[ans.Count - 1] != arr1[i])
+                    ans.Add(arr1[i]);
+
+                i++;
+                j++;
+            }
+            else if (arr1[i] < arr2[j])
+            {
+                i++;
+            }
+            else
+            {
+                j++;
+            }
+        }
+
+        if (ans.Count == 0)
+        {
+            Console.Write(-1);
+            return;
+        }
+
+        foreach (long x in ans)
             Console.Write(x + " ");
     }
 }
@@ -618,46 +578,74 @@ const input = require("fs").readFileSync(0, "utf8").trim().split(/\s+/).map(Numb
 
 let idx = 0;
 
-const N = input[idx++];
+const n = input[idx++];
 
-const elements = new Set();
+const arr1 = [];
 
-for(let i = 0; i < N; i++)
-    elements.add(input[idx++]);
+for (let i = 0; i < n; i++)
+    arr1.push(input[idx++]);
 
-const M = input[idx++];
+const m = input[idx++];
 
-const answer = new Set();
+const arr2 = [];
 
-for(let i = 0; i < M; i++)
+for (let i = 0; i < m; i++)
+    arr2.push(input[idx++]);
+
+let i = 0;
+let j = 0;
+
+const ans = [];
+
+while (i < n && j < m)
 {
-    const value = input[idx++];
+    if (arr1[i] === arr2[j])
+    {
+        if (ans.length === 0 || ans[ans.length - 1] !== arr1[i])
+            ans.push(arr1[i]);
 
-    if(elements.has(value))
-        answer.add(value);
+        i++;
+        j++;
+    }
+    else if (arr1[i] < arr2[j])
+    {
+        i++;
+    }
+    else
+    {
+        j++;
+    }
 }
 
-console.log([...answer].sort((a, b) => a - b).join(" "));
+if (ans.length === 0)
+    console.log(-1);
+else
+    console.log(ans.join(" "));
 ```
 
 ### Output
-For Input:
-5
-1 2 3 4 5
-5
-1 2 3 4 5
+Input
 
-Output:
-1 2 3 4 5
+5
+
+1 2 2 3 4
+
+4
+
+2 2 4 6
+
+Output
+
+2 4
 
 # Time Complexity
 O(N + M)
 
 # Space Complexity
-O(N)
+O(1) (excluding the output array)
 
 </approaches>
 
 
 
-> **Note:** The binary search partition approach is the standard optimal solution with **O(log(min(N, M)))** time complexity. Implementing it in C and C# is considerably longer, so in interviews and competitive programming, the above logic is directly translated similarly.
+
