@@ -422,6 +422,119 @@ The following table summarizes the characteristics of all five address classes.
 - The last address of a network is the **Broadcast Address**.
 - These reserved addresses cannot be assigned to hosts.
 
+# Problems with Classful Addressing
+
+Although Classful IP Addressing was simple to understand and implement, it introduced several limitations as the Internet expanded. The fixed division between the Network ID and Host ID often resulted in inefficient utilization of IPv4 addresses and increased routing complexity.
+
+## 1. IP Address Wastage
+
+Since each class has a fixed number of host addresses, organizations often received far more addresses than they actually required.
+
+### Example
+
+A company requiring only 500 hosts could not use a Class C network because it supports only 254 hosts. Instead, it had to obtain a Class B network containing **65,534** host addresses, leaving most of the addresses unused.
+
+---
+
+## 2. Fixed Network and Host Boundaries
+
+The network and host portions were predefined for each class.
+
+### Limitations
+
+- No flexibility in address allocation.
+- Difficult to allocate addresses based on actual requirements.
+- Large organizations and small organizations often received inefficient address blocks.
+
+---
+
+## 3. No Variable Length Subnet Mask (VLSM)
+
+Classful Addressing does not support variable subnet masks.
+
+### Result
+
+- Network administrators cannot create subnets of different sizes.
+- Address utilization becomes inefficient.
+
+---
+
+## 4. Poor Scalability
+
+As more devices joined the Internet, the fixed address classes became insufficient for efficient address allocation.
+
+### Result
+
+- Increased IPv4 address exhaustion.
+- Difficult network expansion.
+
+---
+
+## 5. Large Routing Tables
+
+Every network had to be stored separately in routing tables.
+
+### Result
+
+- Increased memory usage.
+- Slower routing decisions.
+- Higher processing overhead.
+
+---
+
+## 6. Inefficient Address Allocation
+
+Organizations frequently received address blocks much larger than their actual requirements.
+
+### Result
+
+- Significant waste of IPv4 address space.
+- Faster depletion of available addresses.
+
+# Classful Addressing vs Classless Addressing (CIDR)
+
+| Feature | Classful Addressing | Classless Addressing (CIDR) |
+| --- | --- | --- |
+| Address Allocation | Fixed address classes | Variable-length prefixes |
+| Network Division | Fixed Network ID and Host ID | Flexible network prefix |
+| Address Utilization | Less efficient | Highly efficient |
+| Subnetting | Limited | Fully supported |
+| VLSM Support | Not Supported | Supported |
+| Route Aggregation | Not Supported | Supported |
+| Routing Tables | Larger | Smaller through route aggregation |
+| Scalability | Limited | Highly scalable |
+| Flexibility | Low | High |
+| IPv4 Utilization | Wastes addresses | Conserves addresses |
+| Modern Usage | Obsolete | Widely used |
+
+# Why CIDR Replaced Classful Addressing
+
+Classless Inter-Domain Routing (CIDR) was introduced to overcome the limitations of Classful Addressing.
+
+### Advantages of CIDR
+
+- Allocates addresses according to actual requirements.
+- Supports Variable Length Subnet Masks (VLSM).
+- Reduces IPv4 address wastage.
+- Supports route aggregation.
+- Decreases routing table size.
+- Improves routing efficiency.
+- Provides greater flexibility and scalability.
+
+# Key Points
+
+- IPv4 addresses contain **32 bits**.
+- Classful Addressing divides IPv4 addresses into **five fixed classes**.
+- Classes **A**, **B**, and **C** support unicast communication.
+- **Class D** is reserved for multicast communication.
+- **Class E** is reserved for experimental and research purposes.
+- Every network reserves one address as the **Network Address** and another as the **Broadcast Address**.
+- Modern computer networks use **CIDR** instead of Classful Addressing because it provides better flexibility and efficient address allocation.
+
+# Summary
+
+Classful IP Addressing was one of the earliest IPv4 addressing methods and divided the address space into five predefined classes based on fixed Network ID and Host ID boundaries. Classes A, B, and C were designed for networks of different sizes, while Class D supported multicast communication and Class E was reserved for experimental use. Although this approach simplified address allocation during the early development of the Internet, it suffered from poor address utilization, limited scalability, and the inability to support Variable Length Subnet Masks (VLSM). These limitations led to the adoption of **Classless Inter-Domain Routing (CIDR)**, which provides flexible prefix lengths, efficient IP address allocation, smaller routing tables, and better scalability for modern computer networks.
+
 
 
 
