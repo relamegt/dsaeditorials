@@ -22,8 +22,6 @@ Row limiting clauses help:
 - Display top-performing records.
 - Reduce unnecessary data transfer.
 
----
-
 # Creating a Sample Database
 
 ```sql
@@ -36,8 +34,6 @@ Select the database:
 USE AlphaKnowledgeDB;
 ```
 
----
-
 # Creating a Sample Table
 
 ```sql
@@ -48,8 +44,6 @@ CREATE TABLE Employees (
     Salary DECIMAL(10,2)
 );
 ```
-
----
 
 # Inserting Sample Records
 
@@ -73,7 +67,6 @@ SELECT * FROM Employees;
 ```
 
 ### Output
-
 | EmployeeID | EmployeeName | Department | Salary |
 | --- | --- | --- | --- |
 | 1 | Akash | Management | 85000 |
@@ -84,8 +77,6 @@ SELECT * FROM Employees;
 | 6 | Rahul | Content | 50000 |
 | 7 | Kiran | Database | 61000 |
 | 8 | Nikhil | Management | 97000 |
-
----
 
 # SQL TOP Clause
 
@@ -98,8 +89,6 @@ SELECT TOP number column_list
 FROM table_name;
 ```
 
----
-
 ## Example 1: Retrieve Top 3 Records
 
 ```sql
@@ -108,7 +97,6 @@ FROM Employees;
 ```
 
 ### Output
-
 | EmployeeID | EmployeeName |
 | --- | --- |
 | 1 | Akash |
@@ -120,8 +108,6 @@ FROM Employees;
 - Returns the first three rows from the table.
 - Without ORDER BY, the returned rows depend on table storage order.
 
----
-
 ## Example 2: Top Highest Salaries
 
 ```sql
@@ -131,7 +117,6 @@ ORDER BY Salary DESC;
 ```
 
 ### Output
-
 | EmployeeName | Salary |
 | --- | --- |
 | Nikhil | 97000 |
@@ -142,8 +127,6 @@ ORDER BY Salary DESC;
 
 - Sorts employees by salary.
 - Returns the highest-paid three employees.
-
----
 
 ## Example 3: TOP with WHERE Clause
 
@@ -158,8 +141,6 @@ ORDER BY Salary ASC;
 
 - Filters employees earning more than 60000.
 - Returns the first two records after sorting.
-
----
 
 ## Example 4: TOP PERCENT
 
@@ -198,7 +179,6 @@ LIMIT 3;
 ```
 
 ### Output
-
 | EmployeeID | EmployeeName |
 | --- | --- |
 | 1 | Akash |
@@ -221,7 +201,6 @@ LIMIT 3;
 ```
 
 ### Output
-
 | EmployeeName | Salary |
 | --- | --- |
 | Nikhil | 97000 |
@@ -242,8 +221,6 @@ LIMIT 2;
 ### Explanation
 
 - Retrieves only two employees from the Technical department.
-
----
 
 # LIMIT with OFFSET
 
@@ -305,8 +282,6 @@ LIMIT 3 OFFSET 6;
 - Frequently used in web applications.
 - Displays records page by page.
 
----
-
 # Finding nth Highest Salary Using LIMIT
 
 ## Example: Third Highest Salary
@@ -319,7 +294,6 @@ LIMIT 1 OFFSET 2;
 ```
 
 ### Output
-
 | Salary |
 | --- |
 | 85000 |
@@ -329,8 +303,6 @@ LIMIT 1 OFFSET 2;
 - Sorts salaries in descending order.
 - Skips the first two highest salaries.
 - Returns the third highest salary.
-
----
 
 # SQL FETCH FIRST Clause
 
@@ -370,7 +342,6 @@ FETCH FIRST 3 ROWS ONLY;
 ```
 
 ### Output
-
 | EmployeeName | Salary |
 | --- | --- |
 | Nikhil | 97000 |
@@ -392,8 +363,6 @@ FETCH FIRST 1 ROW ONLY;
 
 - Returns only one matching record from the Management department.
 
----
-
 # Comparison of TOP, LIMIT, and FETCH FIRST
 
 | Feature | TOP | LIMIT | FETCH FIRST |
@@ -404,8 +373,6 @@ FETCH FIRST 1 ROW ONLY;
 | Oracle | No | No | Yes |
 | Supports Percentage | Yes | No | No |
 | Supports Offset | Through OFFSET-FETCH | Yes | Yes |
-
----
 
 # Common Use Cases
 
@@ -436,8 +403,6 @@ ORDER BY Salary DESC
 LIMIT 1;
 ```
 
----
-
 # Best Practices
 
 - Always use ORDER BY when retrieving top records.
@@ -445,8 +410,6 @@ LIMIT 1;
 - Avoid fetching unnecessary rows.
 - Use indexes on sorted columns for better performance.
 - Prefer FETCH FIRST when working with SQL-standard databases.
-
----
 
 # Important Points
 
@@ -456,12 +419,7 @@ LIMIT 1;
 - OFFSET helps implement pagination.
 - These clauses improve query efficiency by reducing returned data.
 
----
-
 # Conclusion
 
 The SQL TOP, LIMIT, and FETCH FIRST clauses are essential tools for controlling query output. They help retrieve only the required number of records, improve performance, and support tasks such as pagination, reporting, and ranking. Understanding the differences between these clauses allows developers to write efficient SQL queries across multiple database systems.
 
-
-
-###
