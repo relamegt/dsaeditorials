@@ -93,22 +93,7 @@ The stack automatically grows and shrinks as functions are called and completed.
 
 ## Process Memory Layout
 
-```Code
-+-------------------------+
-|        Stack            |
-| Local Variables         |
-| Function Calls          |
-+-------------------------+
-|         Heap            |
-| Dynamic Memory          |
-+-------------------------+
-|      Data Section       |
-| Global & Static Data    |
-+-------------------------+
-|      Text Section       |
-| Executable Code         |
-+-------------------------+
-```
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/process-in-operating-system/1782583990051-eedac5f7-753f-4da3-b428-7aa20374febd.png)
 
 ## Process Control Block (PCB)
 
