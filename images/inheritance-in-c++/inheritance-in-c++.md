@@ -163,14 +163,6 @@ without rewriting the function.
 # 1. Single Inheritance
 
 Single Inheritance occurs when one derived class inherits from one base class.
-
-```text
-Vehicle
-   |
-   |
-  Car
-```
-
 This is the simplest form of inheritance.
 
 ![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/inheritance-in-c/1781091400466-ccb8283c-3fae-4f93-abdd-36a74217ac5d.png)
@@ -228,17 +220,6 @@ Because of inheritance, the Car object can directly access functions defined in 
 # 2. Multiple Inheritance
 
 Multiple Inheritance occurs when one class inherits from more than one base class.
-
-```text
-Engine
-      \
-       \
-        SportsCar
-       /
-      /
-Transmission
-```
-
 The derived class receives features from multiple parent classes.
 
 ![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/inheritance-in-c/1781091432260-2c9ecd22-04b6-4368-bbf7-a3502e671664.png)
@@ -303,15 +284,6 @@ This allows a single object to access members from multiple parent classes.
 # 3. Multilevel Inheritance
 
 Multilevel Inheritance forms a chain of inheritance.
-
-```text
-Vehicle
-   |
-FourWheeler
-   |
-  Car
-```
-
 A class inherits another derived class.
 
 ![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/inheritance-in-c/1781091545295-430353f5-ed2d-438b-873c-1a8aa2565295.png)
@@ -385,16 +357,7 @@ Therefore, Car automatically gets access to members of both classes.
 
 # 4. Hierarchical Inheritance
 
-Hierarchical Inheritance occurs when multiple classes inherit from the same base class.
-
-```text
-Vehicle
-        /    |    \
-       /     |     \
-     Car    Bike   Truck
-```
-
-All child classes share common functionality from the parent class.
+Hierarchical Inheritance occurs when multiple classes inherit from the same base class.All child classes share common functionality from the parent class.
 
 ![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/inheritance-in-c/1781091600268-7f6cc224-4d17-496d-ae60-e6e31a5cbc71.png)
 
@@ -460,15 +423,7 @@ Hybrid Inheritance combines two or more inheritance types.
 
 Example:
 
-```text
-Vehicle
-          /       \
-         /         \
-       Car        FareInfo
-          \       /
-           \     /
-        ElectricCar
-```
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/inheritance-in-c/1782651705479-033fa631-10f6-4a08-bb5d-8b229ca6dd01.png)
 
 Hybrid inheritance is commonly used in large-scale applications where multiple relationships exist between classes.
 
@@ -626,18 +581,6 @@ Inheritance is widely used in:
 - Employee Management Systems
 - Game Development
 - Educational Platforms like AlphaKnowledge
-
-For example, in a Vehicle Management System:
-
-```text
-Vehicle
-   |
---------------------------------
-|              |              |
-Car           Bike          Truck
-```
-
-All vehicle types share common functionality while maintaining their own specialized features.
 
 # Summary
 
