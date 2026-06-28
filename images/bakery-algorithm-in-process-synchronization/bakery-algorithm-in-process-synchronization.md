@@ -1,7 +1,5 @@
 # Bakery Algorithm in Process Synchronization
 
-**Last Updated:** 25 Aug, 2025
-
 The Bakery Algorithm, proposed by Leslie Lamport, is one of the simplest and most famous solutions to the mutual exclusion problem for $N$ processes. It ensures fairness and follows a First-Come-First-Serve (FCFS) order.
 
 ---
