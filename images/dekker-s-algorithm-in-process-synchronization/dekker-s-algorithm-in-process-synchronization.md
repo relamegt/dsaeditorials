@@ -1,7 +1,5 @@
 # Dekker's Algorithm in Process Synchronization
 
-**Last Updated:** 29 Aug, 2025
-
 Dekker’s Algorithm was the first correct solution to the critical section problem for two processes. It is significant in the history of operating systems because: 
 
 - **Avoids Strict Alternation:** It does not require processes to strictly take turns (naïve alternation).
