@@ -8,8 +8,6 @@ The `<string>` header must be included to use these features. Key benefits inclu
 - A broad set of built-in functions covers searching, modifying, comparing, and extracting text.
 - Operations are significantly easier to write and maintain compared to raw `char[]` manipulation.
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/string-functions-in-c/1782644656782-1781013968973-15.png)
-
 ### Quick Demo
 
 ```Cpp
@@ -43,8 +41,6 @@ Find 'Platform' at index : 15
 ## Standard String Class (std::string)
 
 Introduced in C++98 and defined in the `<string>` header, `std::string` is the go-to class for handling dynamic character sequences. It serves as a safer, more capable replacement for C-style character arrays, offering native support for operations like searching, replacing, comparing, and splitting text without needing external libraries.
-
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/string-functions-in-c/1782644715308-1781014024736-16.png)
 
 ## Commonly Used String Functions
 
