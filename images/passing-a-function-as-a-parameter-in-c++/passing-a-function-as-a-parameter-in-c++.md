@@ -38,15 +38,7 @@ The same report can display:
 
 Instead of creating separate report functions, we can pass different calculation functions to a common report generator.
 
-```text
-Report Generator
-       |
-       +---- Student Count Function
-       |
-       +---- Course Count Function
-       |
-       +---- Revenue Function
-```
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/passing-a-function-as-a-parameter-in-c/1782653718731-WhatsApp_Image_2026-06-28_at_7.05.02_PM.jpeg)
 
 # Callback Function
 
@@ -233,23 +225,7 @@ Most modern C++ code uses the function name directly because it is shorter and e
 
 # Function Pointer Visualization
 
-```text
-add() --------+
-              |
-              v
-         calculate()
-              |
-              v
-           20 + 10
-
-multiply() --+
-              |
-              v
-         calculate()
-              |
-              v
-          20 * 10
-```
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/passing-a-function-as-a-parameter-in-c/1782653746126-WhatsApp_Image_2026-06-28_at_7.03.47_PM.jpeg)
 
 # Using typedef with Function Pointers
 
@@ -286,6 +262,7 @@ int main()
 
 ### Output
 30
+
 # std::function (Modern C++)
 
 C++11 introduced `std::function`, a flexible wrapper capable of storing:
@@ -437,6 +414,7 @@ int main()
 
 ### Output
 Pass
+
 # Functors (Function Objects)
 
 A functor is a class object that behaves like a function.
