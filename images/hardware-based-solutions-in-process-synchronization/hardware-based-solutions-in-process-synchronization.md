@@ -1,7 +1,5 @@
 # Hardware-Based Solutions in Process Synchronization
 
-**Last Updated:** 15 Apr, 2026
-
 Hardware-based solutions to the critical section problem use special hardware instructions like **Test-and-Set** and **Swap** (or **Compare-and-Swap**). These instructions operate atomically (indivisibly) at the CPU level to safely manage access to shared resources, ensuring that only one process can enter the critical section at a time.
 
 ## Core Concepts
