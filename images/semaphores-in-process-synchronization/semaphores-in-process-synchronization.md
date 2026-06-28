@@ -1,7 +1,5 @@
 # Semaphores in Process Synchronization
 
-**Last Updated:** 15 Apr, 2026
-
 A semaphore is a synchronization tool used in operating systems to manage access to shared resources in a multi-process or multi-threaded environment. It is an integer variable that controls process execution using atomic operations like `wait()` and `signal()`. Semaphores help prevent race conditions and ensure proper coordination between processes.
 
 - **Resource Counter:** Maintains a counter representing available resources.
