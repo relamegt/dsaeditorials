@@ -104,23 +104,13 @@ STL offers a large collection of:
 - Iterators
 - Function Objects
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/standard-template-library-stl-in-c/1781096084465-9951b72b-5261-4571-abbc-480079bd2427.png)
-
 which simplify software development.
 
 # Components of STL
 
 The Standard Template Library mainly consists of three major components.
 
-```text
-STL
-│
-├── Containers
-│
-├── Algorithms
-│
-└── Iterators
-```
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/standard-template-library-stl-in-c/1781096084465-9951b72b-5261-4571-abbc-480079bd2427.png)
 
 These components work together to provide powerful and flexible programming capabilities.
 
@@ -418,7 +408,7 @@ Most algorithms are defined inside:
 | `replace()` | Replace values |
 | `unique()` | Remove consecutive duplicates |
 | `lower_bound()` | First element ≥ value |
-| `upper_bound()` | First element > value |
+| `upper_bound()` | First element &gt; value |
 | `accumulate()` | Sum all elements |
 
 ## Example: Sorting Elements
