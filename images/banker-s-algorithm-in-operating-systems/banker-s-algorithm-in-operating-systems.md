@@ -1,6 +1,6 @@
 # Banker's Algorithm in Operating Systems
 
-The Banker's Algorithm is a classic resource allocation and deadlock avoidance algorithm. Named after its structural similarity to a banking system—where a banker does not allocate cash lines unless the remaining cash can satisfy at least one customer's line of credit—the algorithm checks whether allocating resources keeps the operating system in a safe state. It tracks resource demands, active allocations, and available resource limits to prevent processes from entering deadlock.
+The Banker's Algorithm is a resource allocation and deadlock avoidance algorithm. Named after its structural similarity to a banking system—where a banker does not allocate cash lines unless the remaining cash can satisfy at least one customer's line of credit—the algorithm checks whether allocating resources keeps the operating system in a safe state. It tracks resource demands, active allocations, and available resource limits to prevent processes from entering deadlock.
 
 ## Key Operating System States
 
@@ -14,13 +14,13 @@ An unsafe state occurs when the remaining available resources cannot guarantee t
 
 ### Example of an Unsafe State
 
-Consider a manufacturing unit with three robotic arms (Arm 1, Arm 2, Arm 3) and a total pool of 7 drill bit resources.
+Consider a manufacturing system with three robotic arms (Arm 1, Arm 2, Arm 3) and a total pool of 7 drill bit resources.
 
 - **Available Resources:** 1 drill bit
 - **Current Allocations:** Arm 1 holds 2; Arm 2 holds 3; Arm 3 holds 1. (Total allocated = 6)
 - **Maximum Demands:** Arm 1 requires 4; Arm 2 requires 5; Arm 3 requires 3.
 
-We compute the remaining resource requirements using $\text{Need} = \text{Maximum Demand} - \text{Allocation}$:
+We compute the remaining resource requirements using the formula Need = Maximum Demand - Allocation:
 
 | Process | Maximum Demand | Allocation | Need |
 | --- | --- | --- | --- |
@@ -32,12 +32,12 @@ Here, Arm 1, Arm 2, and Arm 3 each require 2 additional drill bits to finish the
 
 ## Core Data Structures
 
-To track allocation status, the algorithm utilizes four matrices and vectors (where $n$ is the number of processes and $m$ is the number of resource types):
+To track allocation status, the algorithm utilizes four matrices and vectors (where n is the number of processes and m is the number of resource types):
 
-1. **Available Vector:** A 1D array of size $m$ indicating the number of free resource instances of each type. $\text{Available}[j] = k$ means $k$ instances of resource type $R_j$ are currently free.
-2. **Max Matrix:** A 2D array of size $n \times m$ defining the maximum resource demand of each process. $\text{Max}[i][j] = k$ means process $P_i$ can request at most $k$ instances of resource type $R_j$.
-3. **Allocation Matrix:** A 2D array of size $n \times m$ defining the number of resources currently allocated to each process. $\text{Allocation}[i][j] = k$ means process $P_i$ currently holds $k$ instances of resource type $R_j$.
-4. **Need Matrix:** A 2D array of size $n \times m$ indicating the remaining resource needs of each process. $\text{Need}[i][j] = \text{Max}[i][j] - \text{Allocation}[i][j]$.
+1. **Available Vector:** A 1D array of size m indicating the number of free resource instances of each type. `Available[j] = k` means k instances of resource type R[j] are currently free.
+2. **Max Matrix:** A 2D array of size n * m defining the maximum resource demand of each process. `Max[i][j] = k` means process P[i] can request at most k instances of resource type R[j].
+3. **Allocation Matrix:** A 2D array of size n * m defining the number of resources currently allocated to each process. `Allocation[i][j] = k` means process P[i] currently holds k instances of resource type R[j].
+4. **Need Matrix:** A 2D array of size n * m indicating the remaining resource needs of each process. `Need[i][j] = Max[i][j] - Allocation[i][j]`.
 
 ## Banker's Algorithm Procedures
 
@@ -49,41 +49,41 @@ The Safety Algorithm simulates execution to verify if a system configuration is 
 
 1. **Initialize:**
 
-- Let $\text{Work} = \text{Available}$.
-- Let $\text{Finish}[i] = \text{false}$ for all processes $i = 0, 1, \dots, n-1$.
+- Let `Work = Available`.
+- Let `Finish[i] = false` for all processes i = 0, 1, ..., n-1.
 
-1. **Find a process $P_i$ that satisfies:**
+1. **Find a process P[i] that satisfies:**
 
-- $\text{Finish}[i] == \text{false}$
-- $\text{Need}[i] \le \text{Work}$
+- `Finish[i] == false`
+- `Need[i] <= Work`
 - If no such process exists, skip to step 4.
 
 1. **Simulate completion:**
 
-- Update $\text{Work} = \text{Work} + \text{Allocation}[i]$
-- Set $\text{Finish}[i] = \text{true}$
+- Update `Work = Work + Allocation[i]`
+- Set `Finish[i] = true`
 - Return to step 2 to evaluate remaining processes.
 
 1. **Evaluate System Safety:**
 
-- If $\text{Finish}[i] == \text{true}$ for all $i$, the system is in a safe state.
+- If `Finish[i] == true` for all i, the system is in a safe state.
 
 ### 2. Resource Request Algorithm
 
-This algorithm determines if a new resource request from a process $P_i$ can be safely granted.
+This algorithm decides if a new resource request from a process P[i] can be safely granted.
 
-1. **Check Demand Limit:** If $\text{Request}[i] \le \text{Need}[i]$, proceed; otherwise, throw an error since the process has exceeded its declared maximum claim.
-2. **Check Resource Availability:** If $\text{Request}[i] \le \text{Available}$, proceed; otherwise, process $P_i$ must wait because sufficient resources are not currently free.
+1. **Check Demand Limit:** If `Request[i] <= Need[i]`, proceed; otherwise, throw an error since the process has exceeded its declared maximum claim.
+2. **Check Resource Availability:** If `Request[i] <= Available`, proceed; otherwise, process P[i] must wait because sufficient resources are not currently free.
 3. **Simulate Allocation:** Temporarily modify state variables:
 
-- $\text{Available} = \text{Available} - \text{Request}[i]$
-- $\text{Allocation}[i] = \text{Allocation}[i] + \text{Request}[i]$
-- $\text{Need}[i] = \text{Need}[i] - \text{Request}[i]$
+- `Available = Available - Request[i]`
+- `Allocation[i] = Allocation[i] + Request[i]`
+- `Need[i] = Need[i] - Request[i]`
 
 1. **Evaluate Security:** Execute the Safety Algorithm on the modified state.
 
 - If the resulting state is safe, grant the resource allocation.
-- If the state is unsafe, roll back the simulated allocations and force process $P_i$ to wait.
+- If the state is unsafe, roll back the simulated allocations and force process P[i] to wait.
 
 ## Safe State and Sequence Analysis Example
 
@@ -106,7 +106,7 @@ Suppose the system has the following active states:
 - **Available Resources Vector:**
 - {3, 3, 2}
 
-We calculate the **Need Matrix** ($\text{Max} - \text{Allocation}$):
+We calculate the **Need Matrix** (Max - Allocation):
 
 - Task 0: {7, 4, 3}
 - Task 1: {1, 2, 2}
@@ -442,7 +442,7 @@ main();
 
 ## Summary
 
-The Banker's Algorithm is a core deadlock avoidance protocol that dynamically evaluates resource requests to guarantee system stability. By maintaining detailed data structures representing resource maximum limits, active allocations, and remaining requirements, it prevents systems from entering unsafe states. While computationally expensive due to the $O(n^2 \times m)$ safety checking loop, it serves as a critical mathematical model for safe resource allocation in concurrent execution environments.
+The Banker's Algorithm is a core deadlock avoidance protocol that dynamically evaluates resource requests to guarantee system stability. By maintaining detailed data structures representing resource maximum limits, active allocations, and remaining requirements, it prevents systems from entering unsafe states. While computationally expensive due to the safety checking loop of O(n^2 * m), it serves as a critical mathematical model for safe resource allocation in concurrent execution environments.
 
 
 
