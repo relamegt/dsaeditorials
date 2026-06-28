@@ -7,25 +7,13 @@ Polymorphism is one of the four fundamental pillars of Object-Oriented Programmi
 
 Therefore, polymorphism means **"many forms"**.
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/polymorphism-in-c/1781090538647-e12d5d98-4aec-4184-9223-cf2ccc308675.png)
-
 In C++, polymorphism allows the same function name, method, or operator to perform different tasks depending on the context in which it is used.
 
 In simple words, a single interface can have multiple implementations.
 
 For example, different types of vehicles may have the same function called `startEngine()`, but each vehicle starts differently.
 
-```text
-Vehicle
-   |
---------------------------------
-|              |              |
-Car           Bike          Truck
-
-startEngine() startEngine() startEngine()
-     |             |             |
- "Car Starts"  "Bike Starts" "Truck Starts"
-```
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/polymorphism-in-c/1781090538647-e12d5d98-4aec-4184-9223-cf2ccc308675.png)
 
 Although the function name is the same, the behavior changes depending on the object.
 
@@ -63,15 +51,6 @@ Polymorphism in C++ is broadly divided into two categories:
 
 1. Compile-Time Polymorphism
 2. Run-Time Polymorphism
-
-```text
-Polymorphism
-      |
----------------------
-|                   |
-Compile Time     Run Time
-Polymorphism    Polymorphism
-```
 
 ![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/polymorphism-in-c/1781090595523-24b8e889-68a7-45db-89f7-ebe5326ef140.png)
 
