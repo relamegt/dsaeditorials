@@ -101,8 +101,6 @@ Enforcing leaf-only data storage introduces several design trade-offs:
 | **Disk I/O Latency** | Low (fewer tree levels maximize block reads) | Higher (more tree levels due to bulky internal nodes) |
 | **Memory Footprint** | Requires extra space to store navigation keys and list pointers | Lower memory footprint (no duplicate keys stored) |
 
-> [!NOTE]
-
 > **Key Insight**: The primary difference between B+ Trees and B-Trees lies in leaf node chaining and key distribution. A B-Tree stores data records in both internal and leaf nodes, which can increase the tree's height. A B+ Tree stores data records only in leaf nodes and links them sequentially via pointers, reducing the tree's height for point lookups and enabling fast, direct sequential range scans.
 
 # Summary
