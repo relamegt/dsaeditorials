@@ -90,7 +90,7 @@ A left outer join returns all rows from the left table and the matching rows fro
 
   **REGISTRY ⟕ SPECIFICATIONS**
 
-- **Result Table**:
+### **Result Table:**
 
 | DeviceID | REGISTRY.CustodianName | SPECIFICATIONS.CustodianName | SpecCode |
 | --- | --- | --- | --- |
@@ -145,7 +145,7 @@ The set intersection operator retrieves only the rows that are present in both t
 - 2, Akash
 - **Operation**: Find the students common to both teams:
 
-  **TEAM_A ∩ TEAM_B**
+  `TEAM_A ∩ TEAM_B` 
 
 - **Result Table**:
 
