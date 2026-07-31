@@ -1,7 +1,5 @@
 # Co-prime & Twin Prime Numbers
 
-![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/co-prime-twin-prime-numbers/1785485027252-1.png)
-
 In number theory and quantitative mathematics, prime numbers exhibit unique relationships when paired together or combined with composite numbers. Two of the most important relative classifications are **Co-prime Numbers** and **Twin Prime Numbers**.
 
 ---
@@ -38,6 +36,8 @@ A pair of numbers where both numbers are composite (non-prime), yet they share n
 ## Infographic: Visualizing Co-primes and Twin Primes
 
 The following diagram illustrates the distinct mathematical structures of co-prime and twin prime pairs:
+
+![](https://raw.githubusercontent.com/relamegt/dsaeditorials/main/images/co-prime-twin-prime-numbers/1785485027252-1.png)
 
 ---
 
