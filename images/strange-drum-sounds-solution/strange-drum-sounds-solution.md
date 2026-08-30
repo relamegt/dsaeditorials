@@ -47,62 +47,64 @@ Now, observe that any general string $p$ and $s$ can be partitioned into consecu
 
 ```C
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
-void solve_c(char *p, char *s) {
-    int n = strlen(p);
-    int m = strlen(s);
+int get_run_lengths(const char *s, int *arr) {
+    int cnt = 1;
+    int len = 0;
+    int n = strlen(s);
+    for (int i = 1; i < n; i++) {
+        if (s[i] != s[i - 1]) {
+            arr[len++] = cnt;
+            cnt = 1;
+        } else {
+            cnt++;
+        }
+    }
+    arr[len++] = cnt;
+    return len;
+}
+
+void solve_c() {
+    char p[500005], s[500005];
+    if (scanf("%s %s", p, s) != 2) return;
+
+    int n = strlen(p), m = strlen(s);
     if (m < n || m > 2 * n || p[0] != s[0]) {
         printf("NO\n");
         return;
     }
-    int *aa = (int*)malloc(n * sizeof(int));
-    int aa_sz = 0;
-    int cnt = 1;
-    for (int i = 1; i < n; i++) {
-        if (p[i] != p[i-1]) {
-            aa[aa_sz++] = cnt;
-            cnt = 1;
-        } else cnt++;
-    }
-    aa[aa_sz++] = cnt;
 
-    int *bb = (int*)malloc(m * sizeof(int));
-    int bb_sz = 0;
-    cnt = 1;
-    for (int i = 1; i < m; i++) {
-        if (s[i] != s[i-1]) {
-            bb[bb_sz++] = cnt;
-            cnt = 1;
-        } else cnt++;
-    }
-    bb[bb_sz++] = cnt;
+    int *aa = (int*)malloc((n + 5) * sizeof(int));
+    int *bb = (int*)malloc((m + 5) * sizeof(int));
 
-    if (aa_sz != bb_sz) {
+    int lenA = get_run_lengths(p, aa);
+    int lenB = get_run_lengths(s, bb);
+
+    if (lenA != lenB) {
         printf("NO\n");
         free(aa);
         free(bb);
         return;
     }
-    for (int i = 0; i < aa_sz; i++) {
-        if (aa[i] > bb[i] || aa[i] * 2 < bb[i]) {
-            printf("NO\n");
-            free(aa);
-            free(bb);
-            return;
+
+    int ok = 1;
+    for (int i = 0; i < lenA; i++) {
+        if (bb[i] < aa[i] || bb[i] > 2 * aa[i]) {
+            ok = 0;
+            break;
         }
     }
-    printf("YES\n");
+    printf("%s\n", ok ? "YES" : "NO");
     free(aa);
     free(bb);
 }
 
 int main() {
-    static char p[200005];
-    static char s[200005];
-    while (scanf("%s %s", p, s) == 2) {
-        solve_c(p, s);
+    int t;
+    if (scanf("%d", &t) == 1) {
+        while (t--) solve_c();
     }
     return 0;
 }
@@ -113,54 +115,62 @@ int main() {
 #include <vector>
 using namespace std;
 
-void solveTestCase() {
+void solve() {
     string p, s;
-    if (!(cin >> p >> s)) return;
+    if (!(cin >> p >> s)) {
+        return;
+    }
+
     int n = p.size();
     int m = s.size();
+
     if (m < n || m > 2 * n || p[0] != s[0]) {
         cout << "NO\n";
         return;
     }
-    vector<int> aa, bb;
-    int cnt = 1;
-    for (int i = 1; i < n; i++) {
-        if (p[i] != p[i-1]) {
-            aa.push_back(cnt);
-            cnt = 1;
-        } else cnt++;
-    }
-    aa.push_back(cnt);
 
-    cnt = 1;
-    for (int i = 1; i < m; i++) {
-        if (s[i] != s[i-1]) {
-            bb.push_back(cnt);
-            cnt = 1;
-        } else cnt++;
+    vector<int> bP, bS;
+    for (int i = 0; i < n; ) {
+        int j = i;
+        while (j < n && p[j] == p[i]) {
+            j++;
+        }
+        bP.push_back(j - i);
+        i = j;
     }
-    bb.push_back(cnt);
 
-    if (aa.size() != bb.size()) {
+    for (int i = 0; i < m; ) {
+        int j = i;
+        while (j < m && s[j] == s[i]) {
+            j++;
+        }
+        bS.push_back(j - i);
+        i = j;
+    }
+
+    if (bP.size() != bS.size()) {
         cout << "NO\n";
         return;
     }
-    for (size_t i = 0; i < aa.size(); i++) {
-        if (aa[i] > bb[i] || aa[i] * 2 < bb[i]) {
+
+    for (size_t k = 0; k < bP.size(); k++) {
+        if (bS[k] < bP[k] || bS[k] > 2 * bP[k]) {
             cout << "NO\n";
             return;
         }
     }
+
     cout << "YES\n";
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int t;
     if (cin >> t) {
         while (t--) {
-            solveTestCase();
+            solve();
         }
     }
     return 0;
@@ -174,7 +184,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNextInt()) {
             int t = sc.nextInt();
-            while (t-- > 0) {
+            while (t-- > 0 && sc.hasNext()) {
                 String p = sc.next();
                 String s = sc.next();
 
@@ -229,49 +239,50 @@ public class Main {
 ```Python
 import sys
 
-def solve(p, s):
-    n, m = len(p), len(s)
-    if m < n or m > 2 * n or p[0] != s[0]:
-        return "NO"
-    aa = []
+def get_run_lengths(s):
+    res = []
     cnt = 1
-    for i in range(1, n):
-        if p[i] != p[i-1]:
-            aa.append(cnt)
+    for i in range(1, len(s)):
+        if s[i] != s[i - 1]:
+            res.append(cnt)
             cnt = 1
         else:
             cnt += 1
-    aa.append(cnt)
-
-    bb = []
-    cnt = 1
-    for i in range(1, m):
-        if s[i] != s[i-1]:
-            bb.append(cnt)
-            cnt = 1
-        else:
-            cnt += 1
-    bb.append(cnt)
-
-    if len(aa) != len(bb):
-        return "NO"
-    for i in range(len(aa)):
-        if aa[i] > bb[i] or aa[i] * 2 < bb[i]:
-            return "NO"
-    return "YES"
+    res.append(cnt)
+    return res
 
 def main():
-    lines = sys.stdin.read().split()
-    if not lines:
+    input_data = sys.stdin.read().split()
+    if not input_data:
         return
     ptr = 0
-    while ptr < len(lines):
-        p = lines[ptr]
-        if ptr + 1 >= len(lines):
-            break
-        s = lines[ptr + 1]
+    t = int(input_data[ptr])
+    ptr += 1
+    out = []
+    for _ in range(t):
+        p = input_data[ptr]
+        s = input_data[ptr + 1]
         ptr += 2
-        print(solve(p, s))
+
+        n, m = len(p), len(s)
+        if m < n or m > 2 * n or p[0] != s[0]:
+            out.append("NO")
+            continue
+
+        aa = get_run_lengths(p)
+        bb = get_run_lengths(s)
+
+        if len(aa) != len(bb):
+            out.append("NO")
+            continue
+
+        ok = True
+        for i in range(len(aa)):
+            if bb[i] < aa[i] or bb[i] > 2 * aa[i]:
+                ok = False
+                break
+        out.append("YES" if ok else "NO")
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
@@ -281,46 +292,56 @@ using System;
 using System.Collections.Generic;
 
 class Solution {
-    static string Solve(string p, string s) {
-        int n = p.Length, m = s.Length;
-        if (m < n || m > 2 * n || p[0] != s[0]) return "NO";
-        List<int> aa = new List<int>();
+    static List<int> GetRunLengths(string str) {
+        var list = new List<int>();
         int cnt = 1;
-        for (int i = 1; i < n; i++) {
-            if (p[i] != p[i - 1]) {
-                aa.Add(cnt);
+        for (int i = 1; i < str.Length; i++) {
+            if (str[i] != str[i - 1]) {
+                list.Add(cnt);
                 cnt = 1;
-            } else cnt++;
+            } else {
+                cnt++;
+            }
         }
-        aa.Add(cnt);
-
-        List<int> bb = new List<int>();
-        cnt = 1;
-        for (int i = 1; i < m; i++) {
-            if (s[i] != s[i - 1]) {
-                bb.Add(cnt);
-                cnt = 1;
-            } else cnt++;
-        }
-        bb.Add(cnt);
-
-        if (aa.Count != bb.Count) return "NO";
-        for (int i = 0; i < aa.Count; i++) {
-            if (aa[i] > bb[i] || aa[i] * 2 < bb[i]) return "NO";
-        }
-        return "YES";
+        list.Add(cnt);
+        return list;
     }
 
     static void Main() {
         string input = Console.In.ReadToEnd();
         if (string.IsNullOrWhiteSpace(input)) return;
         string[] tokens = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return;
         int ptr = 0;
-        while (ptr < tokens.Length) {
+        int t = int.Parse(tokens[ptr++]);
+        while (t-- > 0 && ptr < tokens.Length) {
             string p = tokens[ptr++];
-            if (ptr >= tokens.Length) break;
             string s = tokens[ptr++];
-            Console.WriteLine(Solve(p, s));
+
+            int n = p.Length;
+            int m = s.Length;
+
+            if (m < n || m > 2 * n || p[0] != s[0]) {
+                Console.WriteLine("NO");
+                continue;
+            }
+
+            List<int> aa = GetRunLengths(p);
+            List<int> bb = GetRunLengths(s);
+
+            if (aa.Count != bb.Count) {
+                Console.WriteLine("NO");
+                continue;
+            }
+
+            bool ok = true;
+            for (int i = 0; i < aa.Count; i++) {
+                if (bb[i] < aa[i] || bb[i] > 2 * aa[i]) {
+                    ok = false;
+                    break;
+                }
+            }
+            Console.WriteLine(ok ? "YES" : "NO");
         }
     }
 }
@@ -328,47 +349,59 @@ class Solution {
 ```JavaScript
 const fs = require('fs');
 
-function solve(p, s) {
-    const n = p.length, m = s.length;
-    if (m < n || m > 2 * n || p[0] !== s[0]) return "NO";
-    const aa = [];
+function getRunLengths(str) {
+    const list = [];
     let cnt = 1;
-    for (let i = 1; i < n; i++) {
-        if (p[i] !== p[i - 1]) {
-            aa.push(cnt);
+    for (let i = 1; i < str.length; i++) {
+        if (str[i] !== str[i - 1]) {
+            list.push(cnt);
             cnt = 1;
-        } else cnt++;
+        } else {
+            cnt++;
+        }
     }
-    aa.push(cnt);
-
-    const bb = [];
-    cnt = 1;
-    for (let i = 1; i < m; i++) {
-        if (s[i] !== s[i - 1]) {
-            bb.push(cnt);
-            cnt = 1;
-        } else cnt++;
-    }
-    bb.push(cnt);
-
-    if (aa.length !== bb.length) return "NO";
-    for (let i = 0; i < aa.length; i++) {
-        if (aa[i] > bb[i] || aa[i] * 2 < bb[i]) return "NO";
-    }
-    return "YES";
+    list.push(cnt);
+    return list;
 }
 
 function main() {
     const input = fs.readFileSync(0, 'utf-8');
     const tokens = input.trim().split(/\s+/);
-    if (!tokens || tokens.length < 2) return;
+    if (!tokens || tokens.length === 0 || tokens[0] === '') return;
     let ptr = 0;
-    while (ptr < tokens.length) {
-        const p = tokens[ptr++];
+    const t = parseInt(tokens[ptr++]);
+    const out = [];
+    for (let tc = 0; tc < t; tc++) {
         if (ptr >= tokens.length) break;
+        const p = tokens[ptr++];
         const s = tokens[ptr++];
-        console.log(solve(p, s));
+
+        const n = p.length;
+        const m = s.length;
+
+        if (m < n || m > 2 * n || p[0] !== s[0]) {
+            out.push("NO");
+            continue;
+        }
+
+        const aa = getRunLengths(p);
+        const bb = getRunLengths(s);
+
+        if (aa.length !== bb.length) {
+            out.push("NO");
+            continue;
+        }
+
+        let ok = true;
+        for (let i = 0; i < aa.length; i++) {
+            if (bb[i] < aa[i] || bb[i] > 2 * aa[i]) {
+                ok = false;
+                break;
+            }
+        }
+        out.push(ok ? "YES" : "NO");
     }
+    console.log(out.join('\n'));
 }
 
 main();
