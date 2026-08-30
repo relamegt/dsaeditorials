@@ -52,7 +52,7 @@ We can maintain the frequency of $x_i$ using a hash map as we compute prefix sum
 
 ### Algorithm
 
-1. Read the number of test cases $t$.
+1. Read input.
 2. For each testcase:
 
 - Initialize `d = {0: 1}`, `res = 0`, `s = 0`.
@@ -76,21 +76,27 @@ static int hash_func(int key) {
     return h;
 }
 
-void solve_c(int n, char *a) {
+void solve_c() {
+    int n;
+    if (scanf("%d", &n) != 1) return;
+    char *a = (char*)malloc((n + 5) * sizeof(char));
+    scanf("%s", a);
+
     int *keys = (int*)calloc(TABLE_SIZE, sizeof(int));
     long long *vals = (long long*)calloc(TABLE_SIZE, sizeof(long long));
     int *used = (int*)calloc(TABLE_SIZE, sizeof(int));
 
-    int idx0 = hash_func(0);
-    used[idx0] = 1;
-    keys[idx0] = 0;
-    vals[idx0] = 1;
+    int zero_idx = hash_func(0);
+    used[zero_idx] = 1;
+    keys[zero_idx] = 0;
+    vals[zero_idx] = 1;
 
     long long res = 0;
     int s = 0;
+
     for (int i = 0; i < n; i++) {
-        s += a[i] - '0';
-        int x = s - i - 1;
+        s += (a[i] - '0');
+        int x = s - (i + 1);
 
         int idx = hash_func(x);
         while (used[idx] && keys[idx] != x) {
@@ -106,18 +112,18 @@ void solve_c(int n, char *a) {
             vals[idx] = 1;
         }
     }
-    printf("%lld\n", res);
 
+    printf("%lld\n", res);
+    free(a);
     free(keys);
     free(vals);
     free(used);
 }
 
 int main() {
-    int n;
-    static char a[200005];
-    while (scanf("%d %s", &n, a) == 2) {
-        solve_c(n, a);
+    int t;
+    if (scanf("%d", &t) == 1) {
+        while (t--) solve_c();
     }
     return 0;
 }
@@ -125,35 +131,40 @@ int main() {
 ```cpp
 #include <iostream>
 #include <string>
-#include <vector>
 #include <unordered_map>
 using namespace std;
 
-void solveTestCase() {
+void solve() {
     int n;
-    if (!(cin >> n)) return;
+    if (!(cin >> n)) {
+        return;
+    }
     string a;
     cin >> a;
+
     unordered_map<int, long long> d;
     d[0] = 1;
     long long res = 0;
     int s = 0;
+
     for (int i = 0; i < n; i++) {
         s += a[i] - '0';
         int x = s - i - 1;
         res += d[x];
         d[x]++;
     }
+
     cout << res << "\n";
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int t;
     if (cin >> t) {
         while (t--) {
-            solveTestCase();
+            solve();
         }
     }
     return 0;
@@ -167,22 +178,22 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNextInt()) {
             int t = sc.nextInt();
-            while (t-- > 0) {
+            while (t-- > 0 && sc.hasNextInt()) {
                 int n = sc.nextInt();
                 String a = sc.next();
 
-                Map<Integer, Integer> d = new HashMap<>();
-                d.put(0, 1);
+                Map<Integer, Long> d = new HashMap<>();
+                d.put(0, 1L);
 
                 long res = 0;
-                long s = 0;
+                int s = 0;
 
                 for (int i = 0; i < n; i++) {
                     s += (a.charAt(i) - '0');
-                    int x = (int)(s - (i + 1));
-                    int count = d.getOrDefault(x, 0);
+                    int x = s - (i + 1);
+                    long count = d.getOrDefault(x, 0L);
                     res += count;
-                    d.put(x, count + 1);
+                    d.put(x, count + 1L);
                 }
 
                 System.out.println(res);
@@ -201,10 +212,11 @@ def main():
     if not input_data:
         return
     ptr = 0
-    while ptr < len(input_data):
+    t = int(input_data[ptr])
+    ptr += 1
+    out = []
+    for _ in range(t):
         n = int(input_data[ptr])
-        if ptr + 1 >= len(input_data):
-            break
         a = input_data[ptr + 1]
         ptr += 2
 
@@ -214,10 +226,11 @@ def main():
         s = 0
         for i in range(n):
             s += int(a[i])
-            x = s - i - 1
+            x = s - (i + 1)
             res += d[x]
             d[x] += 1
-        print(res)
+        out.append(str(res))
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
@@ -231,19 +244,19 @@ class Solution {
         string input = Console.In.ReadToEnd();
         if (string.IsNullOrWhiteSpace(input)) return;
         string[] tokens = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return;
         int ptr = 0;
-        while (ptr < tokens.Length) {
+        int t = int.Parse(tokens[ptr++]);
+        while (t-- > 0 && ptr < tokens.Length) {
             int n = int.Parse(tokens[ptr++]);
-            if (ptr >= tokens.Length) break;
             string a = tokens[ptr++];
-
             var d = new Dictionary<int, long>();
             d[0] = 1;
             long res = 0;
             int s = 0;
             for (int i = 0; i < n; i++) {
-                s += a[i] - '0';
-                int x = s - i - 1;
+                s += (a[i] - '0');
+                int x = s - (i + 1);
                 if (d.TryGetValue(x, out long count)) {
                     res += count;
                     d[x] = count + 1;
@@ -262,28 +275,28 @@ const fs = require('fs');
 function main() {
     const input = fs.readFileSync(0, 'utf-8');
     const tokens = input.trim().split(/\s+/);
-    if (!tokens || tokens.length < 2) return;
+    if (!tokens || tokens.length === 0 || tokens[0] === '') return;
     let ptr = 0;
-    while (ptr < tokens.length) {
-        const nStr = tokens[ptr++];
-        if (!nStr) break;
-        const n = parseInt(nStr, 10);
-        if (isNaN(n) || ptr >= tokens.length) break;
+    const t = parseInt(tokens[ptr++]);
+    const out = [];
+    for (let tc = 0; tc < t; tc++) {
+        if (ptr >= tokens.length) break;
+        const n = parseInt(tokens[ptr++]);
         const a = tokens[ptr++];
-
         const d = new Map();
         d.set(0, 1n);
         let res = 0n;
         let s = 0;
         for (let i = 0; i < n; i++) {
-            s += (a.charCodeAt(i) - 48);
-            const x = s - i - 1;
+            s += parseInt(a[i]);
+            const x = s - (i + 1);
             const count = d.get(x) || 0n;
             res += count;
             d.set(x, count + 1n);
         }
-        console.log(res.toString());
+        out.push(res.toString());
     }
+    console.log(out.join('\n'));
 }
 
 main();
