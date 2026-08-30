@@ -23,29 +23,31 @@ Output a single integer representing the furthest building index (0-indexed) you
 
 ## Explanation
 
-A greedy strategy with a **Max Priority Queue (Max-Heap)** allows us to make optimal decisions retroactively:
+A greedy strategy with a **Min Priority Queue (Min-Heap)** allows us to make optimal decisions efficiently:
 
-1. As we move from building $i$ to building $i+1$, if `heights[i+1] > heights[i]`, we tentatively use `diff = heights[i+1] - heights[i]` bricks to cover this climb.
-2. We subtract `diff` from our available `bricks` and push `diff` into a **Max Priority Queue** (recording all brick investments made so far).
-3. If our available `bricks` drop below `0` (`bricks < 0`):
+1. As we move from building $i$ to building $i+1$, if `heights[i+1] > heights[i]`, we tentatively use a **ladder** for this climb by pushing the climb difference `diff = heights[i+1] - heights[i]` into a **Min Priority Queue**.
+2. If the number of climbs in our min-heap exceeds our available `ladders` (`minHeap.size() > ladders`):
 
-- We retroactively replace the **largest jump** made so far with a **ladder**.
-- We pop the maximum jump value from the max-heap, add those bricks back to our total (`bricks += maxHeap.pop()`), and decrement our ladder count (`ladders--`).
+- We pop the smallest climb from the min-heap and cover it using `bricks` instead (`bricks -= minHeap.poll()`).
 
-1. If `ladders < 0`, we have neither bricks nor ladders left to cover the current jump, so we stop and return the current building index $i$.
+1. If at any point our available `bricks` drop below `0` (`bricks < 0`):
+
+- We cannot reach building $i+1$, so we stop and return the current building index $i$.
+
+1. If we traverse all buildings, return $n - 1$.
 
 ### Algorithm
 
-1. Initialize a Max Priority Queue to store brick usage.
+1. Initialize a Min Priority Queue to store climbs covered by ladders.
 2. Loop through building indices $i$ from $0$ to $n - 2$:
 
 - Compute `diff = heights[i+1] - heights[i]`.
 - If `diff <= 0`, continue.
-- Deduct `diff` from `bricks` (`bricks -= diff`) and push `diff` into the priority queue.
+- Push `diff` into `minHeap`.
+- If `minHeap.size() > ladders`:
+- Deduct the smallest climb from `bricks`: `bricks -= minHeap.poll()`.
 - If `bricks < 0`:
-- `bricks += maxHeap.pop()`
-- `ladders--`
-- If `ladders < 0`, return $i$.
+- Return $i$.
 
 1. If the loop completes, return $n - 1$.
 
@@ -187,44 +189,47 @@ int main() {
 }
 ```
 ```Java
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        if (sc.hasNextInt()) {
-            int t = sc.nextInt();
-            while (t-- > 0) {
-                int n = sc.nextInt();
-                int bricks = sc.nextInt();
-                int ladders = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            String[] parts = line.split("\s+");
+            if (parts.length < 3) continue;
+            int n = Integer.parseInt(parts[0]);
+            long bricks = Long.parseLong(parts[1]);
+            int ladders = Integer.parseInt(parts[2]);
 
-                int[] heights = new int[n];
-                for (int i = 0; i < n; i++) {
-                    heights[i] = sc.nextInt();
-                }
-
-                PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-                int i = 0;
-                for (i = 0; i < n - 1; i++) {
-                    int diff = heights[i + 1] - heights[i];
-                    if (diff <= 0) continue;
-
-                    bricks -= diff;
-                    pq.add(diff);
-
-                    if (bricks < 0) {
-                        bricks += pq.poll();
-                        ladders--;
-                    }
-
-                    if (ladders < 0) break;
-                }
-
-                System.out.println(i);
+            String heightsLine = br.readLine();
+            if (heightsLine == null) break;
+            String[] hParts = heightsLine.trim().split("\s+");
+            int[] heights = new int[n];
+            for (int i = 0; i < n; i++) {
+                heights[i] = Integer.parseInt(hParts[i]);
             }
+
+            PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+            int ans = n - 1;
+            for (int i = 0; i < n - 1; i++) {
+                int diff = heights[i + 1] - heights[i];
+                if (diff > 0) {
+                    minHeap.add(diff);
+                    if (minHeap.size() > ladders) {
+                        bricks -= minHeap.poll();
+                    }
+                    if (bricks < 0) {
+                        ans = i;
+                        break;
+                    }
+                }
+            }
+            System.out.println(ans);
         }
-        sc.close();
     }
 }
 ```
@@ -401,8 +406,8 @@ Output
 1
 
 # Time Complexity
-O(N log N) per testcase.
+O(N log L) per testcase.
 
 # Space Complexity
-O(N) per testcase.
+O(L) per testcase.
 
