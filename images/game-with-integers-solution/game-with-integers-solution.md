@@ -34,7 +34,7 @@ Consider the remainder when dividing $n$ by $3$ ($n \pmod 3$):
 
 ### Algorithm
 
-1. Read the number of test cases $t$.
+1. Read input integer $n$.
 2. For each test case integer $n$:
 
 - If `n % 3 != 0`, output "First".
@@ -44,12 +44,13 @@ Consider the remainder when dividing $n$ by $3$ ($n \pmod 3$):
 #include <stdio.h>
 
 int main() {
-    int n;
-    while (scanf("%d", &n) == 1) {
-        if (n % 3 != 0) {
-            printf("First\n");
-        } else {
-            printf("Second\n");
+    int t;
+    if (scanf("%d", &t) == 1) {
+        while (t--) {
+            int n;
+            scanf("%d", &n);
+            if (n % 3 != 0) printf("First\n");
+            else printf("Second\n");
         }
     }
     return 0;
@@ -59,9 +60,11 @@ int main() {
 #include <iostream>
 using namespace std;
 
-void solveTestCase() {
+void solve() {
     int n;
-    if (!(cin >> n)) return;
+    if (!(cin >> n)) {
+        return;
+    }
     if (n % 3 != 0) {
         cout << "First\n";
     } else {
@@ -72,30 +75,28 @@ void solveTestCase() {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int t;
     if (cin >> t) {
         while (t--) {
-            solveTestCase();
+            solve();
         }
     }
     return 0;
 }
 ```
 ```Java
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNextInt()) {
             int t = sc.nextInt();
-            while (t-- > 0) {
+            while (t-- > 0 && sc.hasNextInt()) {
                 int n = sc.nextInt();
-                if (n % 3 != 0) {
-                    System.out.println("First");
-                } else {
-                    System.out.println("Second");
-                }
+                if (n % 3 != 0) System.out.println("First");
+                else System.out.println("Second");
             }
         }
         sc.close();
@@ -109,15 +110,40 @@ def main():
     input_data = sys.stdin.read().split()
     if not input_data:
         return
-    for token in input_data:
-        n = int(token)
+    ptr = 0
+    t = int(input_data[ptr])
+    ptr += 1
+    out = []
+    for _ in range(t):
+        n = int(input_data[ptr])
+        ptr += 1
         if n % 3 != 0:
-            print("First")
+            out.append("First")
         else:
-            print("Second")
+            out.append("Second")
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
+```
+```C#
+using System;
+
+class Solution {
+    static void Main() {
+        string input = Console.In.ReadToEnd();
+        if (string.IsNullOrWhiteSpace(input)) return;
+        string[] tokens = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return;
+        int ptr = 0;
+        int t = int.Parse(tokens[ptr++]);
+        while (t-- > 0 && ptr < tokens.Length) {
+            int n = int.Parse(tokens[ptr++]);
+            if (n % 3 != 0) Console.WriteLine("First");
+            else Console.WriteLine("Second");
+        }
+    }
+}
 ```
 ```JavaScript
 const fs = require('fs');
@@ -126,15 +152,16 @@ function main() {
     const input = fs.readFileSync(0, 'utf-8');
     const tokens = input.trim().split(/\s+/);
     if (!tokens || tokens.length === 0 || tokens[0] === '') return;
-    for (const token of tokens) {
-        const n = parseInt(token);
-        if (isNaN(n)) continue;
-        if (n % 3 !== 0) {
-            console.log("First");
-        } else {
-            console.log("Second");
-        }
+    let ptr = 0;
+    const t = parseInt(tokens[ptr++]);
+    const out = [];
+    for (let tc = 0; tc < t; tc++) {
+        if (ptr >= tokens.length) break;
+        const n = parseInt(tokens[ptr++]);
+        if (n % 3 !== 0) out.push("First");
+        else out.push("Second");
     }
+    console.log(out.join('\n'));
 }
 
 main();
