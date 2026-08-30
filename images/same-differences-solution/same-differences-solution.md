@@ -29,19 +29,19 @@ Now, the condition simplifies to finding the number of pairs $(i, j)$ such that 
 
 We can calculate this efficiently using a frequency hash map while traversing the array from left to right:
 
-1. Initialize a hash map `freq` and `res = 0`.
+1. Initialize a hash map `freq` and `res = 0` (`long` type to avoid 64-bit integer overflow).
 2. For each element at 0-indexed position $i$:
 
-- Compute `x = a[i] - i`.
-- Add `freq[x]` to `res`.
-- Increment `freq[x]` by $1$.
+- Compute `val = a[i] - i`.
+- Add `freq[val]` to `res`.
+- Increment `freq[val]` by $1$.
 
 ### Algorithm
 
-1. Read the number of test cases $t$.
+1. Read input.
 2. For each testcase:
 
-- Initialize frequency map `freq` and `res = 0`.
+- Initialize frequency map `freq` and `res = 0` (`long` / `long long` / `BigInt`).
 - Iterate index $i$ from $0$ to $n - 1$:
 - Read $x = a[i]$.
 - Calculate `val = x - i`.
@@ -137,27 +137,30 @@ int main() {
 }
 ```
 ```Java
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        if (sc.hasNextInt()) {
-            int t = sc.nextInt();
-            while (t-- > 0) {
-                int n = sc.nextInt();
-                Map<Integer, Integer> freq = new HashMap<>();
-                long res = 0;
-                for (int i = 0; i < n; i++) {
-                    int x = sc.nextInt() - i;
-                    int count = freq.getOrDefault(x, 0);
-                    res += count;
-                    freq.put(x, count + 1);
-                }
-                System.out.println(res);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            int n = Integer.parseInt(line);
+            String arrLine = br.readLine();
+            if (arrLine == null) break;
+            String[] parts = arrLine.trim().split("\s+");
+            Map<Integer, Integer> freq = new HashMap<>();
+            long res = 0;
+            for (int i = 0; i < n; i++) {
+                int val = Integer.parseInt(parts[i]) - i;
+                int count = freq.getOrDefault(val, 0);
+                res += count;
+                freq.put(val, count + 1);
             }
+            System.out.println(res);
         }
-        sc.close();
     }
 }
 ```
