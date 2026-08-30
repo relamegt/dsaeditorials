@@ -37,8 +37,8 @@ Consider the remainder when dividing $n$ by $3$ ($n \pmod 3$):
 1. Read the number of test cases $t$.
 2. For each test case integer $n$:
 
-- If $n \% 3 \neq 0$, output "First".
-- If $n \% 3 == 0$, output "Second".
+- If `n % 3 != 0`, output "First".
+- If `n % 3 == 0`, output "Second".
 
 ```C
 #include <stdio.h>
@@ -82,22 +82,23 @@ int main() {
 }
 ```
 ```Java
-import java.io.*;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String line;
-        while ((line = br.readLine()) != null) {
-            line = line.trim();
-            if (line.isEmpty()) continue;
-            int n = Integer.parseInt(line);
-            if (n % 3 != 0) {
-                System.out.println("First");
-            } else {
-                System.out.println("Second");
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (sc.hasNextInt()) {
+            int t = sc.nextInt();
+            while (t-- > 0) {
+                int n = sc.nextInt();
+                if (n % 3 != 0) {
+                    System.out.println("First");
+                } else {
+                    System.out.println("Second");
+                }
             }
         }
+        sc.close();
     }
 }
 ```
