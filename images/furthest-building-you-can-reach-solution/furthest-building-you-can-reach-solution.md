@@ -58,67 +58,56 @@ A greedy strategy with a **Min Priority Queue (Min-Heap)** allows us to make opt
 typedef struct {
     int *data;
     int size;
-    int capacity;
 } MinHeap;
 
-MinHeap* createHeap(int cap) {
-    MinHeap *h = (MinHeap*)malloc(sizeof(MinHeap));
-    h->data = (int*)malloc(sizeof(int) * (cap + 5));
-    h->size = 0;
-    h->capacity = cap;
-    return h;
-}
-
-void heapPush(MinHeap *h, int val) {
+void heap_push(MinHeap *h, int val) {
+    h->data[h->size] = val;
     int i = h->size++;
-    h->data[i] = val;
     while (i > 0) {
         int p = (i - 1) / 2;
-        if (h->data[p] > h->data[i]) {
-            int tmp = h->data[p];
-            h->data[p] = h->data[i];
-            h->data[i] = tmp;
-            i = p;
-        } else break;
+        if (h->data[p] <= h->data[i]) break;
+        int tmp = h->data[p]; h->data[p] = h->data[i]; h->data[i] = tmp;
+        i = p;
     }
 }
 
-int heapPop(MinHeap *h) {
-    if (h->size == 0) return 0;
+int heap_pop(MinHeap *h) {
     int top = h->data[0];
     int bottom = h->data[--h->size];
     if (h->size > 0) {
         h->data[0] = bottom;
         int i = 0;
-        while (2 * i + 1 < h->size) {
-            int left = 2 * i + 1, right = left + 1, smallest = i;
-            if (h->data[left] < h->data[smallest]) smallest = left;
-            if (right < h->size && h->data[right] < h->data[smallest]) smallest = right;
-            if (smallest != i) {
-                int tmp = h->data[i];
-                h->data[i] = h->data[smallest];
-                h->data[smallest] = tmp;
-                i = smallest;
-            } else break;
+        while (1) {
+            int l = 2 * i + 1, r = 2 * i + 2, smallest = i;
+            if (l < h->size && h->data[l] < h->data[smallest]) smallest = l;
+            if (r < h->size && h->data[r] < h->data[smallest]) smallest = r;
+            if (smallest == i) break;
+            int tmp = h->data[i]; h->data[i] = h->data[smallest]; h->data[smallest] = tmp;
+            i = smallest;
         }
     }
     return top;
 }
 
-void freeHeap(MinHeap *h) {
-    free(h->data);
-    free(h);
-}
+void solve_c() {
+    int n, ladders;
+    long long bricks;
+    if (scanf("%d %lld %d", &n, &bricks, &ladders) != 3) return;
 
-void solve_c(int n, long long bricks, int ladders, int *heights) {
-    MinHeap *minHeap = createHeap(n);
+    int *heights = (int*)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) scanf("%d", &heights[i]);
+
+    MinHeap h;
+    h.data = (int*)malloc(n * sizeof(int));
+    h.size = 0;
+
     int ans = n - 1;
     for (int i = 0; i < n - 1; i++) {
         int diff = heights[i + 1] - heights[i];
         if (diff > 0) {
-            heapPush(minHeap, diff);
-            if (minHeap->size > ladders) {
-                bricks -= heapPop(minHeap);
+            heap_push(&h, diff);
+            if (h.size > ladders) {
+                bricks -= heap_pop(&h);
             }
             if (bricks < 0) {
                 ans = i;
@@ -127,17 +116,14 @@ void solve_c(int n, long long bricks, int ladders, int *heights) {
         }
     }
     printf("%d\n", ans);
-    freeHeap(minHeap);
+    free(heights);
+    free(h.data);
 }
 
 int main() {
-    int n, ladders;
-    long long bricks;
-    while (scanf("%d %lld %d", &n, &bricks, &ladders) == 3) {
-        int *heights = (int*)malloc(sizeof(int) * n);
-        for (int i = 0; i < n; i++) scanf("%d", &heights[i]);
-        solve_c(n, bricks, ladders, heights);
-        free(heights);
+    int t;
+    if (scanf("%d", &t) == 1) {
+        while (t--) solve_c();
     }
     return 0;
 }
@@ -146,26 +132,29 @@ int main() {
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <algorithm>
 using namespace std;
 
-void solveTestCase() {
+void solve() {
     int n;
     long long bricks;
     int ladders;
-    if (!(cin >> n >> bricks >> ladders)) return;
+    if (!(cin >> n >> bricks >> ladders)) {
+        return;
+    }
+
     vector<int> heights(n);
     for (int i = 0; i < n; i++) {
         cin >> heights[i];
     }
-    priority_queue<int, vector<int>, greater<int>> minHeap;
+
+    priority_queue<int, vector<int>, greater<int>> pq;
     for (int i = 0; i < n - 1; i++) {
         int diff = heights[i + 1] - heights[i];
         if (diff > 0) {
-            minHeap.push(diff);
-            if (minHeap.size() > ladders) {
-                bricks -= minHeap.top();
-                minHeap.pop();
+            pq.push(diff);
+            if ((int)pq.size() > ladders) {
+                bricks -= pq.top();
+                pq.pop();
             }
             if (bricks < 0) {
                 cout << i << "\n";
@@ -173,63 +162,57 @@ void solveTestCase() {
             }
         }
     }
+
     cout << n - 1 << "\n";
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int t;
     if (cin >> t) {
         while (t--) {
-            solveTestCase();
+            solve();
         }
     }
     return 0;
 }
 ```
 ```Java
-import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String line;
-        while ((line = br.readLine()) != null) {
-            line = line.trim();
-            if (line.isEmpty()) continue;
-            String[] parts = line.split("\s+");
-            if (parts.length < 3) continue;
-            int n = Integer.parseInt(parts[0]);
-            long bricks = Long.parseLong(parts[1]);
-            int ladders = Integer.parseInt(parts[2]);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (sc.hasNextInt()) {
+            int t = sc.nextInt();
+            while (t-- > 0 && sc.hasNextInt()) {
+                int n = sc.nextInt();
+                long bricks = sc.nextLong();
+                int ladders = sc.nextInt();
+                int[] heights = new int[n];
+                for (int i = 0; i < n; i++) heights[i] = sc.nextInt();
 
-            String heightsLine = br.readLine();
-            if (heightsLine == null) break;
-            String[] hParts = heightsLine.trim().split("\s+");
-            int[] heights = new int[n];
-            for (int i = 0; i < n; i++) {
-                heights[i] = Integer.parseInt(hParts[i]);
-            }
-
-            PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-            int ans = n - 1;
-            for (int i = 0; i < n - 1; i++) {
-                int diff = heights[i + 1] - heights[i];
-                if (diff > 0) {
-                    minHeap.add(diff);
-                    if (minHeap.size() > ladders) {
-                        bricks -= minHeap.poll();
-                    }
-                    if (bricks < 0) {
-                        ans = i;
-                        break;
+                PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+                int ans = n - 1;
+                for (int i = 0; i < n - 1; i++) {
+                    int diff = heights[i + 1] - heights[i];
+                    if (diff > 0) {
+                        minHeap.add(diff);
+                        if (minHeap.size() > ladders) {
+                            bricks -= minHeap.poll();
+                        }
+                        if (bricks < 0) {
+                            ans = i;
+                            break;
+                        }
                     }
                 }
+                System.out.println(ans);
             }
-            System.out.println(ans);
         }
+        sc.close();
     }
 }
 ```
@@ -242,13 +225,15 @@ def main():
     if not input_data:
         return
     ptr = 0
-    while ptr < len(input_data):
+    t = int(input_data[ptr])
+    ptr += 1
+    out = []
+    for _ in range(t):
         n = int(input_data[ptr])
         bricks = int(input_data[ptr + 1])
         ladders = int(input_data[ptr + 2])
         ptr += 3
-
-        heights = [int(x) for x in input_data[ptr:ptr + n]]
+        heights = [int(x) for x in input_data[ptr : ptr + n]]
         ptr += n
 
         min_heap = []
@@ -262,7 +247,8 @@ def main():
                 if bricks < 0:
                     ans = i;
                     break
-        print(ans)
+        out.append(str(ans))
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
@@ -272,27 +258,61 @@ using System;
 using System.Collections.Generic;
 
 class Solution {
+    class MinHeap {
+        private List<int> list = new List<int>();
+        public int Count => list.Count;
+        public void Add(int item) {
+            list.Add(item);
+            int i = list.Count - 1;
+            while (i > 0) {
+                int p = (i - 1) / 2;
+                if (list[p] <= list[i]) break;
+                int tmp = list[p]; list[p] = list[i]; list[i] = tmp;
+                i = p;
+            }
+        }
+        public int Pop() {
+            int root = list[0];
+            int last = list[list.Count - 1];
+            list.RemoveAt(list.Count - 1);
+            if (list.Count > 0) {
+                list[0] = last;
+                int i = 0;
+                while (true) {
+                    int l = 2 * i + 1, r = 2 * i + 2, smallest = i;
+                    if (l < list.Count && list[l] < list[smallest]) smallest = l;
+                    if (r < list.Count && list[r] < list[smallest]) smallest = r;
+                    if (smallest == i) break;
+                    int tmp = list[i]; list[i] = list[smallest]; list[smallest] = tmp;
+                    i = smallest;
+                }
+            }
+            return root;
+        }
+    }
+
     static void Main() {
         string input = Console.In.ReadToEnd();
         if (string.IsNullOrWhiteSpace(input)) return;
         string[] tokens = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return;
         int ptr = 0;
-        while (ptr < tokens.Length) {
+        int t = int.Parse(tokens[ptr++]);
+        while (t-- > 0 && ptr < tokens.Length) {
             int n = int.Parse(tokens[ptr++]);
             long bricks = long.Parse(tokens[ptr++]);
             int ladders = int.Parse(tokens[ptr++]);
-
             int[] heights = new int[n];
             for (int i = 0; i < n; i++) heights[i] = int.Parse(tokens[ptr++]);
 
-            PriorityQueue<int, int> minHeap = new PriorityQueue<int, int>();
+            MinHeap minHeap = new MinHeap();
             int ans = n - 1;
             for (int i = 0; i < n - 1; i++) {
                 int diff = heights[i + 1] - heights[i];
                 if (diff > 0) {
-                    minHeap.Enqueue(diff, diff);
+                    minHeap.Add(diff);
                     if (minHeap.Count > ladders) {
-                        bricks -= minHeap.Dequeue();
+                        bricks -= minHeap.Pop();
                     }
                     if (bricks < 0) {
                         ans = i;
@@ -309,47 +329,36 @@ class Solution {
 const fs = require('fs');
 
 class MinHeap {
-    constructor() {
-        this.heap = [];
-    }
+    constructor() { this.heap = []; }
     push(val) {
         this.heap.push(val);
-        this._up(this.heap.length - 1);
+        let i = this.heap.length - 1;
+        while (i > 0) {
+            let p = Math.floor((i - 1) / 2);
+            if (this.heap[p] <= this.heap[i]) break;
+            [this.heap[p], this.heap[i]] = [this.heap[i], this.heap[p]];
+            i = p;
+        }
     }
     pop() {
-        if (this.heap.length === 0) return null;
+        if (this.heap.length === 0) return 0;
         const top = this.heap[0];
         const bottom = this.heap.pop();
         if (this.heap.length > 0) {
             this.heap[0] = bottom;
-            this._down(0);
+            let i = 0;
+            while (true) {
+                let l = 2 * i + 1, r = 2 * i + 2, smallest = i;
+                if (l < this.heap.length && this.heap[l] < this.heap[smallest]) smallest = l;
+                if (r < this.heap.length && this.heap[r] < this.heap[smallest]) smallest = r;
+                if (smallest === i) break;
+                [this.heap[i], this.heap[smallest]] = [this.heap[smallest], this.heap[i]];
+                i = smallest;
+            }
         }
         return top;
     }
-    size() {
-        return this.heap.length;
-    }
-    _up(i) {
-        while (i > 0) {
-            const p = (i - 1) >> 1;
-            if (this.heap[p] > this.heap[i]) {
-                [this.heap[p], this.heap[i]] = [this.heap[i], this.heap[p]];
-                i = p;
-            } else break;
-        }
-    }
-    _down(i) {
-        const len = this.heap.length;
-        while ((i << 1) + 1 < len) {
-            let left = (i << 1) + 1, right = left + 1, smallest = i;
-            if (this.heap[left] < this.heap[smallest]) smallest = left;
-            if (right < len && this.heap[right] < this.heap[smallest]) smallest = right;
-            if (smallest !== i) {
-                [this.heap[i], this.heap[smallest]] = [this.heap[smallest], this.heap[i]];
-                i = smallest;
-            } else break;
-        }
-    }
+    size() { return this.heap.length; }
 }
 
 function main() {
@@ -357,12 +366,13 @@ function main() {
     const tokens = input.trim().split(/\s+/);
     if (!tokens || tokens.length === 0 || tokens[0] === '') return;
     let ptr = 0;
-    while (ptr < tokens.length) {
+    const t = parseInt(tokens[ptr++]);
+    const out = [];
+    for (let tc = 0; tc < t; tc++) {
+        if (ptr >= tokens.length) break;
         const n = parseInt(tokens[ptr++]);
-        if (isNaN(n)) break;
         let bricks = BigInt(tokens[ptr++]);
         const ladders = parseInt(tokens[ptr++]);
-
         const heights = [];
         for (let i = 0; i < n; i++) heights.push(parseInt(tokens[ptr++]));
 
@@ -381,8 +391,9 @@ function main() {
                 }
             }
         }
-        console.log(ans);
+        out.push(ans.toString());
     }
+    console.log(out.join('\n'));
 }
 
 main();
