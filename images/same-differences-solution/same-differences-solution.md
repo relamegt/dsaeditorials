@@ -97,8 +97,9 @@ void solve_c() {
 }
 
 int main() {
-    while (!feof(stdin)) {
-        solve_c();
+    int t;
+    if (scanf("%d", &t) == 1) {
+        while (t--) solve_c();
     }
     return 0;
 }
@@ -109,28 +110,34 @@ int main() {
 #include <unordered_map>
 using namespace std;
 
-void solveTestCase() {
+void solve() {
     int n;
-    if (!(cin >> n)) return;
+    if (!(cin >> n)) {
+        return;
+    }
+
     unordered_map<int, int> freq;
     long long res = 0;
+
     for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
-        x -= i; // 0-based offset difference (a[i] - i)
+        x -= i;
         res += freq[x];
         freq[x]++;
     }
+
     cout << res << "\n";
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int t;
     if (cin >> t) {
         while (t--) {
-            solveTestCase();
+            solve();
         }
     }
     return 0;
@@ -143,24 +150,41 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String line;
-        while ((line = br.readLine()) != null) {
-            line = line.trim();
-            if (line.isEmpty()) continue;
-            int n = Integer.parseInt(line);
-            String arrLine = br.readLine();
-            if (arrLine == null) break;
-            String[] parts = arrLine.trim().split("\s+");
-            Map<Integer, Integer> freq = new HashMap<>();
-            long res = 0;
-            for (int i = 0; i < n; i++) {
-                int val = Integer.parseInt(parts[i]) - i;
-                int count = freq.getOrDefault(val, 0);
-                res += count;
-                freq.put(val, count + 1);
+        StringTokenizer st = null;
+
+        String line = br.readLine();
+        if (line == null || line.trim().isEmpty()) return;
+        st = new StringTokenizer(line);
+        if (!st.hasMoreTokens()) return;
+        int t = Integer.parseInt(st.nextToken());
+
+        StringBuilder sb = new StringBuilder();
+        while (t-- > 0) {
+            while (st == null || !st.hasMoreTokens()) {
+                line = br.readLine();
+                if (line == null) break;
+                st = new StringTokenizer(line);
             }
-            System.out.println(res);
+            if (line == null) break;
+
+            int n = Integer.parseInt(st.nextToken());
+            Map<Integer, Integer> map = new HashMap<>();
+            long count = 0;
+
+            for (int i = 0; i < n; i++) {
+                while (st == null || !st.hasMoreTokens()) {
+                    line = br.readLine();
+                    if (line == null) break;
+                    st = new StringTokenizer(line);
+                }
+                int val = Integer.parseInt(st.nextToken()) - i;
+                int existing = map.getOrDefault(val, 0);
+                count += existing;
+                map.put(val, existing + 1);
+            }
+            sb.append(count).append("\n");
         }
+        System.out.print(sb.toString());
     }
 }
 ```
@@ -173,7 +197,10 @@ def main():
     if not input_data:
         return
     ptr = 0
-    while ptr < len(input_data):
+    t = int(input_data[ptr])
+    ptr += 1
+    out = []
+    for _ in range(t):
         n = int(input_data[ptr])
         ptr += 1
         freq = defaultdict(int)
@@ -183,7 +210,8 @@ def main():
             res += freq[val]
             freq[val] += 1
         ptr += n
-        print(res)
+        out.append(str(res))
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
@@ -197,8 +225,10 @@ class Solution {
         string input = Console.In.ReadToEnd();
         if (string.IsNullOrWhiteSpace(input)) return;
         string[] tokens = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return;
         int ptr = 0;
-        while (ptr < tokens.Length) {
+        int t = int.Parse(tokens[ptr++]);
+        while (t-- > 0 && ptr < tokens.Length) {
             int n = int.Parse(tokens[ptr++]);
             var freq = new Dictionary<int, int>();
             long res = 0;
@@ -224,9 +254,11 @@ function main() {
     const tokens = input.trim().split(/\s+/);
     if (!tokens || tokens.length === 0 || tokens[0] === '') return;
     let ptr = 0;
-    while (ptr < tokens.length) {
+    const t = parseInt(tokens[ptr++]);
+    const out = [];
+    for (let tc = 0; tc < t; tc++) {
+        if (ptr >= tokens.length) break;
         const n = parseInt(tokens[ptr++]);
-        if (isNaN(n)) break;
         const map = new Map();
         let res = 0n;
         for (let i = 0; i < n; i++) {
@@ -235,8 +267,9 @@ function main() {
             res += count;
             map.set(val, count + 1n);
         }
-        console.log(res.toString());
+        out.push(res.toString());
     }
+    console.log(out.join('\n'));
 }
 
 main();
