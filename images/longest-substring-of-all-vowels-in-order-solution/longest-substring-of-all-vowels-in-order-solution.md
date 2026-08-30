@@ -46,10 +46,11 @@ We can solve this problem in a single pass using a **Two Pointer / Sliding Windo
 
 ```C
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-void solve_c(const char *word) {
+void solve_c() {
+    char word[500005];
+    if (scanf("%s", word) != 1) return;
     int n = strlen(word);
     int ans = 0, p = 0, count = 1;
     for (int i = 1; i < n; i++) {
@@ -60,17 +61,16 @@ void solve_c(const char *word) {
             count = 1;
         }
         if (count == 5) {
-            int len = i - p + 1;
-            if (len > ans) ans = len;
+            if (i - p + 1 > ans) ans = i - p + 1;
         }
     }
     printf("%d\n", ans);
 }
 
 int main() {
-    static char word[500005];
-    while (scanf("%s", word) == 1) {
-        solve_c(word);
+    int t;
+    if (scanf("%d", &t) == 1) {
+        while (t--) solve_c();
     }
     return 0;
 }
@@ -81,11 +81,15 @@ int main() {
 #include <algorithm>
 using namespace std;
 
-void solveTestCase() {
+void solve() {
     string word;
-    if (!(cin >> word)) return;
+    if (!(cin >> word)) {
+        return;
+    }
+
     int n = word.length();
     int ans = 0, p = 0, count = 1;
+
     for (int i = 1; i < n; i++) {
         if (word[i - 1] < word[i]) {
             count++;
@@ -97,30 +101,32 @@ void solveTestCase() {
             ans = max(ans, i - p + 1);
         }
     }
+
     cout << ans << "\n";
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int t;
     if (cin >> t) {
         while (t--) {
-            solveTestCase();
+            solve();
         }
     }
     return 0;
 }
 ```
 ```Java
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNextInt()) {
             int t = sc.nextInt();
-            while (t-- > 0) {
+            while (t-- > 0 && sc.hasNext()) {
                 String word = sc.next();
                 int n = word.length();
                 int ans = 0, p = 0, count = 1;
@@ -146,8 +152,16 @@ public class Main {
 import sys
 
 def main():
-    words = sys.stdin.read().split()
-    for word in words:
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+    ptr = 0
+    t = int(input_data[ptr])
+    ptr += 1
+    out = []
+    for _ in range(t):
+        word = input_data[ptr]
+        ptr += 1
         n = len(word)
         ans = 0
         p = 0
@@ -160,7 +174,8 @@ def main():
                 count = 1
             if count == 5:
                 ans = max(ans, i - p + 1)
-        print(ans)
+        out.append(str(ans))
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
@@ -172,8 +187,12 @@ class Solution {
     static void Main() {
         string input = Console.In.ReadToEnd();
         if (string.IsNullOrWhiteSpace(input)) return;
-        string[] words = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (string word in words) {
+        string[] tokens = input.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return;
+        int ptr = 0;
+        int t = int.Parse(tokens[ptr++]);
+        while (t-- > 0 && ptr < tokens.Length) {
+            string word = tokens[ptr++];
             int n = word.Length;
             int ans = 0, p = 0, count = 1;
             for (int i = 1; i < n; i++) {
@@ -197,15 +216,20 @@ const fs = require('fs');
 
 function main() {
     const input = fs.readFileSync(0, 'utf-8');
-    const words = input.trim().split(/\s+/);
-    if (!words || words.length === 0 || words[0] === '') return;
-    for (const word of words) {
+    const tokens = input.trim().split(/\s+/);
+    if (!tokens || tokens.length === 0 || tokens[0] === '') return;
+    let ptr = 0;
+    const t = parseInt(tokens[ptr++]);
+    const out = [];
+    for (let tc = 0; tc < t; tc++) {
+        if (ptr >= tokens.length) break;
+        const word = tokens[ptr++];
         const n = word.length;
         let ans = 0, p = 0, count = 1;
         for (let i = 1; i < n; i++) {
-            if (word.charCodeAt(i - 1) < word.charCodeAt(i)) {
+            if (word[i - 1] < word[i]) {
                 count++;
-            } else if (word.charCodeAt(i - 1) > word.charCodeAt(i)) {
+            } else if (word[i - 1] > word[i]) {
                 p = i;
                 count = 1;
             }
@@ -213,8 +237,9 @@ function main() {
                 ans = Math.max(ans, i - p + 1);
             }
         }
-        console.log(ans);
+        out.push(ans.toString());
     }
+    console.log(out.join('\n'));
 }
 
 main();
